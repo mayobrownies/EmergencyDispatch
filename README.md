@@ -1,7 +1,7 @@
 # An AI-Driven Simulation Environment for Optimizing Emergency Dispatch Policies
 
 ## Project Structure
-'''
+```
 ├── .gitignore
 ├── README.md
 ├── config/
@@ -33,7 +33,7 @@
 │       ├── __init__.py
 │       └── logger.py
 └── run_simulation.py
-'''
+```
 
 ## Project Overview
 This project develops a discrete-event simulation framework to explore optimal emergency dispatch policies using reinforcement learning.
