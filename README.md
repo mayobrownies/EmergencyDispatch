@@ -9,7 +9,7 @@
 ├── data/
 │   └── city_graph.gml
 ├── notebooks/
-│   └── 01_initial_analysis.ipynb
+│   └── initial_analysis.ipynb
 ├── results/
 │   ├── baseline/
 │   └── rl_agent/
