@@ -20,21 +20,50 @@ class Vehicle:
         self.home_station = home_station
         self.assigned_incident = None
         self.patient = None
+        self.current_path = []
+        self.path_index = 0
+        self.destination = None
+        self.arrival_time = None
 
-    def dispatch_to_incident(self, incident, incident_location):
+    def dispatch_to_incident(self, incident, incident_location, path=None, travel_time=0):
         self.status = VehicleStatus.EN_ROUTE_TO_INCIDENT
         self.assigned_incident = incident
+        self.destination = incident_location
+        if path:
+            self.current_path = path
+            self.path_index = 0
+            self.arrival_time = travel_time
         incident.assigned_vehicle = self
 
-    def go_to_hospital(self, hospital_location, patient):
+    def go_to_hospital(self, hospital_location, patient, path=None, travel_time=0):
         self.status = VehicleStatus.TRANSPORTING_TO_HOSPITAL
         self.patient = patient
+        self.destination = hospital_location
+        if path:
+            self.current_path = path
+            self.path_index = 0
+            self.arrival_time = travel_time
 
     def update_location(self, new_location):
         self.current_location = new_location
 
-    def return_to_station(self):
+    def move_along_path(self, current_time):
+        if not self.current_path or self.path_index >= len(self.current_path):
+            return False
+
+        if self.path_index < len(self.current_path) - 1:
+            self.path_index += 1
+            node_id = self.current_path[self.path_index]
+            return node_id
+        return None
+
+    def return_to_station(self, path=None, travel_time=0):
         self.status = VehicleStatus.RETURNING_TO_STATION
+        self.destination = self.home_station.location
+        if path:
+            self.current_path = path
+            self.path_index = 0
+            self.arrival_time = travel_time
         self.assigned_incident = None
         self.patient = None
 
@@ -43,6 +72,8 @@ class Vehicle:
 
     def arrive_at_incident(self):
         self.status = VehicleStatus.AT_INCIDENT
+        self.current_path = []
+        self.path_index = 0
 
     def complete_incident(self):
         if self.assigned_incident:
@@ -51,3 +82,12 @@ class Vehicle:
     def arrive_at_station(self):
         self.status = VehicleStatus.IDLE
         self.current_location = self.home_station.location
+        self.current_path = []
+        self.path_index = 0
+        self.destination = None
+
+    def is_at_destination(self):
+        if not self.destination:
+            return False
+        return (self.current_location.x == self.destination.x and
+                self.current_location.y == self.destination.y)
