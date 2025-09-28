@@ -10,16 +10,17 @@ from .utils.logger import LogData
 
 
 class Simulation:
-    def __init__(self, simulation_time: float = 100.0, random_seed: int = 42):
+    def __init__(self, simulation_time: float = 100.0, random_seed: int = 42, dispatch_mode: str = "heuristic"):
         self.env = simpy.Environment()
         self.simulation_time = simulation_time
         self.time_super = simulation_time
+        self.dispatch_mode = dispatch_mode
 
         random.seed(random_seed)
 
         self.city_graph = CityGraph(width=20, height=15)
         self.log_data = LogData()
-        self.dispatch_center = DispatchCenter(self.log_data, self.city_graph)
+        self.dispatch_center = DispatchCenter(self.log_data, self.city_graph, dispatch_mode)
         self.incident_generator = IncidentGenerator(lambda_val=0.05, random_seed=random_seed)
 
         self.vehicles = []
@@ -137,5 +138,71 @@ class Simulation:
         print(f"Average response time: {metrics.get('avg_response_time', 0):.2f}")
         print(f"Total events logged: {metrics.get('total_events', 0)}")
 
+        if self.dispatch_mode == "rl" and self.dispatch_center.dispatch_agent:
+            avg_reward = sum(self.dispatch_center.episode_rewards) / len(self.dispatch_center.episode_rewards) if self.dispatch_center.episode_rewards else 0
+            print(f"Average episode reward: {avg_reward:.2f}")
+            print(f"Current epsilon: {self.dispatch_center.dispatch_agent.epsilon:.3f}")
+
         self.log_data.save_to_json("simulation_results.json")
         self.log_data.export_to_csv("simulation_results.csv")
+
+    def reset_for_training(self):
+        """Reset simulation state for training episodes."""
+        self.env = simpy.Environment()
+        self.log_data = LogData()
+
+        for vehicle in self.vehicles:
+            vehicle.status = VehicleStatus.IDLE
+            vehicle.current_location = vehicle.home_station.location
+            vehicle.assigned_incident = None
+            vehicle.patient = None
+            vehicle.current_path = []
+            vehicle.path_index = 0
+
+        while not self.dispatch_center.pending_incidents.empty():
+            try:
+                self.dispatch_center.pending_incidents.get_nowait()
+            except:
+                break
+
+        if self.dispatch_mode == "rl":
+            self.dispatch_center.episode_rewards = []
+            self.dispatch_center.last_state = None
+            self.dispatch_center.last_action = None
+
+    def run_training_episodes(self, num_episodes: int = 100, episode_length: float = 300.0):
+        """Run multiple training episodes for RL agent."""
+        if self.dispatch_mode != "rl":
+            print("Training only available in RL mode")
+            return
+
+        episode_rewards = []
+
+        for episode in range(num_episodes):
+            print(f"Training episode {episode + 1}/{num_episodes}")
+
+            self.reset_for_training()
+            self.simulation_time = episode_length
+            self.time_super = episode_length
+
+            try:
+                self.run_simulation()
+            except Exception as e:
+                print(f"Episode {episode + 1} failed: {e}")
+                continue
+
+            episode_reward = sum(self.dispatch_center.episode_rewards) if self.dispatch_center.episode_rewards else 0
+            episode_rewards.append(episode_reward)
+
+            if (episode + 1) % 10 == 0:
+                avg_reward = sum(episode_rewards[-10:]) / 10
+                print(f"Episodes {episode - 8}-{episode + 1} avg reward: {avg_reward:.2f}")
+
+                if (episode + 1) % 50 == 0:
+                    self.dispatch_center.dispatch_agent.save_model(f"models/dqn_episode_{episode + 1}.pth")
+
+        final_avg = sum(episode_rewards) / len(episode_rewards) if episode_rewards else 0
+        print(f"Training completed. Final average reward: {final_avg:.2f}")
+
+        self.dispatch_center.dispatch_agent.save_model("models/dqn_final.pth")
+        return episode_rewards

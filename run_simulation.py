@@ -8,7 +8,7 @@ from src.components.incident import IncidentStatus
 
 
 class SimulationVisualizer:
-    def __init__(self, simulation):
+    def __init__(self, simulation, dispatch_mode="heuristic"):
         pygame.init()
         self.simulation = simulation
         self.control_panel_width = 200
@@ -50,10 +50,12 @@ class SimulationVisualizer:
         self.next_button = pygame.Rect(20, 50, 160, 40)
         self.auto_button = pygame.Rect(20, 100, 160, 40)
         self.speedup_button = pygame.Rect(20, 150, 160, 40)
-        self.reset_button = pygame.Rect(20, 200, 160, 40)
+        self.mode_button = pygame.Rect(20, 200, 160, 40)
+        self.reset_button = pygame.Rect(20, 250, 160, 40)
 
         self.speed_multiplier = 1
         self.speed_options = [1, 2, 5, 10]
+        self.dispatch_mode = dispatch_mode
 
     def draw_control_panel(self):
         pygame.draw.rect(self.screen, self.LIGHT_GRAY, (0, 0, self.control_panel_width, self.height))
@@ -81,6 +83,12 @@ class SimulationVisualizer:
         speed_text = self.small_font.render(f"SPEED: {self.speed_multiplier}x", True, self.BLACK)
         self.screen.blit(speed_text, (self.speedup_button.x + 35, self.speedup_button.y + 12))
 
+        mode_color = self.BLUE if self.dispatch_mode == "rl" else self.BUTTON_GRAY
+        pygame.draw.rect(self.screen, mode_color, self.mode_button)
+        pygame.draw.rect(self.screen, self.BLACK, self.mode_button, 2)
+        mode_text = self.small_font.render(f"MODE: {self.dispatch_mode.upper()}", True, self.BLACK)
+        self.screen.blit(mode_text, (self.mode_button.x + 25, self.mode_button.y + 12))
+
         pygame.draw.rect(self.screen, self.BUTTON_GRAY, self.reset_button)
         pygame.draw.rect(self.screen, self.BLACK, self.reset_button, 2)
         reset_text = self.small_font.render("RESET", True, self.BLACK)
@@ -94,12 +102,12 @@ class SimulationVisualizer:
             status_color = self.RED
 
         status_label = self.small_font.render("Status:", True, self.BLACK)
-        self.screen.blit(status_label, (20, 270))
+        self.screen.blit(status_label, (20, 310))
         status_display = self.small_font.render(status_text, True, status_color)
-        self.screen.blit(status_display, (20, 290))
+        self.screen.blit(status_display, (20, 330))
 
         time_label = self.small_font.render(f"Time: {self.simulation.env.now:.0f}s", True, self.BLACK)
-        self.screen.blit(time_label, (20, 320))
+        self.screen.blit(time_label, (20, 360))
 
     def draw_city(self):
         city_offset_x = self.control_panel_width
@@ -115,7 +123,7 @@ class SimulationVisualizer:
                 if self.simulation.city_graph.is_road(j, i):
                     pygame.draw.rect(self.screen, self.GRAY,
                                    (x, y, self.cell_width, self.cell_height))
-                elif self.simulation.city_graph.is_building(j, i):
+                else:
                     pygame.draw.rect(self.screen, self.DARK_GRAY,
                                    (x, y, self.cell_width, self.cell_height))
 
@@ -272,7 +280,6 @@ class SimulationVisualizer:
 
     def draw_legend(self):
         legend_items = [
-            ("Parks/Empty Lots", self.LIGHT_GRAY),
             ("Roads", self.GRAY),
             ("Buildings", self.DARK_GRAY),
             ("Response Stations", self.BLUE),
@@ -336,12 +343,15 @@ class SimulationVisualizer:
             current_index = self.speed_options.index(self.speed_multiplier)
             next_index = (current_index + 1) % len(self.speed_options)
             self.speed_multiplier = self.speed_options[next_index]
+        elif self.mode_button.collidepoint(pos):
+            self.dispatch_mode = "rl" if self.dispatch_mode == "heuristic" else "heuristic"
+            self.reset_simulation()
         elif self.reset_button.collidepoint(pos):
             self.reset_simulation()
 
     def reset_simulation(self):
         from src.simulation import Simulation
-        self.simulation = Simulation(simulation_time=300.0, random_seed=42)
+        self.simulation = Simulation(simulation_time=300.0, random_seed=42, dispatch_mode=self.dispatch_mode)
         self.setup_simulation()
         self.auto_mode = False
         self.step_requested = False
@@ -399,17 +409,10 @@ class SimulationVisualizer:
 def main():
     print("Starting Emergency Response Dispatch Simulation...")
 
-    simulation = Simulation(simulation_time=300.0, random_seed=42)
-
-    if len(sys.argv) > 1 and sys.argv[1] == "--no-display":
-        print("Running simulation without display...")
-        simulation.run_simulation()
-    else:
-        print("Starting simulation with visual display...")
-        print("Close the window to stop the simulation.")
-        print("The simulation will run step by step showing vehicle movement.")
-        visualizer = SimulationVisualizer(simulation)
-        visualizer.run()
+    dispatch_mode = "heuristic"
+    simulation = Simulation(simulation_time=300.0, random_seed=42, dispatch_mode=dispatch_mode)
+    visualizer = SimulationVisualizer(simulation, dispatch_mode)
+    visualizer.run()
 
 
 if __name__ == "__main__":

@@ -1,17 +1,31 @@
 from typing import List, Dict, Any, Optional, Tuple
 from queue import Queue
+import numpy as np
 from ..components.vehicle import Vehicle, VehicleStatus
 from ..components.incident import Incident, IncidentStatus
 from ..utils.logger import LogData
+from .dispatch_agent import DispatchAgent
 
 
 class DispatchCenter:
-    def __init__(self, log_data: LogData, city_graph=None):
+    def __init__(self, log_data: LogData, city_graph=None, dispatch_mode: str = "heuristic"):
         self.pending_incidents = Queue()
         self.active_vehicles = []
         self.log_data = log_data
         self.performance_metrics = {}
         self.city_graph = city_graph
+        self.dispatch_mode = dispatch_mode
+
+        if dispatch_mode == "rl":
+            state_dim = 10 * 4 + 5 * 4 + 3
+            action_dim = 10
+            self.dispatch_agent = DispatchAgent(state_dim, action_dim)
+            self.training_mode = True
+            self.last_state = None
+            self.last_action = None
+            self.episode_rewards = []
+        else:
+            self.dispatch_agent = None
 
     def receive_incident(self, incident: Incident):
         self.pending_incidents.put(incident)
@@ -31,7 +45,11 @@ class DispatchCenter:
             available_vehicles = self.get_available_vehicles()
 
             if available_vehicles:
-                best_vehicle = self._select_closest_vehicle(incident, available_vehicles)
+                if self.dispatch_mode == "rl":
+                    best_vehicle = self._select_rl_vehicle(incident, available_vehicles, current_time)
+                else:
+                    best_vehicle = self._select_closest_vehicle(incident, available_vehicles)
+
                 if best_vehicle:
                     self._dispatch_vehicle(best_vehicle, incident, current_time)
             else:
@@ -52,6 +70,95 @@ class DispatchCenter:
                 best_vehicle = vehicle
 
         return best_vehicle
+
+    def _select_rl_vehicle(self, incident: Incident, available_vehicles: List[Vehicle], current_time: float) -> Optional[Vehicle]:
+        if not available_vehicles or not self.dispatch_agent:
+            return self._select_closest_vehicle(incident, available_vehicles)
+
+        pending_incidents = [incident]
+        while not self.pending_incidents.empty():
+            try:
+                pending_incidents.append(self.pending_incidents.get_nowait())
+            except:
+                break
+
+        for pending_incident in pending_incidents[1:]:
+            self.pending_incidents.put(pending_incident)
+
+        current_state = self.dispatch_agent.encode_state(
+            self.active_vehicles, pending_incidents, self.city_graph, current_time
+        )
+
+        if self.last_state is not None and self.last_action is not None:
+            reward = self._calculate_training_reward(current_time)
+            self.dispatch_agent.train_step(
+                self.last_state, self.last_action, reward, current_state, False
+            )
+
+        action = self.dispatch_agent.get_action(
+            current_state, self.active_vehicles, pending_incidents, self.training_mode
+        )
+
+        self.last_state = current_state
+        self.last_action = action
+
+        if action < len(self.active_vehicles):
+            selected_vehicle = self.active_vehicles[action]
+            if selected_vehicle in available_vehicles:
+                return selected_vehicle
+
+        return self._select_closest_vehicle(incident, available_vehicles)
+
+    def _calculate_training_reward(self, current_time: float) -> float:
+        if not hasattr(self, '_last_dispatch_time'):
+            return 0.0
+
+        time_diff = current_time - self._last_dispatch_time
+        base_reward = -time_diff / 60.0
+
+        available_count = len(self.get_available_vehicles())
+        utilization_reward = (len(self.active_vehicles) - available_count) / len(self.active_vehicles) * 5.0
+
+        return base_reward + utilization_reward
+
+    def get_system_state(self) -> Dict[str, Any]:
+        pending_count = self.pending_incidents.qsize()
+        available_vehicles = self.get_available_vehicles()
+        busy_vehicles = [v for v in self.active_vehicles if v.status != VehicleStatus.IDLE]
+
+        return {
+            'pending_incidents': pending_count,
+            'available_vehicles': len(available_vehicles),
+            'busy_vehicles': len(busy_vehicles),
+            'vehicle_utilization': len(busy_vehicles) / len(self.active_vehicles) if self.active_vehicles else 0,
+            'total_vehicles': len(self.active_vehicles)
+        }
+
+    def resolve_incident(self, incident: Incident, current_time: float):
+        if incident and incident.assigned_vehicle:
+            response_time = current_time - incident.time_created
+
+            if self.dispatch_mode == "rl" and self.dispatch_agent:
+                reward = self.dispatch_agent.calculate_reward(
+                    incident, response_time, self.get_system_state()
+                )
+                self.episode_rewards.append(reward)
+
+            incident.resolution_time = current_time
+            incident.status = IncidentStatus.RESOLVED
+
+            self.log_data.log_event(
+                "incident_resolved",
+                {
+                    "incident_id": incident.id,
+                    "vehicle_id": incident.assigned_vehicle.id,
+                    "response_time": response_time,
+                    "resolution_time": current_time
+                },
+                current_time
+            )
+
+            self._last_dispatch_time = current_time
 
     def _dispatch_vehicle(self, vehicle: Vehicle, incident: Incident, current_time: float):
         start_location = vehicle.current_location
