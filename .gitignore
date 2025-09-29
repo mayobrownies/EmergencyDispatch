@@ -13,3 +13,4 @@ simulation_results.csv
 results/
 logs/
 checkpoints/
+models/

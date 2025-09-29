@@ -10,18 +10,29 @@ from .utils.logger import LogData
 
 
 class Simulation:
-    def __init__(self, simulation_time: float = 100.0, random_seed: int = 42, dispatch_mode: str = "heuristic"):
+    def __init__(self, simulation_time: float = 100.0, random_seed: int = 42, dispatch_mode: str = "heuristic",
+                 shift_mode: bool = False, incident_rate: float = None):
         self.env = simpy.Environment()
         self.simulation_time = simulation_time
         self.time_super = simulation_time
         self.dispatch_mode = dispatch_mode
+        self.shift_mode = shift_mode
 
         random.seed(random_seed)
 
         self.city_graph = CityGraph(width=20, height=15)
         self.log_data = LogData()
-        self.dispatch_center = DispatchCenter(self.log_data, self.city_graph, dispatch_mode)
-        self.incident_generator = IncidentGenerator(lambda_val=0.05, random_seed=random_seed)
+        self.dispatch_center = DispatchCenter(self.log_data, self.city_graph, dispatch_mode, shift_mode)
+
+        if shift_mode:
+            self.simulation_time = 8 * 60 * 60
+            self.time_super = self.simulation_time
+            default_rate = 0.002
+        else:
+            default_rate = 0.05
+
+        lambda_rate = incident_rate if incident_rate is not None else default_rate
+        self.incident_generator = IncidentGenerator(lambda_val=lambda_rate, random_seed=random_seed)
 
         self.vehicles = []
         self.stations = []
@@ -147,9 +158,9 @@ class Simulation:
         self.log_data.export_to_csv("simulation_results.csv")
 
     def reset_for_training(self):
-        """Reset simulation state for training episodes."""
         self.env = simpy.Environment()
         self.log_data = LogData()
+        self.dispatch_center.log_data = self.log_data
 
         for vehicle in self.vehicles:
             vehicle.status = VehicleStatus.IDLE
@@ -179,11 +190,16 @@ class Simulation:
         episode_rewards = []
 
         for episode in range(num_episodes):
-            print(f"Training episode {episode + 1}/{num_episodes}")
+            if self.shift_mode:
+                print(f"Training shift {episode + 1}/{num_episodes} (8-hour simulation)")
+            else:
+                print(f"Training episode {episode + 1}/{num_episodes}")
 
             self.reset_for_training()
-            self.simulation_time = episode_length
-            self.time_super = episode_length
+
+            if not self.shift_mode:
+                self.simulation_time = episode_length
+                self.time_super = episode_length
 
             try:
                 self.run_simulation()
@@ -194,15 +210,33 @@ class Simulation:
             episode_reward = sum(self.dispatch_center.episode_rewards) if self.dispatch_center.episode_rewards else 0
             episode_rewards.append(episode_reward)
 
-            if (episode + 1) % 10 == 0:
-                avg_reward = sum(episode_rewards[-10:]) / 10
-                print(f"Episodes {episode - 8}-{episode + 1} avg reward: {avg_reward:.2f}")
+            incidents_count = len([event for event in self.log_data.history if event.get('event_type') == 'incident_received'])
+            avg_response = self.log_data.get_performance_metrics().get('avg_response_time', 0)
 
-                if (episode + 1) % 50 == 0:
-                    self.dispatch_center.dispatch_agent.save_model(f"models/dqn_episode_{episode + 1}.pth")
+            if self.shift_mode:
+                print(f"  Shift {episode + 1}: {incidents_count} incidents, {avg_response:.1f}s avg response, reward: {episode_reward:.2f}")
+
+            if (episode + 1) % 5 == 0:
+                recent_rewards = episode_rewards[-5:] if len(episode_rewards) >= 5 else episode_rewards
+                avg_reward = sum(recent_rewards) / len(recent_rewards)
+                epsilon = self.dispatch_center.dispatch_agent.epsilon
+
+                if self.shift_mode:
+                    print(f"Shifts {max(1, episode - 3)}-{episode + 1} avg reward: {avg_reward:.2f}, epsilon: {epsilon:.3f}")
+                else:
+                    print(f"Episodes {max(1, episode - 3)}-{episode + 1} avg reward: {avg_reward:.2f}, epsilon: {epsilon:.3f}")
+
+                if (episode + 1) % 10 == 0:
+                    model_name = "shift" if self.shift_mode else "episode"
+                    self.dispatch_center.dispatch_agent.save_model(f"models/dqn_{model_name}_{episode + 1}.pth")
 
         final_avg = sum(episode_rewards) / len(episode_rewards) if episode_rewards else 0
+        model_type = "shift" if self.shift_mode else "episode"
         print(f"Training completed. Final average reward: {final_avg:.2f}")
 
-        self.dispatch_center.dispatch_agent.save_model("models/dqn_final.pth")
+        self.dispatch_center.dispatch_agent.save_model(f"models/dqn_{model_type}_final.pth")
         return episode_rewards
+
+    def run_shift_training(self, num_shifts: int = 50):
+        """Run training with realistic 8-hour shifts."""
+        return self.run_training_episodes(num_episodes=num_shifts)

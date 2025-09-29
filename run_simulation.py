@@ -51,11 +51,15 @@ class SimulationVisualizer:
         self.auto_button = pygame.Rect(20, 100, 160, 40)
         self.speedup_button = pygame.Rect(20, 150, 160, 40)
         self.mode_button = pygame.Rect(20, 200, 160, 40)
-        self.reset_button = pygame.Rect(20, 250, 160, 40)
+        self.shift_button = pygame.Rect(20, 250, 160, 40)
+        self.train_button = pygame.Rect(20, 300, 160, 40)
+        self.reset_button = pygame.Rect(20, 350, 160, 40)
 
         self.speed_multiplier = 1
         self.speed_options = [1, 2, 5, 10]
         self.dispatch_mode = dispatch_mode
+        self.shift_mode = hasattr(simulation, 'shift_mode') and simulation.shift_mode
+        self.training_active = False
 
     def draw_control_panel(self):
         pygame.draw.rect(self.screen, self.LIGHT_GRAY, (0, 0, self.control_panel_width, self.height))
@@ -89,6 +93,18 @@ class SimulationVisualizer:
         mode_text = self.small_font.render(f"MODE: {self.dispatch_mode.upper()}", True, self.BLACK)
         self.screen.blit(mode_text, (self.mode_button.x + 25, self.mode_button.y + 12))
 
+        shift_color = self.ORANGE if self.shift_mode else self.BUTTON_GRAY
+        pygame.draw.rect(self.screen, shift_color, self.shift_button)
+        pygame.draw.rect(self.screen, self.BLACK, self.shift_button, 2)
+        shift_text = self.small_font.render("8-HOUR SHIFT" if self.shift_mode else "5-MIN DEMO", True, self.BLACK)
+        self.screen.blit(shift_text, (self.shift_button.x + 25, self.shift_button.y + 12))
+
+        train_color = self.GREEN if self.training_active else self.GRAY if self.dispatch_mode != "rl" else self.BUTTON_GRAY
+        pygame.draw.rect(self.screen, train_color, self.train_button)
+        pygame.draw.rect(self.screen, self.BLACK, self.train_button, 2)
+        train_text = self.small_font.render("TRAINING" if self.training_active else "START TRAIN", True, self.BLACK)
+        self.screen.blit(train_text, (self.train_button.x + 35, self.train_button.y + 12))
+
         pygame.draw.rect(self.screen, self.BUTTON_GRAY, self.reset_button)
         pygame.draw.rect(self.screen, self.BLACK, self.reset_button, 2)
         reset_text = self.small_font.render("RESET", True, self.BLACK)
@@ -102,12 +118,20 @@ class SimulationVisualizer:
             status_color = self.RED
 
         status_label = self.small_font.render("Status:", True, self.BLACK)
-        self.screen.blit(status_label, (20, 310))
+        self.screen.blit(status_label, (20, 410))
         status_display = self.small_font.render(status_text, True, status_color)
-        self.screen.blit(status_display, (20, 330))
+        self.screen.blit(status_display, (20, 430))
 
         time_label = self.small_font.render(f"Time: {self.simulation.env.now:.0f}s", True, self.BLACK)
-        self.screen.blit(time_label, (20, 360))
+        self.screen.blit(time_label, (20, 460))
+
+        if self.dispatch_mode == "rl" and hasattr(self.simulation.dispatch_center, 'dispatch_agent'):
+            agent = self.simulation.dispatch_center.dispatch_agent
+            model_info = f"ε: {agent.epsilon:.3f}"
+            model_label = self.small_font.render("Model:", True, self.BLACK)
+            self.screen.blit(model_label, (20, 490))
+            model_display = self.small_font.render(model_info, True, self.BLUE)
+            self.screen.blit(model_display, (20, 510))
 
     def draw_city(self):
         city_offset_x = self.control_panel_width
@@ -346,19 +370,52 @@ class SimulationVisualizer:
         elif self.mode_button.collidepoint(pos):
             self.dispatch_mode = "rl" if self.dispatch_mode == "heuristic" else "heuristic"
             self.reset_simulation()
+        elif self.shift_button.collidepoint(pos):
+            self.shift_mode = not self.shift_mode
+            self.reset_simulation()
+        elif self.train_button.collidepoint(pos) and self.dispatch_mode == "rl":
+            if not self.training_active:
+                self.start_training()
         elif self.reset_button.collidepoint(pos):
             self.reset_simulation()
 
     def reset_simulation(self):
         from src.simulation import Simulation
-        self.simulation = Simulation(simulation_time=300.0, random_seed=42, dispatch_mode=self.dispatch_mode)
+        if self.shift_mode:
+            self.simulation = Simulation(dispatch_mode=self.dispatch_mode, shift_mode=True)
+        else:
+            self.simulation = Simulation(simulation_time=300.0, random_seed=42,
+                                       dispatch_mode=self.dispatch_mode, shift_mode=False)
         self.setup_simulation()
         self.auto_mode = False
         self.step_requested = False
         self.simulation_paused = True
         self.simulation_completed = False
+        self.training_active = False
         if hasattr(self, '_logged_summary'):
             delattr(self, '_logged_summary')
+
+    def start_training(self):
+        import threading
+        self.training_active = True
+        print(f"Starting RL training in background...")
+
+        def training_thread():
+            try:
+                if self.shift_mode:
+                    print("Running shift training (20 shifts)")
+                    self.simulation.run_shift_training(num_shifts=20)
+                else:
+                    print("Running episode training (50 episodes)")
+                    self.simulation.run_training_episodes(num_episodes=50, episode_length=300.0)
+                print("Training completed!")
+            except Exception as e:
+                print(f"Training failed: {e}")
+            finally:
+                self.training_active = False
+
+        training_thread = threading.Thread(target=training_thread, daemon=True)
+        training_thread.start()
 
     def run(self):
         self.setup_simulation()
@@ -408,10 +465,14 @@ class SimulationVisualizer:
 
 def main():
     print("Starting Emergency Response Dispatch Simulation...")
+    print("Use the GUI buttons to:")
+    print("- Switch between HEURISTIC and RL dispatch modes")
+    print("- Toggle between 5-MIN DEMO and 8-HOUR SHIFT")
+    print("- Start training for RL agents")
+    print("- Control simulation speed and stepping")
 
-    dispatch_mode = "heuristic"
-    simulation = Simulation(simulation_time=300.0, random_seed=42, dispatch_mode=dispatch_mode)
-    visualizer = SimulationVisualizer(simulation, dispatch_mode)
+    simulation = Simulation(simulation_time=300.0, random_seed=42, dispatch_mode="heuristic")
+    visualizer = SimulationVisualizer(simulation, "heuristic")
     visualizer.run()
 
 

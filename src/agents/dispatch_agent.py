@@ -44,10 +44,12 @@ class ReplayBuffer:
 
 
 class DispatchAgent:
-    def __init__(self, state_dim: int, action_dim: int, learning_rate: float = 0.001):
+    def __init__(self, state_dim: int, action_dim: int, learning_rate: float = 0.001,
+                 shift_mode: bool = False, auto_load: bool = True):
         self.state_dim = state_dim
         self.action_dim = action_dim
         self.learning_rate = learning_rate
+        self.shift_mode = shift_mode
 
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -55,17 +57,28 @@ class DispatchAgent:
         self.target_network = DQN(state_dim, action_dim).to(self.device)
         self.optimizer = optim.Adam(self.q_network.parameters(), lr=learning_rate)
 
-        self.memory = ReplayBuffer(capacity=10000)
+        if shift_mode:
+            self.memory = ReplayBuffer(capacity=50000)
+            self.epsilon = 0.8
+            self.epsilon_min = 0.05
+            self.epsilon_decay = 0.9995
+            self.batch_size = 64
+            self.gamma = 0.995
+            self.target_update_frequency = 200
+        else:
+            self.memory = ReplayBuffer(capacity=10000)
+            self.epsilon = 1.0
+            self.epsilon_min = 0.01
+            self.epsilon_decay = 0.995
+            self.batch_size = 32
+            self.gamma = 0.99
+            self.target_update_frequency = 100
 
-        self.epsilon = 1.0
-        self.epsilon_min = 0.01
-        self.epsilon_decay = 0.995
-        self.batch_size = 32
-        self.gamma = 0.99
-        self.target_update_frequency = 100
         self.update_counter = 0
-
         self.update_target_network()
+
+        if auto_load:
+            self._try_load_best_model()
 
     def encode_state(self, vehicles: List[Vehicle], incidents: List[Incident],
                     city_graph, current_time: float) -> np.ndarray:
@@ -210,9 +223,63 @@ class DispatchAgent:
         }, filepath)
 
     def load_model(self, filepath: str):
-        checkpoint = torch.load(filepath, map_location=self.device)
-        self.q_network.load_state_dict(checkpoint['q_network_state_dict'])
-        self.target_network.load_state_dict(checkpoint['target_network_state_dict'])
-        self.optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
-        self.epsilon = checkpoint['epsilon']
-        self.update_counter = checkpoint['update_counter']
+        try:
+            checkpoint = torch.load(filepath, map_location=self.device)
+            self.q_network.load_state_dict(checkpoint['q_network_state_dict'])
+            self.target_network.load_state_dict(checkpoint['target_network_state_dict'])
+            self.optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
+            self.epsilon = checkpoint['epsilon']
+            self.update_counter = checkpoint['update_counter']
+            print(f"Loaded model from {filepath} (epsilon: {self.epsilon:.3f})")
+            return True
+        except Exception as e:
+            print(f"Failed to load model from {filepath}: {e}")
+            return False
+
+    def _try_load_best_model(self):
+        import os
+        import glob
+
+        models_dir = "models"
+        if not os.path.exists(models_dir):
+            return False
+
+        model_pattern = "shift" if self.shift_mode else "episode"
+
+        patterns_to_try = [
+            f"{models_dir}/dqn_{model_pattern}_final.pth",
+            f"{models_dir}/dqn_final.pth",
+            f"{models_dir}/dqn_{model_pattern}_*.pth",
+            f"{models_dir}/dqn_*.pth"
+        ]
+
+        for pattern in patterns_to_try:
+            if "*" in pattern:
+                matching_files = glob.glob(pattern)
+                if matching_files:
+                    latest_file = max(matching_files, key=os.path.getmtime)
+                    if self.load_model(latest_file):
+                        return True
+            else:
+                if os.path.exists(pattern):
+                    if self.load_model(pattern):
+                        return True
+
+        print(f"No pre-trained model found for {'shift' if self.shift_mode else 'episode'} mode")
+        return False
+
+    def get_model_info(self):
+        import os
+        models_dir = "models"
+        if not os.path.exists(models_dir):
+            return "No models directory"
+
+        models = []
+        for file in os.listdir(models_dir):
+            if file.endswith('.pth'):
+                filepath = os.path.join(models_dir, file)
+                size = os.path.getsize(filepath)
+                mtime = os.path.getmtime(filepath)
+                models.append(f"{file} ({size//1024}KB)")
+
+        return f"Available models: {', '.join(models)}" if models else "No trained models found"

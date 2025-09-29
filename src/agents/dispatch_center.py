@@ -8,18 +8,20 @@ from .dispatch_agent import DispatchAgent
 
 
 class DispatchCenter:
-    def __init__(self, log_data: LogData, city_graph=None, dispatch_mode: str = "heuristic"):
+    def __init__(self, log_data: LogData, city_graph=None, dispatch_mode: str = "heuristic",
+                 shift_mode: bool = False):
         self.pending_incidents = Queue()
         self.active_vehicles = []
         self.log_data = log_data
         self.performance_metrics = {}
         self.city_graph = city_graph
         self.dispatch_mode = dispatch_mode
+        self.shift_mode = shift_mode
 
         if dispatch_mode == "rl":
             state_dim = 10 * 4 + 5 * 4 + 3
             action_dim = 10
-            self.dispatch_agent = DispatchAgent(state_dim, action_dim)
+            self.dispatch_agent = DispatchAgent(state_dim, action_dim, shift_mode=shift_mode)
             self.training_mode = True
             self.last_state = None
             self.last_action = None
