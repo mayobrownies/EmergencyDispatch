@@ -3,7 +3,6 @@ import numpy as np
 from typing import Optional
 from ..components.incident import Incident
 
-
 class IncidentGenerator:
     def __init__(self, lambda_val: float = 2.0, random_seed: Optional[int] = None):
         self.lambda_val = lambda_val

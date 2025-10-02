@@ -1,5 +1,6 @@
+import random
 from enum import Enum
-from typing import Optional
+
 
 
 class VehicleStatus(Enum):
@@ -29,6 +30,7 @@ class Vehicle:
         self.status = VehicleStatus.EN_ROUTE_TO_INCIDENT
         self.assigned_incident = incident
         self.destination = incident_location
+        self.travel_time_estimate = travel_time
         if path:
             self.current_path = path
             self.path_index = 0
@@ -47,15 +49,48 @@ class Vehicle:
     def update_location(self, new_location):
         self.current_location = new_location
 
-    def move_along_path(self, current_time):
+    def move_along_path(self, current_time, city_graph=None):
         if not self.current_path or self.path_index >= len(self.current_path):
+            if not self.current_path:
+                print(f"WARNING: Vehicle {self.id} has no path at time {current_time:.1f}")
+            else:
+                print(f"WARNING: Vehicle {self.id} reached end of path (index {self.path_index}/{len(self.current_path)}) at time {current_time:.1f}")
             return False
+
+        if city_graph:
+            road_coord = (self.current_location.x, self.current_location.y)
+
+            if road_coord in city_graph.blocked_roads:
+                return False
+
+            if self.path_index < len(self.current_path) - 1:
+                next_node_id = self.current_path[self.path_index + 1]
+                next_node = city_graph.get_node_by_id(next_node_id)
+                if next_node:
+                    next_road_coord = (next_node.x, next_node.y)
+                    if next_road_coord in city_graph.blocked_roads:
+                        return False
+
+            traffic_multiplier = city_graph.traffic_multipliers.get(road_coord, 1.0)
+
+            if traffic_multiplier >= 2.0:
+                move_chance = 0.2
+            elif traffic_multiplier >= 1.3:
+                move_chance = 0.70
+            else:
+                move_chance = 1.0
+
+            random.seed(int(current_time * 10 + self.id))
+            if random.random() > move_chance:
+                return False
 
         if self.path_index < len(self.current_path) - 1:
             self.path_index += 1
             node_id = self.current_path[self.path_index]
             return node_id
-        return None
+        else:
+            print(f"Vehicle {self.id} completed path at time {current_time:.1f}")
+            return None
 
     def return_to_station(self, path=None, travel_time=0):
         self.status = VehicleStatus.RETURNING_TO_STATION

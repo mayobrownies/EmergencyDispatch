@@ -3,8 +3,10 @@ import torch.nn as nn
 import torch.optim as optim
 import numpy as np
 import random
+import os
+import glob
 from collections import deque
-from typing import List, Tuple, Optional
+from typing import List
 from ..components.vehicle import Vehicle, VehicleStatus
 from ..components.incident import Incident
 
@@ -126,18 +128,26 @@ class DispatchAgent:
         state_vector.append(len([v for v in vehicles if v.status == VehicleStatus.IDLE]) / max_vehicles)
         state_vector.append(len(incidents) / max_incidents)
 
+        traffic_state = city_graph.get_traffic_state_vector()
+        state_vector.extend(traffic_state)
+
         return np.array(state_vector, dtype=np.float32)
 
     def get_valid_actions(self, vehicles: List[Vehicle], incidents: List[Incident]) -> List[int]:
         valid_actions = []
-        available_vehicles = [v for v in vehicles if v.status == VehicleStatus.IDLE]
 
-        if incidents and available_vehicles:
+        if not vehicles:
+            return [0]
+
+        if incidents:
             for i, vehicle in enumerate(vehicles):
                 if vehicle.status == VehicleStatus.IDLE:
                     valid_actions.append(i)
 
-        return valid_actions if valid_actions else [0]
+        if not valid_actions:
+            return [0] if len(vehicles) > 0 else [0]
+
+        return valid_actions
 
     def get_action(self, state: np.ndarray, vehicles: List[Vehicle],
                   incidents: List[Incident], training: bool = True) -> int:
@@ -146,16 +156,28 @@ class DispatchAgent:
         if training and random.random() < self.epsilon:
             return random.choice(valid_actions)
 
-        state_tensor = torch.FloatTensor(state).unsqueeze(0).to(self.device)
-        q_values = self.q_network(state_tensor)
+        try:
+            if len(state) != self.state_dim:
+                print(f"Warning: State dimension mismatch. Expected {self.state_dim}, got {len(state)}")
+                return valid_actions[0]
 
-        masked_q_values = q_values.clone()
-        mask = torch.full_like(masked_q_values, float('-inf'))
-        mask[0, valid_actions] = 0
-        masked_q_values += mask
+            state_tensor = torch.FloatTensor(state).unsqueeze(0).to(self.device)
+            q_values = self.q_network(state_tensor)
 
-        action = masked_q_values.argmax().item()
-        return action if action in valid_actions else valid_actions[0]
+            masked_q_values = q_values.clone()
+            mask = torch.full_like(masked_q_values, float('-inf'))
+
+            for action in valid_actions:
+                if action < masked_q_values.size(1):
+                    mask[0, action] = 0
+
+            masked_q_values += mask
+
+            action = masked_q_values.argmax().item()
+            return action if action in valid_actions and action < len(vehicles) else valid_actions[0]
+        except Exception as e:
+            print(f"Error in get_action: {e}")
+            return valid_actions[0] if valid_actions else 0
 
     def train_step(self, state: np.ndarray, action: int, reward: float,
                   next_state: np.ndarray, done: bool):
@@ -196,22 +218,9 @@ class DispatchAgent:
 
     def calculate_reward(self, incident: Incident, response_time: float,
                         system_state: dict) -> float:
-        base_penalty = -response_time / 60.0
-
-        if response_time <= 300:
-            bonus = 10.0
-        elif response_time <= 600:
-            bonus = 5.0
-        else:
-            bonus = 0.0
-
-        utilization_penalty = 0.0
-        if system_state.get('vehicle_utilization', 0) > 0.8:
-            utilization_penalty = -5.0
-
-        incident_age_penalty = -(incident.time_created / 100.0)
-
-        return base_penalty + bonus + utilization_penalty + incident_age_penalty
+        reward = -response_time / 60.0
+        print(f"    Reward calculation: {response_time:.1f}s → {reward:.4f}")
+        return reward
 
     def save_model(self, filepath: str):
         torch.save({
@@ -237,9 +246,6 @@ class DispatchAgent:
             return False
 
     def _try_load_best_model(self):
-        import os
-        import glob
-
         models_dir = "models"
         if not os.path.exists(models_dir):
             return False
@@ -269,7 +275,6 @@ class DispatchAgent:
         return False
 
     def get_model_info(self):
-        import os
         models_dir = "models"
         if not os.path.exists(models_dir):
             return "No models directory"

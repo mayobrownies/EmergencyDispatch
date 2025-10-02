@@ -1,3 +1,4 @@
+torch>=1.9.0
 simpy>=4.0.1
 pygame>=2.1.0
 networkx>=2.8

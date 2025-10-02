@@ -19,7 +19,7 @@ class DispatchCenter:
         self.shift_mode = shift_mode
 
         if dispatch_mode == "rl":
-            state_dim = 10 * 4 + 5 * 4 + 3
+            state_dim = 10 * 4 + 5 * 4 + 3 + 3
             action_dim = 10
             self.dispatch_agent = DispatchAgent(state_dim, action_dim, shift_mode=shift_mode)
             self.training_mode = True
@@ -63,12 +63,20 @@ class DispatchCenter:
             return None
 
         best_vehicle = None
-        min_distance = float('inf')
+        min_travel_time = float('inf')
 
         for vehicle in vehicles:
-            distance = vehicle.current_location.get_distance_to(incident.location)
-            if distance < min_distance:
-                min_distance = distance
+            if self.city_graph:
+                travel_time = self.city_graph.get_travel_time_with_traffic(
+                    vehicle.current_location, incident.location
+                )
+                if travel_time == float('inf'):
+                    travel_time = vehicle.current_location.get_distance_to(incident.location)
+            else:
+                travel_time = vehicle.current_location.get_distance_to(incident.location)
+
+            if travel_time < min_travel_time:
+                min_travel_time = travel_time
                 best_vehicle = vehicle
 
         return best_vehicle
@@ -113,15 +121,13 @@ class DispatchCenter:
 
     def _calculate_training_reward(self, current_time: float) -> float:
         if not hasattr(self, '_last_dispatch_time'):
+            self._last_dispatch_time = current_time
             return 0.0
 
         time_diff = current_time - self._last_dispatch_time
-        base_reward = -time_diff / 60.0
+        self._last_dispatch_time = current_time
 
-        available_count = len(self.get_available_vehicles())
-        utilization_reward = (len(self.active_vehicles) - available_count) / len(self.active_vehicles) * 5.0
-
-        return base_reward + utilization_reward
+        return -time_diff / 60.0
 
     def get_system_state(self) -> Dict[str, Any]:
         pending_count = self.pending_incidents.qsize()
@@ -137,14 +143,21 @@ class DispatchCenter:
         }
 
     def resolve_incident(self, incident: Incident, current_time: float):
+        print(f"RESOLVE_INCIDENT CALLED for incident {incident.id if incident else 'None'}")
+        print(f"  dispatch_mode: {self.dispatch_mode}, has dispatch_agent: {self.dispatch_agent is not None}")
+
         if incident and incident.assigned_vehicle:
             response_time = current_time - incident.time_created
 
+            print(f"Incident {incident.id}: created at {incident.time_created:.1f}s, resolved at {current_time:.1f}s, response time: {response_time:.1f}s")
+
             if self.dispatch_mode == "rl" and self.dispatch_agent:
+                print(f"  Calculating RL reward for dispatch_mode: {self.dispatch_mode}")
                 reward = self.dispatch_agent.calculate_reward(
                     incident, response_time, self.get_system_state()
                 )
                 self.episode_rewards.append(reward)
+                print(f"  RL reward: {reward:.3f}, total rewards: {len(self.episode_rewards)}")
 
             incident.resolution_time = current_time
             incident.status = IncidentStatus.RESOLVED
@@ -161,6 +174,8 @@ class DispatchCenter:
             )
 
             self._last_dispatch_time = current_time
+        else:
+            print(f"  SKIPPED: incident={incident is not None}, assigned_vehicle={incident.assigned_vehicle if incident else 'N/A'}")
 
     def _dispatch_vehicle(self, vehicle: Vehicle, incident: Incident, current_time: float):
         start_location = vehicle.current_location
@@ -173,9 +188,19 @@ class DispatchCenter:
 
         path, travel_time = self._calculate_shortest_path(start_node_id, end_node_id)
 
+        if not path:
+            print(f"ERROR: No path found for vehicle {vehicle.id} from ({vehicle.current_location.x},{vehicle.current_location.y}) to incident at ({incident.location.x},{incident.location.y}) at time {current_time:.1f}")
+            return
+
         vehicle.dispatch_to_incident(incident, incident.location, path, travel_time)
         incident.assign_vehicle(vehicle)
         incident.update_status(IncidentStatus.EN_ROUTE)
+
+        print(f"Dispatched vehicle {vehicle.id} to incident {incident.id} at time {current_time:.1f}")
+        print(f"  Vehicle location: ({vehicle.current_location.x}, {vehicle.current_location.y})")
+        print(f"  Incident location: ({incident.location.x}, {incident.location.y})")
+        print(f"  Path length: {len(path)}")
+        print(f"  Travel time estimate: {travel_time:.1f}s")
 
         self.log_data.log_event(
             "vehicle_dispatched",
@@ -198,7 +223,8 @@ class DispatchCenter:
 
     def _calculate_shortest_path(self, start_id: int, end_id: int) -> Tuple[List[int], float]:
         if self.city_graph:
-            return self.city_graph.get_shortest_path(start_id, end_id)
+            path, travel_time = self.city_graph.get_traffic_aware_path(start_id, end_id)
+            return path, travel_time
         return [], 0.0
 
     def move_vehicles(self, current_time: float):
@@ -212,6 +238,7 @@ class DispatchCenter:
 
     def _move_vehicle_to_incident(self, vehicle: Vehicle, current_time: float):
         if vehicle.is_at_destination():
+            print(f"Vehicle {vehicle.id} arrived at incident {vehicle.assigned_incident.id} at time {current_time:.1f}")
             vehicle.arrive_at_incident()
             self.log_data.log_event(
                 "vehicle_arrived_at_incident",
@@ -223,11 +250,16 @@ class DispatchCenter:
                 current_time
             )
         else:
-            next_node_id = vehicle.move_along_path(current_time)
+            next_node_id = vehicle.move_along_path(current_time, self.city_graph)
             if next_node_id is not None:
                 new_location = self.city_graph.get_node_by_id(next_node_id)
                 if new_location:
                     vehicle.update_location(new_location)
+                else:
+                    print(f"ERROR: Vehicle {vehicle.id} got invalid node_id {next_node_id} at time {current_time:.1f}")
+            else:
+                if not vehicle.is_at_destination():
+                    print(f"STUCK: Vehicle {vehicle.id} can't move but not at destination. Pos: ({vehicle.current_location.x}, {vehicle.current_location.y}), Target: ({vehicle.destination.x}, {vehicle.destination.y}) at time {current_time:.1f}")
 
     def _move_vehicle_to_hospital(self, vehicle: Vehicle, current_time: float):
         if vehicle.is_at_destination():
@@ -248,11 +280,16 @@ class DispatchCenter:
                     current_time
                 )
         else:
-            next_node_id = vehicle.move_along_path(current_time)
+            next_node_id = vehicle.move_along_path(current_time, self.city_graph)
             if next_node_id is not None:
                 new_location = self.city_graph.get_node_by_id(next_node_id)
                 if new_location:
                     vehicle.update_location(new_location)
+                else:
+                    print(f"ERROR: Vehicle {vehicle.id} (hospital) got invalid node_id {next_node_id} at time {current_time:.1f}")
+            else:
+                if not vehicle.is_at_destination():
+                    print(f"STUCK: Vehicle {vehicle.id} (hospital) can't move. Pos: ({vehicle.current_location.x}, {vehicle.current_location.y}), Target: ({vehicle.destination.x}, {vehicle.destination.y}) at time {current_time:.1f}")
 
     def _move_vehicle_to_station(self, vehicle: Vehicle, current_time: float):
         if vehicle.is_at_destination():
@@ -267,7 +304,7 @@ class DispatchCenter:
                 current_time
             )
         else:
-            next_node_id = vehicle.move_along_path(current_time)
+            next_node_id = vehicle.move_along_path(current_time, self.city_graph)
             if next_node_id is not None:
                 new_location = self.city_graph.get_node_by_id(next_node_id)
                 if new_location:
@@ -298,17 +335,3 @@ class DispatchCenter:
     def update_vehicle_status(self, vehicle: Vehicle, new_status: VehicleStatus):
         vehicle.status = new_status
 
-    def resolve_incident(self, incident: Incident, current_time: float):
-        incident.resolve(current_time)
-        response_time = incident.calculate_response_time(current_time)
-
-        self.log_data.log_event(
-            "incident_resolved",
-            {
-                "incident_id": incident.id,
-                "resolution_time": current_time,
-                "response_time": response_time,
-                "vehicle_id": incident.assigned_vehicle.id if incident.assigned_vehicle else None
-            },
-            current_time
-        )

@@ -1,7 +1,6 @@
 import simpy
 import random
-from typing import List
-from .environment.city_graph import CityGraph, Node
+from .environment.city_graph import CityGraph
 from .environment.incident_generator import IncidentGenerator
 from .components.vehicle import Vehicle, VehicleStatus
 from .components.station import Station, Hospital
@@ -98,6 +97,17 @@ class Simulation:
             yield self.env.timeout(1.0)
             self.dispatch_center.move_vehicles(self.env.now)
 
+    def traffic_management_process(self):
+        while True:
+            yield self.env.timeout(30.0)
+            self.city_graph.update_traffic_conditions(self.env.now)
+
+            if random.random() < 0.1:
+                severity = random.choice(["light", "moderate", "severe"])
+                duration = random.uniform(300, 1800)
+                self.city_graph.add_traffic_incident(duration, severity, self.env.now)
+                print(f"Traffic incident: {severity} for {duration/60:.1f} minutes")
+
     def incident_resolution_process(self):
         vehicle_timers = {}
 
@@ -108,8 +118,11 @@ class Simulation:
                 if vehicle.status == VehicleStatus.AT_INCIDENT and vehicle.assigned_incident:
                     if vehicle.id not in vehicle_timers:
                         vehicle_timers[vehicle.id] = self.env.now + 5.0
+                        print(f"Vehicle {vehicle.id} at incident {vehicle.assigned_incident.id}, will resolve at time {self.env.now + 5.0:.1f}")
 
                     if self.env.now >= vehicle_timers[vehicle.id]:
+                        print(f"Resolving incident {vehicle.assigned_incident.id} at time {self.env.now:.1f}")
+
                         nearest_hospital = self.city_graph.get_nearest_hospital(
                             vehicle.current_location, self.hospitals
                         )
@@ -117,12 +130,23 @@ class Simulation:
                         if nearest_hospital:
                             nearest_road = self.city_graph.get_nearest_road_to_building(nearest_hospital.location)
                             if nearest_road:
-                                hospital_path, hospital_time = self.city_graph.get_shortest_path(
+                                hospital_path, hospital_time = self.city_graph.get_traffic_aware_path(
                                     self.dispatch_center._get_node_id(vehicle.current_location),
                                     self.dispatch_center._get_node_id(nearest_road)
                                 )
-                                vehicle.go_to_hospital(nearest_road, "patient", hospital_path, hospital_time)
 
+                                if hospital_path:
+                                    vehicle.go_to_hospital(nearest_road, "patient", hospital_path, hospital_time)
+                                    print(f"Vehicle {vehicle.id} going to hospital, path length: {len(hospital_path)}")
+                                else:
+                                    print(f"ERROR: No path to hospital for vehicle {vehicle.id} from ({vehicle.current_location.x},{vehicle.current_location.y}) to ({nearest_road.x},{nearest_road.y}) at time {self.env.now:.1f}")
+                                    vehicle.status = VehicleStatus.RETURNING_TO_STATION
+                                    vehicle.destination = vehicle.home_station.location
+                                    vehicle.current_path = []
+                            else:
+                                print(f"ERROR: No road found near hospital for vehicle {vehicle.id} at time {self.env.now:.1f}")
+
+                        print(f"CALLING resolve_incident with incident {vehicle.assigned_incident.id if vehicle.assigned_incident else 'None'}, vehicle {vehicle.id}")
                         self.dispatch_center.resolve_incident(vehicle.assigned_incident, self.env.now)
                         del vehicle_timers[vehicle.id]
 
@@ -131,6 +155,7 @@ class Simulation:
         self.env.process(self.dispatch_process())
         self.env.process(self.vehicle_movement_process())
         self.env.process(self.incident_resolution_process())
+        self.env.process(self.traffic_management_process())
 
         self.env.run(until=self.simulation_time)
         self.log_summary_data()
@@ -150,12 +175,14 @@ class Simulation:
         print(f"Total events logged: {metrics.get('total_events', 0)}")
 
         if self.dispatch_mode == "rl" and self.dispatch_center.dispatch_agent:
-            avg_reward = sum(self.dispatch_center.episode_rewards) / len(self.dispatch_center.episode_rewards) if self.dispatch_center.episode_rewards else 0
+            rewards = self.dispatch_center.episode_rewards
+            print(f"Episode rewards list: {rewards}")
+            print(f"Number of rewards: {len(rewards)}")
+            avg_reward = sum(rewards) / len(rewards) if rewards else 0
             print(f"Average episode reward: {avg_reward:.2f}")
             print(f"Current epsilon: {self.dispatch_center.dispatch_agent.epsilon:.3f}")
 
         self.log_data.save_to_json("simulation_results.json")
-        self.log_data.export_to_csv("simulation_results.csv")
 
     def reset_for_training(self):
         self.env = simpy.Environment()

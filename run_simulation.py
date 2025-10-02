@@ -1,11 +1,8 @@
 import pygame
-import sys
+import traceback
 import threading
-import time
 from src.simulation import Simulation
 from src.components.vehicle import VehicleStatus
-from src.components.incident import IncidentStatus
-
 
 class SimulationVisualizer:
     def __init__(self, simulation, dispatch_mode="heuristic"):
@@ -17,7 +14,7 @@ class SimulationVisualizer:
         self.width = self.control_panel_width + self.simulation_width + self.sidebar_width
         self.height = 750
         self.screen = pygame.display.set_mode((self.width, self.height))
-        pygame.display.set_caption("Emergency Response Dispatch Simulation")
+        pygame.display.set_caption("Emergency Dispatch Simulation")
 
         self.grid_width = simulation.city_graph.width
         self.grid_height = simulation.city_graph.height
@@ -36,6 +33,11 @@ class SimulationVisualizer:
         self.DARK_GRAY = (64, 64, 64)
         self.LIGHT_GRAY = (200, 200, 200)
         self.BUTTON_GRAY = (180, 180, 180)
+
+        self.TRAFFIC_LIGHT = (0, 255, 255)
+        self.TRAFFIC_MODERATE = (255, 255, 0)
+        self.TRAFFIC_HEAVY = (255, 100, 0)
+        self.TRAFFIC_BLOCKED = (255, 0, 0)
 
         self.font = pygame.font.Font(None, 24)
         self.small_font = pygame.font.Font(None, 16)
@@ -56,7 +58,7 @@ class SimulationVisualizer:
         self.reset_button = pygame.Rect(20, 350, 160, 40)
 
         self.speed_multiplier = 1
-        self.speed_options = [1, 2, 5, 10]
+        self.speed_options = [1, 2, 5, 10, 50]
         self.dispatch_mode = dispatch_mode
         self.shift_mode = hasattr(simulation, 'shift_mode') and simulation.shift_mode
         self.training_active = False
@@ -133,6 +135,24 @@ class SimulationVisualizer:
             model_display = self.small_font.render(model_info, True, self.BLUE)
             self.screen.blit(model_display, (20, 510))
 
+    def _get_traffic_color(self, x: int, y: int):
+        road_coord = (x, y)
+        city_graph = self.simulation.city_graph
+
+        if road_coord in city_graph.blocked_roads:
+            return self.TRAFFIC_BLOCKED
+
+        traffic_multiplier = city_graph.traffic_multipliers.get(road_coord, 1.0)
+
+        if traffic_multiplier >= 2.0:
+            return self.TRAFFIC_HEAVY
+        elif traffic_multiplier >= 1.3:
+            return self.TRAFFIC_MODERATE
+        elif traffic_multiplier <= 0.9:
+            return self.TRAFFIC_LIGHT
+        else:
+            return self.GRAY
+
     def draw_city(self):
         city_offset_x = self.control_panel_width
 
@@ -145,7 +165,8 @@ class SimulationVisualizer:
                 y = i * self.cell_height
 
                 if self.simulation.city_graph.is_road(j, i):
-                    pygame.draw.rect(self.screen, self.GRAY,
+                    road_color = self._get_traffic_color(j, i)
+                    pygame.draw.rect(self.screen, road_color,
                                    (x, y, self.cell_width, self.cell_height))
                 else:
                     pygame.draw.rect(self.screen, self.DARK_GRAY,
@@ -198,8 +219,8 @@ class SimulationVisualizer:
             if vehicle.status == VehicleStatus.IDLE:
                 continue
 
-            x = city_offset_x + vehicle.current_location.x * self.cell_width + self.cell_width // 4
-            y = vehicle.current_location.y * self.cell_height + self.cell_height // 4
+            x = city_offset_x + vehicle.current_location.x * self.cell_width + self.cell_width // 2
+            y = vehicle.current_location.y * self.cell_height + self.cell_height // 2
 
             if vehicle.status == VehicleStatus.EN_ROUTE_TO_INCIDENT:
                 color = self.YELLOW
@@ -212,8 +233,8 @@ class SimulationVisualizer:
             else:
                 color = self.BLACK
 
-            pygame.draw.circle(self.screen, color, (x, y), 10)
-            pygame.draw.circle(self.screen, self.BLACK, (x, y), 10, 2)
+            pygame.draw.circle(self.screen, color, (x, y), 12)
+            pygame.draw.circle(self.screen, self.BLACK, (x, y), 12, 2)
 
             text = self.small_font.render(str(vehicle.id), True, self.BLACK)
             text_rect = text.get_rect(center=(x, y))
@@ -259,11 +280,6 @@ class SimulationVisualizer:
             x = city_offset_x + incident_data["location_x"] * self.cell_width + 3 * self.cell_width // 4
             y = incident_data["location_y"] * self.cell_height + 3 * self.cell_height // 4
             pygame.draw.circle(self.screen, self.RED, (x, y), 8)
-            pygame.draw.circle(self.screen, self.BLACK, (x, y), 8, 2)
-
-            text = self.small_font.render("!", True, self.WHITE)
-            text_rect = text.get_rect(center=(x, y))
-            self.screen.blit(text, text_rect)
 
     def draw_stats(self):
         metrics = self.simulation.log_data.get_performance_metrics()
@@ -273,7 +289,6 @@ class SimulationVisualizer:
             f"Active Dispatches: {metrics.get('total_dispatches', 0)}",
             f"Avg Response Time: {metrics.get('avg_response_time', 0):.0f}s",
             f"Available Vehicles: {len(self.simulation.dispatch_center.get_available_vehicles())}/{len(self.simulation.vehicles)}",
-            f"Pending Incidents: {self.simulation.dispatch_center.pending_incidents.qsize()}"
         ]
 
         sidebar_x = self.control_panel_width + self.simulation_width + 20
@@ -304,15 +319,18 @@ class SimulationVisualizer:
 
     def draw_legend(self):
         legend_items = [
-            ("Roads", self.GRAY),
+            ("Normal Roads", self.GRAY),
+            ("Light Traffic", self.TRAFFIC_LIGHT),
+            ("Moderate Traffic", self.TRAFFIC_MODERATE),
+            ("Heavy Traffic", self.TRAFFIC_HEAVY),
+            ("Road Blocked", self.TRAFFIC_BLOCKED),
             ("Buildings", self.DARK_GRAY),
             ("Response Stations", self.BLUE),
             ("Hospitals", self.GREEN),
+            ("Active Incidents", self.RED),
             ("Vehicle Responding", self.YELLOW),
             ("Vehicle At Scene", self.ORANGE),
-            ("Vehicle To Hospital", self.PURPLE),
-            ("Vehicle Returning", self.BLUE),
-            ("Emergency Incidents", self.RED)
+            ("Vehicle To Hospital", self.PURPLE)
         ]
 
         sidebar_x = self.control_panel_width + self.simulation_width + 20
@@ -337,6 +355,13 @@ class SimulationVisualizer:
         self.env.process(self.simulation.dispatch_process())
         self.env.process(self.simulation.vehicle_movement_process())
         self.env.process(self.simulation.incident_resolution_process())
+        self.env.process(self.simulation.traffic_management_process())
+
+        self.simulation.city_graph.add_traffic_incident(1800, "severe", 0)
+        self.simulation.city_graph.add_traffic_incident(1200, "moderate", 0)
+        self.simulation.city_graph.add_traffic_incident(900, "light", 0)
+
+        self.simulation.city_graph.update_traffic_conditions(0)
 
     def step_simulation(self):
         if not self.simulation_completed and self.env.now < self.simulation.simulation_time:
@@ -346,7 +371,9 @@ class SimulationVisualizer:
                 if self.env.now == current_time:
                     self.env.run(until=current_time + 0.1)
                 return True
-            except:
+            except Exception as e:
+                print(f"Simulation error at time {self.env.now}: {e}")
+                traceback.print_exc()
                 self.simulation_completed = True
                 self.simulation.log_summary_data()
                 return False
@@ -380,7 +407,6 @@ class SimulationVisualizer:
             self.reset_simulation()
 
     def reset_simulation(self):
-        from src.simulation import Simulation
         if self.shift_mode:
             self.simulation = Simulation(dispatch_mode=self.dispatch_mode, shift_mode=True)
         else:
@@ -396,7 +422,6 @@ class SimulationVisualizer:
             delattr(self, '_logged_summary')
 
     def start_training(self):
-        import threading
         self.training_active = True
         print(f"Starting RL training in background...")
 
@@ -464,13 +489,6 @@ class SimulationVisualizer:
 
 
 def main():
-    print("Starting Emergency Response Dispatch Simulation...")
-    print("Use the GUI buttons to:")
-    print("- Switch between HEURISTIC and RL dispatch modes")
-    print("- Toggle between 5-MIN DEMO and 8-HOUR SHIFT")
-    print("- Start training for RL agents")
-    print("- Control simulation speed and stepping")
-
     simulation = Simulation(simulation_time=300.0, random_seed=42, dispatch_mode="heuristic")
     visualizer = SimulationVisualizer(simulation, "heuristic")
     visualizer.run()
