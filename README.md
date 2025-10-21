@@ -6,7 +6,7 @@ A discrete-event simulation environment that trains and evaluates AI agents for 
 
 ### What's Implemented
 - **Complete Simulation Framework**: Discrete-event simulation using SimPy with city graph, vehicles, stations, and hospitals
-- **Deep Q-Network (DQN) Agent**: Fully functional RL agent with experience replay, target networks, and epsilon-greedy exploration
+- **DQN Agent**: Fully functional RL agent with experience replay, target networks, and epsilon-greedy exploration
 - **Traffic Management**: Dynamic traffic conditions with random variations, and incident-based blockages
 - **GUI Visualization**: Pygame interface showing vehicles, incidents, traffic conditions, and system metrics
 - **Logging**: Performance metrics tracking and JSON export for analysis

@@ -1,4 +1,6 @@
 *__pycache__/
+cache/
+data/
 
 simulation_results.json
 simulation_results.csv

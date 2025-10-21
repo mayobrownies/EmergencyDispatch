@@ -1,14 +1,18 @@
 import networkx as nx
+import osmnx as ox
 import random
 import numpy as np
 from typing import List, Tuple, Optional
+import pickle
+import os
 
 
 class Node:
-    def __init__(self, id: int, x: float, y: float):
+    def __init__(self, id: int, x: float, y: float, osmid: Optional[int] = None):
         self.id = id
         self.x = x
         self.y = y
+        self.osmid = osmid
 
     def get_coords(self) -> Tuple[float, float]:
         return (self.x, self.y)
@@ -18,65 +22,126 @@ class Node:
 
 
 class CityGraph:
-    def __init__(self, width: int = 20, height: int = 15):
+    def __init__(self, place_name: str = "Midtown, Atlanta, Georgia, USA", use_cache: bool = True):
         self.graph = nx.Graph()
         self.nodes = []
-        self.width = width
-        self.height = height
-        self.buildings = set()
-        self.roads = set()
+        self.place_name = place_name
         self.traffic_multipliers = {}
         self.blocked_roads = set()
         self.traffic_events = []
-        self._generate_city_layout()
+
+        self.min_lat = None
+        self.max_lat = None
+        self.min_lon = None
+        self.max_lon = None
+
+        self.width = 1000
+        self.height = 1000
+
+        self.roads = set()
+        self.buildings = set()
+
+        self._load_or_download_graph(use_cache)
         self._initialize_traffic_system()
 
-    def _generate_city_layout(self):
-        self._create_all_nodes()
-        self._create_road_network()
-        self._add_buildings()
-        self._connect_road_intersections()
+    def _load_or_download_graph(self, use_cache: bool):
+        cache_file = "data/atlanta_graph.pkl"
 
-    def _create_all_nodes(self):
+        if use_cache and os.path.exists(cache_file):
+            print(f"Loading cached graph from {cache_file}")
+            with open(cache_file, 'rb') as f:
+                cached_data = pickle.load(f)
+                self.osm_graph = cached_data['graph']
+                self.min_lat = cached_data['min_lat']
+                self.max_lat = cached_data['max_lat']
+                self.min_lon = cached_data['min_lon']
+                self.max_lon = cached_data['max_lon']
+        else:
+            print(f"Downloading street network for Atlanta Midtown area...")
+            self.osm_graph = ox.graph_from_point(
+                (33.7756, -84.3963),
+                dist=1500,
+                network_type='drive',
+                simplify=True
+            )
+
+            lats = [data['y'] for node, data in self.osm_graph.nodes(data=True)]
+            lons = [data['x'] for node, data in self.osm_graph.nodes(data=True)]
+            self.min_lat = min(lats)
+            self.max_lat = max(lats)
+            self.min_lon = min(lons)
+            self.max_lon = max(lons)
+
+            os.makedirs("data", exist_ok=True)
+            with open(cache_file, 'wb') as f:
+                pickle.dump({
+                    'graph': self.osm_graph,
+                    'min_lat': self.min_lat,
+                    'max_lat': self.max_lat,
+                    'min_lon': self.min_lon,
+                    'max_lon': self.max_lon
+                }, f)
+            print(f"Cached graph to {cache_file}")
+
+        self._convert_osm_to_simulation_graph()
+
+    def _convert_osm_to_simulation_graph(self):
+        osm_to_sim_id = {}
         node_id = 0
-        for i in range(self.height):
-            for j in range(self.width):
-                node = Node(node_id, j, i)
-                self.nodes.append(node)
-                self.graph.add_node(node_id, pos=(j, i), node_obj=node)
-                node_id += 1
 
-    def _create_road_network(self):
-        for i in range(0, self.height, 3):
-            for j in range(self.width):
-                self.roads.add((j, i))
+        for osm_id, data in self.osm_graph.nodes(data=True):
+            lat = data['y']
+            lon = data['x']
 
-        for j in range(0, self.width, 4):
-            for i in range(self.height):
-                self.roads.add((j, i))
+            x = self._lon_to_x(lon)
+            y = self._lat_to_y(lat)
 
-    def _add_buildings(self):
-        for i in range(self.height):
-            for j in range(self.width):
-                if (j, i) not in self.roads:
-                    if random.random() < 0.7:
-                        self.buildings.add((j, i))
+            node = Node(node_id, x, y, osmid=osm_id)
+            self.nodes.append(node)
+            self.roads.add((x, y))
 
-    def _connect_road_intersections(self):
-        for i in range(self.height):
-            for j in range(self.width):
-                if (j, i) in self.roads:
-                    current_id = i * self.width + j
+            self.graph.add_node(node_id, pos=(x, y), node_obj=node, osmid=osm_id)
+            osm_to_sim_id[osm_id] = node_id
+            node_id += 1
 
-                    if j < self.width - 1 and (j + 1, i) in self.roads:
-                        right_id = i * self.width + (j + 1)
-                        weight = 1.0
-                        self.graph.add_edge(current_id, right_id, weight=weight)
+        for u, v, data in self.osm_graph.edges(data=True):
+            sim_u = osm_to_sim_id[u]
+            sim_v = osm_to_sim_id[v]
 
-                    if i < self.height - 1 and (j, i + 1) in self.roads:
-                        down_id = (i + 1) * self.width + j
-                        weight = 1.0
-                        self.graph.add_edge(current_id, down_id, weight=weight)
+            length = data.get('length', 100.0)
+            speed_kph = data.get('maxspeed', 40)
+
+            if isinstance(speed_kph, list):
+                speed_str = speed_kph[0] if speed_kph else '40'
+            elif isinstance(speed_kph, str):
+                speed_str = speed_kph
+            else:
+                speed_str = str(speed_kph) if speed_kph else '40'
+
+            try:
+                speed_val = float(speed_str.split()[0])
+                if 'mph' in speed_str.lower():
+                    speed_kph = speed_val * 1.60934
+                else:
+                    speed_kph = speed_val
+            except:
+                speed_kph = 40.0
+
+            travel_time = (length / 1000.0) / speed_kph * 3600.0
+
+            self.graph.add_edge(sim_u, sim_v, weight=travel_time, length=length, speed=speed_kph)
+
+    def _lat_to_y(self, lat: float) -> float:
+        return ((lat - self.min_lat) / (self.max_lat - self.min_lat)) * self.height
+
+    def _lon_to_x(self, lon: float) -> float:
+        return ((lon - self.min_lon) / (self.max_lon - self.min_lon)) * self.width
+
+    def _y_to_lat(self, y: float) -> float:
+        return self.min_lat + (y / self.height) * (self.max_lat - self.min_lat)
+
+    def _x_to_lon(self, x: float) -> float:
+        return self.min_lon + (x / self.width) * (self.max_lon - self.min_lon)
 
     def get_shortest_path(self, start_node: int, end_node: int) -> Tuple[List[int], float]:
         try:
@@ -93,7 +158,7 @@ class CityGraph:
             for road_coord in self.blocked_roads:
                 for node_id in temp_graph.nodes():
                     node = self.get_node_by_id(node_id)
-                    if node and (node.x, node.y) == road_coord:
+                    if node and (int(node.x), int(node.y)) == road_coord:
                         edges_to_remove = list(temp_graph.edges(node_id))
                         temp_graph.remove_edges_from(edges_to_remove)
 
@@ -105,7 +170,7 @@ class CityGraph:
                 edge_data = self.graph.get_edge_data(path[i], path[i + 1])
                 if edge_data and 'weight' in edge_data:
                     base_time = edge_data['weight']
-                    road_coord = (current_node.x, current_node.y)
+                    road_coord = (int(current_node.x), int(current_node.y))
                     traffic_multiplier = self.traffic_multipliers.get(road_coord, 1.0)
                     total_time += base_time * traffic_multiplier
                 else:
@@ -116,9 +181,6 @@ class CityGraph:
             return [], float('inf')
 
     def get_random_node(self) -> Node:
-        road_nodes = [node for node in self.nodes if (node.x, node.y) in self.roads]
-        if road_nodes:
-            return random.choice(road_nodes)
         return random.choice(self.nodes)
 
     def get_nearest_road_to_building(self, building_location: Node) -> Optional[Node]:
@@ -126,11 +188,10 @@ class CityGraph:
         nearest_road = None
 
         for node in self.nodes:
-            if self.is_road(node.x, node.y):
-                distance = building_location.get_distance_to(node)
-                if distance < min_distance:
-                    min_distance = distance
-                    nearest_road = node
+            distance = building_location.get_distance_to(node)
+            if distance < min_distance:
+                min_distance = distance
+                nearest_road = node
 
         return nearest_road
 
@@ -142,12 +203,10 @@ class CityGraph:
         nearest_station = None
 
         for station in stations:
-            nearest_road = self.get_nearest_road_to_building(station.location)
-            if nearest_road:
-                distance = location.get_distance_to(nearest_road)
-                if distance < min_distance:
-                    min_distance = distance
-                    nearest_station = station
+            distance = location.get_distance_to(station.location)
+            if distance < min_distance:
+                min_distance = distance
+                nearest_station = station
 
         return nearest_station
 
@@ -159,12 +218,10 @@ class CityGraph:
         nearest_hospital = None
 
         for hospital in hospitals:
-            nearest_road = self.get_nearest_road_to_building(hospital.location)
-            if nearest_road:
-                distance = location.get_distance_to(nearest_road)
-                if distance < min_distance:
-                    min_distance = distance
-                    nearest_hospital = hospital
+            distance = location.get_distance_to(hospital.location)
+            if distance < min_distance:
+                min_distance = distance
+                nearest_hospital = hospital
 
         return nearest_hospital
 
@@ -193,11 +250,12 @@ class CityGraph:
         return (x, y) in self.buildings
 
     def get_road_nodes(self) -> List[Node]:
-        return [node for node in self.nodes if (node.x, node.y) in self.roads]
+        return self.nodes
 
     def _initialize_traffic_system(self):
-        for road in self.roads:
-            self.traffic_multipliers[road] = 1.0
+        for node in self.nodes:
+            road_coord = (int(node.x), int(node.y))
+            self.traffic_multipliers[road_coord] = 1.0
 
     def update_traffic_conditions(self, current_time: float):
         self._update_dynamic_traffic(current_time)
@@ -206,35 +264,55 @@ class CityGraph:
     def _update_dynamic_traffic(self, current_time: float):
         rush_hour_multiplier = self._get_rush_hour_multiplier(current_time)
 
-        for road in self.roads:
-            if road not in self.blocked_roads:
-                base_traffic = 1.0
-                random_variation = random.uniform(0.7, 1.3)
-                traffic_level = base_traffic * rush_hour_multiplier * random_variation
+        for node in self.nodes:
+            road_coord = (int(node.x), int(node.y))
+            if road_coord not in self.blocked_roads:
+                current_multiplier = self.traffic_multipliers.get(road_coord, 1.0)
+                decay_rate = 0.08
+                self.traffic_multipliers[road_coord] = current_multiplier * (1 - decay_rate) + 0.9 * decay_rate
 
-                if traffic_level < 1.2:
-                    self.traffic_multipliers[road] = random.uniform(0.8, 1.1)
-                elif traffic_level > 2.0:
-                    self.traffic_multipliers[road] = random.uniform(2.0, 3.0)
+        num_roads_to_update = max(20, len(self.nodes) // 20)
+        roads_to_update = random.sample(self.nodes, min(num_roads_to_update, len(self.nodes)))
+
+        for node in roads_to_update:
+            road_coord = (int(node.x), int(node.y))
+            if road_coord not in self.blocked_roads:
+                num_edges = len(list(self.graph.edges(node.id)))
+
+                is_major_road = num_edges >= 3
+
+                if is_major_road:
+                    base_multiplier = rush_hour_multiplier
+                    variation = random.uniform(0.8, 1.4)
                 else:
-                    self.traffic_multipliers[road] = traffic_level
+                    base_multiplier = (rush_hour_multiplier - 1.0) * 0.4 + 1.0
+                    variation = random.uniform(0.6, 1.2)
+
+                target_multiplier = base_multiplier * variation
+                target_multiplier = max(0.7, min(target_multiplier, 3.5))
+
+                self.traffic_multipliers[road_coord] = target_multiplier
 
     def _get_rush_hour_multiplier(self, current_time: float) -> float:
         hour = (current_time / 3600.0) % 24
 
-        if 7 <= hour <= 9 or 17 <= hour <= 19:
-            return 2.5
-        elif 6 <= hour <= 10 or 16 <= hour <= 20:
-            return 1.8
+        if 7.5 <= hour <= 8.5 or 17.5 <= hour <= 18.5:
+            return 2.2
+        elif 6.5 <= hour < 7.5 or 8.5 < hour <= 9.5 or 16.5 <= hour < 17.5 or 18.5 < hour <= 19.5:
+            return 1.6
+        elif 6 <= hour < 6.5 or 9.5 < hour <= 10 or 16 <= hour < 16.5 or 19.5 < hour <= 20:
+            return 1.3
         elif 11 <= hour <= 15:
-            return 1.2
+            return 1.1
         else:
-            return 0.7
+            return 0.8
 
-    def add_traffic_incident(self, duration: float, severity: str = "moderate", start_time: float = 0):
-        road_nodes = list(self.roads)
-        if road_nodes:
-            affected_road = random.choice(road_nodes)
+    def add_traffic_incident(self, duration: float, severity: str = "moderate", start_time: float = 0, rng=None):
+        if self.nodes:
+            if rng is None:
+                rng = random
+            affected_node = rng.choice(self.nodes)
+            affected_road = (int(affected_node.x), int(affected_node.y))
 
             if severity == "severe":
                 self.blocked_roads.add(affected_road)
@@ -288,7 +366,7 @@ class CityGraph:
                 if edge_data and 'weight' in edge_data:
                     base_time = edge_data['weight']
 
-                    road_coord = (current_node.x, current_node.y)
+                    road_coord = (int(current_node.x), int(current_node.y))
                     if road_coord in self.blocked_roads:
                         return float('inf')
 
@@ -305,12 +383,13 @@ class CityGraph:
         traffic_levels = []
         blocked_count = 0
 
-        for road in self.roads:
-            if road in self.blocked_roads:
+        for node in self.nodes:
+            road_coord = (int(node.x), int(node.y))
+            if road_coord in self.blocked_roads:
                 traffic_levels.append(10.0)
                 blocked_count += 1
             else:
-                multiplier = self.traffic_multipliers.get(road, 1.0)
+                multiplier = self.traffic_multipliers.get(road_coord, 1.0)
                 traffic_levels.append(min(multiplier, 5.0))
 
         avg_traffic = sum(traffic_levels) / len(traffic_levels) if traffic_levels else 1.0

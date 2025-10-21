@@ -219,7 +219,7 @@ class DispatchCenter:
         )
 
     def _get_node_id(self, location):
-        return location.y * self.city_graph.width + location.x
+        return location.id
 
     def _calculate_shortest_path(self, start_id: int, end_id: int) -> Tuple[List[int], float]:
         if self.city_graph:

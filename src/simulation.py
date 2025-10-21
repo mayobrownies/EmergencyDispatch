@@ -18,8 +18,10 @@ class Simulation:
         self.shift_mode = shift_mode
 
         random.seed(random_seed)
+        self.traffic_rng = random.Random(random_seed + 1000)
+        self.last_traffic_incident_time = 0.0
 
-        self.city_graph = CityGraph(width=20, height=15)
+        self.city_graph = CityGraph(place_name="Midtown, Atlanta, Georgia, USA", use_cache=True)
         self.log_data = LogData()
         self.dispatch_center = DispatchCenter(self.log_data, self.city_graph, dispatch_mode, shift_mode)
 
@@ -42,29 +44,34 @@ class Simulation:
     def setup_environment(self):
         road_nodes = self.city_graph.get_road_nodes()
 
-        station_positions = [
-            (1, 1), (18, 2), (2, 13), (17, 8)
+        if len(road_nodes) < 10:
+            raise ValueError("Not enough road nodes in the city graph")
+
+        station_coords = [
+            (33.7756, -84.3963),
+            (33.7690, -84.3880),
+            (33.7820, -84.3920),
+            (33.7600, -84.3950),
+            (33.7880, -84.3850)
         ]
 
-        for i, (x, y) in enumerate(station_positions):
-            node_id = y * self.city_graph.width + x
-            location = self.city_graph.get_node_by_id(node_id)
-            if location and not self.city_graph.is_road(x, y):
-                station = Station(id=i, location=location, capacity=3)
+        for i, (lat, lon) in enumerate(station_coords):
+            nearest_node = self._find_nearest_node_to_coords(lat, lon)
+            if nearest_node:
+                station = Station(id=i, location=nearest_node, capacity=3)
                 self.stations.append(station)
-                self.city_graph.buildings.add((x, y))
 
-        hospital_positions = [
-            (10, 1), (6, 10)
+        hospital_coords = [
+            (33.7551, -84.3885),
+            (33.7808, -84.3856),
+            (33.7650, -84.3800)
         ]
 
-        for i, (x, y) in enumerate(hospital_positions):
-            node_id = y * self.city_graph.width + x
-            location = self.city_graph.get_node_by_id(node_id)
-            if location and not self.city_graph.is_road(x, y):
-                hospital = Hospital(id=i, location=location, capacity=20)
+        for i, (lat, lon) in enumerate(hospital_coords):
+            nearest_node = self._find_nearest_node_to_coords(lat, lon)
+            if nearest_node:
+                hospital = Hospital(id=i, location=nearest_node, capacity=20)
                 self.hospitals.append(hospital)
-                self.city_graph.buildings.add((x, y))
 
         vehicle_id = 0
         for station in self.stations:
@@ -80,6 +87,21 @@ class Simulation:
                 vehicle_id += 1
 
         self.dispatch_center.active_vehicles = self.vehicles
+
+    def _find_nearest_node_to_coords(self, lat: float, lon: float):
+        x = self.city_graph._lon_to_x(lon)
+        y = self.city_graph._lat_to_y(lat)
+
+        min_distance = float('inf')
+        nearest_node = None
+
+        for node in self.city_graph.nodes:
+            distance = ((node.x - x)**2 + (node.y - y)**2)**0.5
+            if distance < min_distance:
+                min_distance = distance
+                nearest_node = node
+
+        return nearest_node
 
     def generate_incident(self):
         while True:
@@ -102,10 +124,14 @@ class Simulation:
             yield self.env.timeout(30.0)
             self.city_graph.update_traffic_conditions(self.env.now)
 
-            if random.random() < 0.1:
-                severity = random.choice(["light", "moderate", "severe"])
-                duration = random.uniform(300, 1800)
-                self.city_graph.add_traffic_incident(duration, severity, self.env.now)
+            time_since_last = self.env.now - self.last_traffic_incident_time
+            min_spacing = 120.0
+
+            if time_since_last >= min_spacing and self.traffic_rng.random() < 0.1:
+                severity = self.traffic_rng.choice(["light", "moderate", "severe"])
+                duration = self.traffic_rng.uniform(300, 1800)
+                self.city_graph.add_traffic_incident(duration, severity, self.env.now, self.traffic_rng)
+                self.last_traffic_incident_time = self.env.now
                 print(f"Traffic incident: {severity} for {duration/60:.1f} minutes")
 
     def incident_resolution_process(self):
@@ -188,6 +214,7 @@ class Simulation:
         self.env = simpy.Environment()
         self.log_data = LogData()
         self.dispatch_center.log_data = self.log_data
+        self.last_traffic_incident_time = 0.0
 
         for vehicle in self.vehicles:
             vehicle.status = VehicleStatus.IDLE

@@ -12,14 +12,17 @@ class SimulationVisualizer:
         self.sidebar_width = 300
         self.simulation_width = 1000
         self.width = self.control_panel_width + self.simulation_width + self.sidebar_width
-        self.height = 750
+        self.height = 800
         self.screen = pygame.display.set_mode((self.width, self.height))
         pygame.display.set_caption("Emergency Dispatch Simulation")
 
-        self.grid_width = simulation.city_graph.width
-        self.grid_height = simulation.city_graph.height
-        self.cell_width = self.simulation_width // self.grid_width
-        self.cell_height = self.height // self.grid_height
+        self.city_width = simulation.city_graph.width
+        self.city_height = simulation.city_graph.height
+        self.top_padding = 30
+        self.bottom_padding = 10
+        self.available_height = self.height - self.top_padding - self.bottom_padding
+        self.scale_x = self.simulation_width / self.city_width
+        self.scale_y = self.available_height / self.city_height
 
         self.WHITE = (255, 255, 255)
         self.BLACK = (0, 0, 0)
@@ -135,8 +138,7 @@ class SimulationVisualizer:
             model_display = self.small_font.render(model_info, True, self.BLUE)
             self.screen.blit(model_display, (20, 510))
 
-    def _get_traffic_color(self, x: int, y: int):
-        road_coord = (x, y)
+    def _get_traffic_color_by_coord(self, road_coord):
         city_graph = self.simulation.city_graph
 
         if road_coord in city_graph.blocked_roads:
@@ -156,26 +158,23 @@ class SimulationVisualizer:
     def draw_city(self):
         city_offset_x = self.control_panel_width
 
-        pygame.draw.rect(self.screen, self.LIGHT_GRAY,
+        pygame.draw.rect(self.screen, self.DARK_GRAY,
                         (city_offset_x, 0, self.simulation_width, self.height))
 
-        for i in range(self.grid_height):
-            for j in range(self.grid_width):
-                x = city_offset_x + j * self.cell_width
-                y = i * self.cell_height
+        for u, v, data in self.simulation.city_graph.graph.edges(data=True):
+            node_u = self.simulation.city_graph.get_node_by_id(u)
+            node_v = self.simulation.city_graph.get_node_by_id(v)
 
-                if self.simulation.city_graph.is_road(j, i):
-                    road_color = self._get_traffic_color(j, i)
-                    pygame.draw.rect(self.screen, road_color,
-                                   (x, y, self.cell_width, self.cell_height))
-                else:
-                    pygame.draw.rect(self.screen, self.DARK_GRAY,
-                                   (x, y, self.cell_width, self.cell_height))
+            if node_u and node_v:
+                x1 = city_offset_x + int(node_u.x * self.scale_x)
+                y1 = self.top_padding + int(node_u.y * self.scale_y)
+                x2 = city_offset_x + int(node_v.x * self.scale_x)
+                y2 = self.top_padding + int(node_v.y * self.scale_y)
 
-        for x in range(city_offset_x, city_offset_x + self.simulation_width, self.cell_width):
-            pygame.draw.line(self.screen, self.BLACK, (x, 0), (x, self.height), 1)
-        for y in range(0, self.height, self.cell_height):
-            pygame.draw.line(self.screen, self.BLACK, (city_offset_x, y), (city_offset_x + self.simulation_width, y), 1)
+                road_coord = (int(node_u.x), int(node_u.y))
+                road_color = self._get_traffic_color_by_coord(road_coord)
+
+                pygame.draw.line(self.screen, road_color, (x1, y1), (x2, y2), 2)
 
         pygame.draw.rect(self.screen, self.WHITE,
                         (city_offset_x + self.simulation_width, 0, self.sidebar_width, self.height))
@@ -185,8 +184,8 @@ class SimulationVisualizer:
     def draw_stations(self):
         city_offset_x = self.control_panel_width
         for station in self.simulation.stations:
-            x = city_offset_x + station.location.x * self.cell_width + self.cell_width // 2
-            y = station.location.y * self.cell_height + self.cell_height // 2
+            x = city_offset_x + int(station.location.x * self.scale_x)
+            y = self.top_padding + int(station.location.y * self.scale_y)
 
             idle_vehicles = len(station.get_available_vehicles())
 
@@ -204,8 +203,8 @@ class SimulationVisualizer:
     def draw_hospitals(self):
         city_offset_x = self.control_panel_width
         for hospital in self.simulation.hospitals:
-            x = city_offset_x + hospital.location.x * self.cell_width + self.cell_width // 2
-            y = hospital.location.y * self.cell_height + self.cell_height // 2
+            x = city_offset_x + int(hospital.location.x * self.scale_x)
+            y = self.top_padding + int(hospital.location.y * self.scale_y)
             pygame.draw.rect(self.screen, self.GREEN,
                            (x - 15, y - 10, 30, 20))
 
@@ -219,8 +218,8 @@ class SimulationVisualizer:
             if vehicle.status == VehicleStatus.IDLE:
                 continue
 
-            x = city_offset_x + vehicle.current_location.x * self.cell_width + self.cell_width // 2
-            y = vehicle.current_location.y * self.cell_height + self.cell_height // 2
+            x = city_offset_x + int(vehicle.current_location.x * self.scale_x)
+            y = self.top_padding + int(vehicle.current_location.y * self.scale_y)
 
             if vehicle.status == VehicleStatus.EN_ROUTE_TO_INCIDENT:
                 color = self.YELLOW
@@ -252,8 +251,8 @@ class SimulationVisualizer:
         for node_id in vehicle.current_path[vehicle.path_index:]:
             node = self.simulation.city_graph.get_node_by_id(node_id)
             if node:
-                x = city_offset_x + node.x * self.cell_width + self.cell_width // 2
-                y = node.y * self.cell_height + self.cell_height // 2
+                x = city_offset_x + int(node.x * self.scale_x)
+                y = self.top_padding + int(node.y * self.scale_y)
                 points.append((x, y))
 
         if len(points) > 1:
@@ -277,8 +276,8 @@ class SimulationVisualizer:
                     active_incidents.append(incident_data)
 
         for incident_data in active_incidents:
-            x = city_offset_x + incident_data["location_x"] * self.cell_width + 3 * self.cell_width // 4
-            y = incident_data["location_y"] * self.cell_height + 3 * self.cell_height // 4
+            x = city_offset_x + int(incident_data["location_x"] * self.scale_x)
+            y = self.top_padding + int(incident_data["location_y"] * self.scale_y)
             pygame.draw.circle(self.screen, self.RED, (x, y), 8)
 
     def draw_stats(self):

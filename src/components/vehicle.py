@@ -73,12 +73,7 @@ class Vehicle:
 
             traffic_multiplier = city_graph.traffic_multipliers.get(road_coord, 1.0)
 
-            if traffic_multiplier >= 2.0:
-                move_chance = 0.2
-            elif traffic_multiplier >= 1.3:
-                move_chance = 0.70
-            else:
-                move_chance = 1.0
+            move_chance = min(1.0, 1.0 / (traffic_multiplier ** 1.5))
 
             random.seed(int(current_time * 10 + self.id))
             if random.random() > move_chance:
