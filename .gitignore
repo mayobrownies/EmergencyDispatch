@@ -12,7 +12,6 @@ simulation_results.csv
 .ipynb_checkpoints/
 *.ipynb
 
-results/
 logs/
 checkpoints/
 models/

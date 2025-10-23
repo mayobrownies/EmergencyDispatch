@@ -28,12 +28,22 @@ class LogData:
 
         if incidents:
             response_times = [event["data"].get("response_time", 0) for event in incidents]
+
+            avg_response = sum(response_times) / len(response_times) if response_times else 0
+            variance = sum((rt - avg_response) ** 2 for rt in response_times) / len(response_times) if response_times else 0
+            std_dev = variance ** 0.5
+
+            failed_incidents = sum(1 for rt in response_times if rt > 30.0)
+
             self.performance_metrics = {
                 "total_incidents": len(incidents),
                 "total_dispatches": len(dispatches),
-                "avg_response_time": sum(response_times) / len(response_times) if response_times else 0,
+                "avg_response_time": avg_response,
                 "min_response_time": min(response_times) if response_times else 0,
                 "max_response_time": max(response_times) if response_times else 0,
+                "std_response_time": std_dev,
+                "failed_incidents_over_30s": failed_incidents,
+                "failed_incident_rate": (failed_incidents / len(incidents)) if incidents else 0,
                 "total_events": len(self.history)
             }
 

@@ -9,11 +9,13 @@ from collections import deque
 from typing import List
 from ..components.vehicle import Vehicle, VehicleStatus
 from ..components.incident import Incident
+from config import RLConfig, RewardConfig
 
 
 class DQN(nn.Module):
-    def __init__(self, state_dim: int, action_dim: int, hidden_dim: int = 256):
+    def __init__(self, state_dim: int, action_dim: int, hidden_dim: int = None):
         super(DQN, self).__init__()
+        hidden_dim = hidden_dim if hidden_dim is not None else RLConfig.HIDDEN_DIM
         self.network = nn.Sequential(
             nn.Linear(state_dim, hidden_dim),
             nn.ReLU(),
@@ -29,7 +31,8 @@ class DQN(nn.Module):
 
 
 class ReplayBuffer:
-    def __init__(self, capacity: int = 10000):
+    def __init__(self, capacity: int = None):
+        capacity = capacity if capacity is not None else RLConfig.REPLAY_BUFFER_CAPACITY
         self.buffer = deque(maxlen=capacity)
 
     def push(self, state, action, reward, next_state, done):
@@ -46,35 +49,35 @@ class ReplayBuffer:
 
 
 class DispatchAgent:
-    def __init__(self, state_dim: int, action_dim: int, learning_rate: float = 0.001,
+    def __init__(self, state_dim: int, action_dim: int, learning_rate: float = None,
                  shift_mode: bool = False, auto_load: bool = True):
         self.state_dim = state_dim
         self.action_dim = action_dim
-        self.learning_rate = learning_rate
+        self.learning_rate = learning_rate if learning_rate is not None else RLConfig.LEARNING_RATE
         self.shift_mode = shift_mode
 
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
         self.q_network = DQN(state_dim, action_dim).to(self.device)
         self.target_network = DQN(state_dim, action_dim).to(self.device)
-        self.optimizer = optim.Adam(self.q_network.parameters(), lr=learning_rate)
+        self.optimizer = optim.Adam(self.q_network.parameters(), lr=self.learning_rate)
 
         if shift_mode:
-            self.memory = ReplayBuffer(capacity=50000)
-            self.epsilon = 0.8
-            self.epsilon_min = 0.05
-            self.epsilon_decay = 0.9995
-            self.batch_size = 64
-            self.gamma = 0.995
-            self.target_update_frequency = 200
+            self.memory = ReplayBuffer(capacity=RLConfig.REPLAY_BUFFER_CAPACITY_SHIFT)
+            self.epsilon = RLConfig.EPSILON_START_SHIFT
+            self.epsilon_min = RLConfig.EPSILON_MIN_SHIFT
+            self.epsilon_decay = RLConfig.EPSILON_DECAY_SHIFT
+            self.batch_size = RLConfig.BATCH_SIZE_SHIFT
+            self.gamma = RLConfig.GAMMA_SHIFT
+            self.target_update_frequency = RLConfig.TARGET_UPDATE_FREQUENCY_SHIFT
         else:
-            self.memory = ReplayBuffer(capacity=10000)
-            self.epsilon = 1.0
-            self.epsilon_min = 0.01
-            self.epsilon_decay = 0.995
-            self.batch_size = 32
-            self.gamma = 0.99
-            self.target_update_frequency = 100
+            self.memory = ReplayBuffer(capacity=RLConfig.REPLAY_BUFFER_CAPACITY)
+            self.epsilon = RLConfig.EPSILON_START
+            self.epsilon_min = RLConfig.EPSILON_MIN
+            self.epsilon_decay = RLConfig.EPSILON_DECAY
+            self.batch_size = RLConfig.BATCH_SIZE
+            self.gamma = RLConfig.GAMMA
+            self.target_update_frequency = RLConfig.TARGET_UPDATE_FREQUENCY
 
         self.update_counter = 0
         self.update_target_network()
@@ -118,7 +121,7 @@ class DispatchAgent:
                 state_vector.extend([
                     incident.location.x / city_graph.width,
                     incident.location.y / city_graph.height,
-                    age / 100.0,
+                    min(age / 300.0, 1.0),
                     1.0 if incident.assigned_vehicle else 0.0
                 ])
             else:
@@ -218,8 +221,15 @@ class DispatchAgent:
 
     def calculate_reward(self, incident: Incident, response_time: float,
                         system_state: dict) -> float:
-        reward = -response_time / 60.0
-        print(f"    Reward calculation: {response_time:.1f}s → {reward:.4f}")
+        time_penalty = (response_time / 60.0) * RewardConfig.TIME_PENALTY_WEIGHT
+        pending_penalty = system_state.get('pending_incidents', 0) * RewardConfig.QUEUE_PENALTY_WEIGHT
+        coverage_penalty = 0.0
+        if system_state.get('available_vehicles', 0) == 0:
+            coverage_penalty = RewardConfig.COVERAGE_PENALTY
+
+        reward = -(time_penalty + pending_penalty + coverage_penalty)
+
+        print(f"    Reward calc: Time={time_penalty:.2f} + Queue={pending_penalty:.2f} + Coverage={coverage_penalty:.2f} = {reward:.4f}")
         return reward
 
     def save_model(self, filepath: str):
@@ -265,10 +275,14 @@ class DispatchAgent:
                 if matching_files:
                     latest_file = max(matching_files, key=os.path.getmtime)
                     if self.load_model(latest_file):
+                        self.epsilon = RLConfig.EPSILON_EVAL
+                        print(f"Set epsilon to {self.epsilon} for evaluation mode")
                         return True
             else:
                 if os.path.exists(pattern):
                     if self.load_model(pattern):
+                        self.epsilon = RLConfig.EPSILON_EVAL
+                        print(f"Set epsilon to {self.epsilon} for evaluation mode")
                         return True
 
         print(f"No pre-trained model found for {'shift' if self.shift_mode else 'episode'} mode")

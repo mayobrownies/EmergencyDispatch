@@ -6,12 +6,20 @@ from .components.vehicle import Vehicle, VehicleStatus
 from .components.station import Station, Hospital
 from .agents.dispatch_center import DispatchCenter
 from .utils.logger import LogData
+from config import SimulationConfig, TrafficConfig
 
 
 class Simulation:
-    def __init__(self, simulation_time: float = 100.0, random_seed: int = 42, dispatch_mode: str = "heuristic",
-                 shift_mode: bool = False, incident_rate: float = None):
+    def __init__(self, simulation_time: float = None, random_seed: int = None, dispatch_mode: str = None,
+                 shift_mode: bool = None, incident_rate: float = None, load_model_path: str = None,
+                 rl_training_mode: bool = True):
         self.env = simpy.Environment()
+
+        simulation_time = simulation_time if simulation_time is not None else SimulationConfig.SIMULATION_TIME
+        random_seed = random_seed if random_seed is not None else SimulationConfig.RANDOM_SEED
+        dispatch_mode = dispatch_mode if dispatch_mode is not None else SimulationConfig.DISPATCH_MODE
+        shift_mode = shift_mode if shift_mode is not None else SimulationConfig.SHIFT_MODE
+
         self.simulation_time = simulation_time
         self.time_super = simulation_time
         self.dispatch_mode = dispatch_mode
@@ -21,16 +29,16 @@ class Simulation:
         self.traffic_rng = random.Random(random_seed + 1000)
         self.last_traffic_incident_time = 0.0
 
-        self.city_graph = CityGraph(place_name="Midtown, Atlanta, Georgia, USA", use_cache=True)
+        self.city_graph = CityGraph(place_name=SimulationConfig.CITY_NAME, use_cache=SimulationConfig.USE_CACHE)
         self.log_data = LogData()
-        self.dispatch_center = DispatchCenter(self.log_data, self.city_graph, dispatch_mode, shift_mode)
+        self.dispatch_center = DispatchCenter(self.log_data, self.city_graph, dispatch_mode, shift_mode, rl_training_mode)
 
         if shift_mode:
             self.simulation_time = 8 * 60 * 60
             self.time_super = self.simulation_time
             default_rate = 0.002
         else:
-            default_rate = 0.05
+            default_rate = SimulationConfig.INCIDENT_RATE
 
         lambda_rate = incident_rate if incident_rate is not None else default_rate
         self.incident_generator = IncidentGenerator(lambda_val=lambda_rate, random_seed=random_seed)
@@ -40,6 +48,12 @@ class Simulation:
         self.hospitals = []
 
         self.setup_environment()
+
+        if load_model_path and self.dispatch_mode == "rl":
+            if self.dispatch_center.dispatch_agent.load_model(load_model_path):
+                print(f"Successfully loaded pre-trained model from: {load_model_path}")
+            else:
+                print(f"Warning: Could not load model from: {load_model_path}")
 
     def setup_environment(self):
         road_nodes = self.city_graph.get_road_nodes()
@@ -121,18 +135,24 @@ class Simulation:
 
     def traffic_management_process(self):
         while True:
-            yield self.env.timeout(30.0)
+            yield self.env.timeout(TrafficConfig.TRAFFIC_UPDATE_INTERVAL)
             self.city_graph.update_traffic_conditions(self.env.now)
 
             time_since_last = self.env.now - self.last_traffic_incident_time
-            min_spacing = 120.0
+            min_spacing = TrafficConfig.TRAFFIC_MIN_SPACING
 
-            if time_since_last >= min_spacing and self.traffic_rng.random() < 0.1:
-                severity = self.traffic_rng.choice(["light", "moderate", "severe"])
+            if time_since_last >= min_spacing and self.traffic_rng.random() < TrafficConfig.TRAFFIC_INCIDENT_PROBABILITY:
+                severity_roll = self.traffic_rng.random()
+                if severity_roll < 0.05:
+                    severity = "severe"
+                elif severity_roll < 0.35:
+                    severity = "moderate"
+                else:
+                    severity = "light"
                 duration = self.traffic_rng.uniform(300, 1800)
                 self.city_graph.add_traffic_incident(duration, severity, self.env.now, self.traffic_rng)
                 self.last_traffic_incident_time = self.env.now
-                print(f"Traffic incident: {severity} for {duration/60:.1f} minutes")
+                print(f"Traffic incident: {severity} for {duration/60:.1f} minutes at time {self.env.now:.1f}")
 
     def incident_resolution_process(self):
         vehicle_timers = {}
@@ -192,12 +212,16 @@ class Simulation:
     def update_all_components(self):
         pass
 
-    def log_summary_data(self):
+    def log_summary_data(self, output_filename: str = "simulation_results.json"):
         metrics = self.log_data.get_performance_metrics()
         print(f"Simulation completed. Summary:")
         print(f"Total incidents: {metrics.get('total_incidents', 0)}")
         print(f"Total dispatches: {metrics.get('total_dispatches', 0)}")
-        print(f"Average response time: {metrics.get('avg_response_time', 0):.2f}")
+        print(f"Average response time: {metrics.get('avg_response_time', 0):.2f}s")
+        print(f"Min response time: {metrics.get('min_response_time', 0):.2f}s")
+        print(f"Max response time: {metrics.get('max_response_time', 0):.2f}s")
+        print(f"Std deviation: {metrics.get('std_response_time', 0):.2f}s")
+        print(f"Incidents >30s: {metrics.get('failed_incidents_over_30s', 0)} ({metrics.get('failed_incident_rate', 0)*100:.1f}%)")
         print(f"Total events logged: {metrics.get('total_events', 0)}")
 
         if self.dispatch_mode == "rl" and self.dispatch_center.dispatch_agent:
@@ -208,13 +232,15 @@ class Simulation:
             print(f"Average episode reward: {avg_reward:.2f}")
             print(f"Current epsilon: {self.dispatch_center.dispatch_agent.epsilon:.3f}")
 
-        self.log_data.save_to_json("simulation_results.json")
+        self.log_data.save_to_json(output_filename)
 
     def reset_for_training(self):
         self.env = simpy.Environment()
         self.log_data = LogData()
         self.dispatch_center.log_data = self.log_data
         self.last_traffic_incident_time = 0.0
+
+        self.city_graph.reset_traffic()
 
         for vehicle in self.vehicles:
             vehicle.status = VehicleStatus.IDLE

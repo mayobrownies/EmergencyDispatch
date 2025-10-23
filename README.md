@@ -5,26 +5,14 @@ A discrete-event simulation environment that trains and evaluates AI agents for 
 ## Project Status
 
 ### What's Implemented
-- **Complete Simulation Framework**: Discrete-event simulation using SimPy with city graph, vehicles, stations, and hospitals
+- **Complete Simulation Framework**: Discrete-event simulation using SimPy with real Atlanta street network via OSMnx
 - **DQN Agent**: Fully functional RL agent with experience replay, target networks, and epsilon-greedy exploration
-- **Traffic Management**: Dynamic traffic conditions with random variations, and incident-based blockages
-- **GUI Visualization**: Pygame interface showing vehicles, incidents, traffic conditions, and system metrics
-- **Logging**: Performance metrics tracking and JSON export for analysis
-- **Training**: Multi-episode training with shift-based and standard episode modes
-
-### What's Still to Come
-- **Tweaking RL Agent Parameters**: Try to improve RL performance through gradual parameter modifications 
-- **Realistic Traffic Patterns**: More sophisticated traffic modeling based on real-world data
-- **Bug Fix**: Traffic simulation issues beyond 20,000 seconds runtime
-- **Improved Reward Function**: Improved reward signal incorporating multiple performance metrics
-- **Larger City Grid**: Expanded simulation environment for more complex scenarios
-- **Realistic Timings**: Realistic incident rates and response times
-- **Performance Analysis**: Comprehensive comparison between heuristic and RL approaches
-
-### Changes from Original Proposal
-- **Added Traffic System**: Originally planned as future work, implemented early to demonstrate RL advantages (RL still needs improvements)
-- **Enhanced GUI**: More sophisticated visualization than initially planned
-- **Shift-based Training**: Added 8-hour shift simulation mode
+- **Traffic Management**: Rush-hour patterns, dynamic congestion, traffic incidents with severity levels and decay
+- **GUI Visualization**: Pygame GUI showing vehicles, incidents, traffic conditions, and some real-time system metrics
+- **Metrics and Logging**: Performance metrics including avg/max/std response times, failure rates, and JSON/CSV export
+- **Training System**: Multi-episode training with 8-hour shift mode and episode mode (200 episodes each)
+- **Configuration Management**: Config file (config.py) for main hyperparameters and simulation settings
+- **Experiments**: Batch experiment runner with multiple load levels and dispatch modes (RL and heuristic)
 
 ## Installation Instructions
 
@@ -35,14 +23,23 @@ A discrete-event simulation environment that trains and evaluates AI agents for 
 ### Setup
 ```bash
 pip install -r requirements.txt
-mkdir models
+mkdir models results
 ```
 
 ## Usage
 
-### Starting the Application
+### Running Experiments
 ```bash
-# Launch the simulation GUI
+# Run all 12 experiments (heuristic + RL across different loads)
+python run_experiments.py
+
+# Analyze results
+python analysis.py
+```
+
+### Starting the GUI
+```bash
+# Launch the GUI
 python run_simulation.py
 ```
 
@@ -65,28 +62,34 @@ The application provides an interactive GUI where users can:
 - Performance metrics displayed on screen
 
 **Visual Elements**
-- Colored circles: Active vehicles (yellow=responding, orange=at scene, purple=transporting, blue=returning)
-- Colored roads: Traffic conditions (green=light, yellow=moderate, red=heavy, black=blocked)
-- Red circles: Active incidents (orange=vehicle on scene)
+- Colored circles: Active vehicles
+- Colored roads: Traffic conditions
+- Red circles: Active incidents
 - Blue circles: Stations with vehicle counts
 - Green rectangles: Hospitals
 
 ### Expected Output/Behavior
 
 **Heuristic Mode**:
-- Vehicles dispatched to closest available incidents
-- Real-time visualization with performance metrics
-- Final statistics showing response times and utilization
+- Vehicles dispatched to closest available incidents using traffic-aware pathfinding
+- Typical average response time: ~15-17 seconds
+- Low failure rate, but less consistent
 
 **RL Mode**:
-- Intelligent dispatch decisions based on trained model
-- Adaptive behavior considering traffic and system state
-- Current performance is worse than heuristic mode, but will hopefully improve with future modifications
+- Dispatch decisions based on trained DQN model
+- Typical average response time: ~18-20 seconds
+- More consistent performance (lower std deviation)
+- Higher failure rate for edge cases (>30s incidents)
 
 **Training Mode**:
 - Progress updates every 5 episodes
 - Model checkpoints saved every 10 episodes
-- Final model saved as `models/dqn_final.pth`
+- Final models saved to `models/` folder
+
+**Experiment Output**:
+- 12 JSON files in `results/` directory with complete metrics
+- CSV summary table with all performance metrics
+- 7 charts showing comparative performance
 
 ## Architecture Overview
 
@@ -126,22 +129,35 @@ The application provides an interactive GUI where users can:
 ## Project Structure
 ```
 ├── README.md
-├── run_simulation.py             # Main GUI application and entry point
-├── models/                       # Trained models
-├── src/
-    ├── simulation.py             # Core simulation orchestration
-    ├── components/
-    │   ├── vehicle.py            # Emergency vehicle implementation
-    │   ├── incident.py           # Emergency incident modeling
-    │   └── station.py            # Stations and hospitals
-    ├── environment/
-    │   ├── city_graph.py         # Road network with traffic system
-    │   └── incident_generator.py # Stochastic incident generation
-    ├── agents/
-    │   ├── dispatch_agent.py     # DQN agent implementation
-    │   └── dispatch_center.py    # Central dispatch coordination
-    └── utils/
-        └── logger.py             # Event logging and metrics
+├── requirements.txt
+├── config.py
+├── run_simulation.py
+├── run_experiments.py
+├── analysis.py
+│
+├── results/                      # Experiment outputs and visualizations
+│   ├── run_*.json
+│   ├── results.csv
+│   └── chart_*.png
+│
+└── src/                          # Source code
+    ├── simulation.py
+    │
+    ├── components/               # Simulation entities
+    │   ├── vehicle.py
+    │   ├── incident.py
+    │   └── station.py
+    │
+    ├── environment/              # City and incident generation
+    │   ├── city_graph.py
+    │   └── incident_generator.py
+    │
+    ├── agents/                   # AI dispatch agents and coordination
+    │   ├── dispatch_agent.py
+    │   └── dispatch_center.py
+    │
+    └── utils/                    # Logging and metrics
+        └── logger.py
 ```
 
 ## Domain & Problem Statement
@@ -156,15 +172,9 @@ Traditional dispatch systems rely on simple heuristics like "send the closest av
 - Poor handling of multiple simultaneous incidents
 - Inability to adapt to traffic patterns and city dynamics
 
-### Key Questions
-1. How much improvement can RL provide over closest-vehicle heuristics?
-2. Can RL agents learn to anticipate traffic patterns and future incidents?
-3. What system features are most important for optimal dispatch decisions?
-4. How does performance scale with city size and incident complexity?
-
 ## Technology Stack
 - **Simulation Engine**: Python with SimPy for discrete-event simulation
 - **Deep Learning**: PyTorch for DQN implementation
-- **Graph Analysis**: NetworkX for city representation and pathfinding algorithms
+- **Graph**: NetworkX for city representation and pathfinding algorithms, OSMnx for real OpenStreetMap data integration
 - **Visualization**: Pygame for real-time GUI, Matplotlib and Seaborn for analysis
 - **Data Processing**: NumPy and Pandas for numerical operations and data analysis

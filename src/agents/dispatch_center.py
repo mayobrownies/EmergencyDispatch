@@ -9,7 +9,7 @@ from .dispatch_agent import DispatchAgent
 
 class DispatchCenter:
     def __init__(self, log_data: LogData, city_graph=None, dispatch_mode: str = "heuristic",
-                 shift_mode: bool = False):
+                 shift_mode: bool = False, rl_training_mode: bool = True):
         self.pending_incidents = Queue()
         self.active_vehicles = []
         self.log_data = log_data
@@ -21,8 +21,8 @@ class DispatchCenter:
         if dispatch_mode == "rl":
             state_dim = 10 * 4 + 5 * 4 + 3 + 3
             action_dim = 10
-            self.dispatch_agent = DispatchAgent(state_dim, action_dim, shift_mode=shift_mode)
-            self.training_mode = True
+            self.dispatch_agent = DispatchAgent(state_dim, action_dim, shift_mode=shift_mode, auto_load=not rl_training_mode)
+            self.training_mode = rl_training_mode
             self.last_state = None
             self.last_action = None
             self.episode_rewards = []
@@ -99,12 +99,6 @@ class DispatchCenter:
             self.active_vehicles, pending_incidents, self.city_graph, current_time
         )
 
-        if self.last_state is not None and self.last_action is not None:
-            reward = self._calculate_training_reward(current_time)
-            self.dispatch_agent.train_step(
-                self.last_state, self.last_action, reward, current_state, False
-            )
-
         action = self.dispatch_agent.get_action(
             current_state, self.active_vehicles, pending_incidents, self.training_mode
         )
@@ -151,13 +145,38 @@ class DispatchCenter:
 
             print(f"Incident {incident.id}: created at {incident.time_created:.1f}s, resolved at {current_time:.1f}s, response time: {response_time:.1f}s")
 
-            if self.dispatch_mode == "rl" and self.dispatch_agent:
+            if self.dispatch_mode == "rl" and self.dispatch_agent and self.training_mode:
                 print(f"  Calculating RL reward for dispatch_mode: {self.dispatch_mode}")
                 reward = self.dispatch_agent.calculate_reward(
                     incident, response_time, self.get_system_state()
                 )
                 self.episode_rewards.append(reward)
                 print(f"  RL reward: {reward:.3f}, total rewards: {len(self.episode_rewards)}")
+
+                if self.last_state is not None and self.last_action is not None:
+                    pending_incidents = []
+                    temp_queue = []
+                    while not self.pending_incidents.empty():
+                        try:
+                            temp_incident = self.pending_incidents.get_nowait()
+                            pending_incidents.append(temp_incident)
+                            temp_queue.append(temp_incident)
+                        except:
+                            break
+
+                    for temp_incident in temp_queue:
+                        self.pending_incidents.put(temp_incident)
+
+                    next_state = self.dispatch_agent.encode_state(
+                        self.active_vehicles, pending_incidents, self.city_graph, current_time
+                    )
+
+                    done = False
+
+                    print(f"  Training agent: reward={reward:.3f}")
+                    self.dispatch_agent.train_step(
+                        self.last_state, self.last_action, reward, next_state, done
+                    )
 
             incident.resolution_time = current_time
             incident.status = IncidentStatus.RESOLVED

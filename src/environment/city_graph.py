@@ -5,6 +5,7 @@ import numpy as np
 from typing import List, Tuple, Optional
 import pickle
 import os
+from config import TrafficConfig
 
 
 class Node:
@@ -257,6 +258,12 @@ class CityGraph:
             road_coord = (int(node.x), int(node.y))
             self.traffic_multipliers[road_coord] = 1.0
 
+    def reset_traffic(self):
+        self.traffic_multipliers.clear()
+        self.blocked_roads.clear()
+        self.traffic_events.clear()
+        self._initialize_traffic_system()
+
     def update_traffic_conditions(self, current_time: float):
         self._update_dynamic_traffic(current_time)
         self._process_traffic_events(current_time)
@@ -268,10 +275,10 @@ class CityGraph:
             road_coord = (int(node.x), int(node.y))
             if road_coord not in self.blocked_roads:
                 current_multiplier = self.traffic_multipliers.get(road_coord, 1.0)
-                decay_rate = 0.08
-                self.traffic_multipliers[road_coord] = current_multiplier * (1 - decay_rate) + 0.9 * decay_rate
+                decay_rate = TrafficConfig.DECAY_RATE
+                self.traffic_multipliers[road_coord] = current_multiplier * (1 - decay_rate) + TrafficConfig.DECAY_TARGET * decay_rate
 
-        num_roads_to_update = max(20, len(self.nodes) // 20)
+        num_roads_to_update = max(10, len(self.nodes) // 50)
         roads_to_update = random.sample(self.nodes, min(num_roads_to_update, len(self.nodes)))
 
         for node in roads_to_update:
@@ -282,14 +289,14 @@ class CityGraph:
                 is_major_road = num_edges >= 3
 
                 if is_major_road:
-                    base_multiplier = rush_hour_multiplier
-                    variation = random.uniform(0.8, 1.4)
+                    base_multiplier = (rush_hour_multiplier - 1.0) * TrafficConfig.MAJOR_ROAD_MULTIPLIER + 1.0
+                    variation = random.uniform(*TrafficConfig.MAJOR_ROAD_VARIATION)
                 else:
-                    base_multiplier = (rush_hour_multiplier - 1.0) * 0.4 + 1.0
-                    variation = random.uniform(0.6, 1.2)
+                    base_multiplier = (rush_hour_multiplier - 1.0) * TrafficConfig.MINOR_ROAD_MULTIPLIER + 1.0
+                    variation = random.uniform(*TrafficConfig.MINOR_ROAD_VARIATION)
 
                 target_multiplier = base_multiplier * variation
-                target_multiplier = max(0.7, min(target_multiplier, 3.5))
+                target_multiplier = max(0.7, min(target_multiplier, 3.0))
 
                 self.traffic_multipliers[road_coord] = target_multiplier
 
@@ -339,15 +346,17 @@ class CityGraph:
 
             if current_time <= event_end:
                 road = event['road']
-                if event['severity'] == "severe":
+                if event['severity'] == "severe" and not event.get('blocked_applied', False):
                     self.blocked_roads.add(road)
-                else:
+                    event['blocked_applied'] = True
+                elif event['severity'] != "severe":
                     self.traffic_multipliers[road] = event['multiplier']
                 active_events.append(event)
             else:
                 road = event['road']
                 if road in self.blocked_roads:
                     self.blocked_roads.remove(road)
+                    print(f"Road blockage cleared at {road} at time {current_time:.1f}")
                 if road in self.traffic_multipliers:
                     self.traffic_multipliers[road] = 1.0
 
@@ -393,4 +402,8 @@ class CityGraph:
                 traffic_levels.append(min(multiplier, 5.0))
 
         avg_traffic = sum(traffic_levels) / len(traffic_levels) if traffic_levels else 1.0
-        return [avg_traffic, float(blocked_count), float(len(self.traffic_events))]
+        normalized_avg_traffic = avg_traffic / 5.0
+        normalized_blocked = blocked_count / max(1, len(self.nodes))
+        normalized_events = len(self.traffic_events) / 10.0
+
+        return [normalized_avg_traffic, normalized_blocked, normalized_events]

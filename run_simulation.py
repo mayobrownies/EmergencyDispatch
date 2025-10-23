@@ -3,44 +3,27 @@ import traceback
 import threading
 from src.simulation import Simulation
 from src.components.vehicle import VehicleStatus
+from config import VisualizationConfig as VC, RLConfig
 
 class SimulationVisualizer:
     def __init__(self, simulation, dispatch_mode="heuristic"):
         pygame.init()
         self.simulation = simulation
-        self.control_panel_width = 200
-        self.sidebar_width = 300
-        self.simulation_width = 1000
+        self.control_panel_width = VC.CONTROL_PANEL_WIDTH
+        self.sidebar_width = VC.SIDEBAR_WIDTH
+        self.simulation_width = VC.SIMULATION_WIDTH
         self.width = self.control_panel_width + self.simulation_width + self.sidebar_width
-        self.height = 800
+        self.height = VC.WINDOW_HEIGHT
         self.screen = pygame.display.set_mode((self.width, self.height))
         pygame.display.set_caption("Emergency Dispatch Simulation")
 
         self.city_width = simulation.city_graph.width
         self.city_height = simulation.city_graph.height
-        self.top_padding = 30
-        self.bottom_padding = 10
+        self.top_padding = VC.TOP_PADDING
+        self.bottom_padding = VC.BOTTOM_PADDING
         self.available_height = self.height - self.top_padding - self.bottom_padding
         self.scale_x = self.simulation_width / self.city_width
         self.scale_y = self.available_height / self.city_height
-
-        self.WHITE = (255, 255, 255)
-        self.BLACK = (0, 0, 0)
-        self.RED = (255, 0, 0)
-        self.BLUE = (0, 0, 255)
-        self.GREEN = (0, 255, 0)
-        self.YELLOW = (255, 255, 0)
-        self.ORANGE = (255, 165, 0)
-        self.PURPLE = (128, 0, 128)
-        self.GRAY = (128, 128, 128)
-        self.DARK_GRAY = (64, 64, 64)
-        self.LIGHT_GRAY = (200, 200, 200)
-        self.BUTTON_GRAY = (180, 180, 180)
-
-        self.TRAFFIC_LIGHT = (0, 255, 255)
-        self.TRAFFIC_MODERATE = (255, 255, 0)
-        self.TRAFFIC_HEAVY = (255, 100, 0)
-        self.TRAFFIC_BLOCKED = (255, 0, 0)
 
         self.font = pygame.font.Font(None, 24)
         self.small_font = pygame.font.Font(None, 16)
@@ -60,105 +43,105 @@ class SimulationVisualizer:
         self.train_button = pygame.Rect(20, 300, 160, 40)
         self.reset_button = pygame.Rect(20, 350, 160, 40)
 
-        self.speed_multiplier = 1
-        self.speed_options = [1, 2, 5, 10, 50]
+        self.speed_multiplier = VC.DEFAULT_SPEED
+        self.speed_options = VC.SPEED_OPTIONS
         self.dispatch_mode = dispatch_mode
         self.shift_mode = hasattr(simulation, 'shift_mode') and simulation.shift_mode
         self.training_active = False
 
     def draw_control_panel(self):
-        pygame.draw.rect(self.screen, self.LIGHT_GRAY, (0, 0, self.control_panel_width, self.height))
-        pygame.draw.line(self.screen, self.BLACK, (self.control_panel_width, 0), (self.control_panel_width, self.height), 2)
+        pygame.draw.rect(self.screen, VC.LIGHT_GRAY, (0, 0, self.control_panel_width, self.height))
+        pygame.draw.line(self.screen, VC.BLACK, (self.control_panel_width, 0), (self.control_panel_width, self.height), 2)
 
-        title = self.font.render("CONTROLS", True, self.BLACK)
+        title = self.font.render("CONTROLS", True, VC.BLACK)
         self.screen.blit(title, (20, 20))
 
-        next_color = self.BUTTON_GRAY if not self.simulation_completed else self.GRAY
+        next_color = VC.BUTTON_GRAY if not self.simulation_completed else VC.GRAY
         pygame.draw.rect(self.screen, next_color, self.next_button)
-        pygame.draw.rect(self.screen, self.BLACK, self.next_button, 2)
-        next_text = self.small_font.render("NEXT STEP", True, self.BLACK)
+        pygame.draw.rect(self.screen, VC.BLACK, self.next_button, 2)
+        next_text = self.small_font.render("NEXT STEP", True, VC.BLACK)
         self.screen.blit(next_text, (self.next_button.x + 35, self.next_button.y + 12))
 
-        auto_color = self.GREEN if self.auto_mode else self.BUTTON_GRAY
+        auto_color = VC.GREEN if self.auto_mode else VC.BUTTON_GRAY
         if self.simulation_completed:
-            auto_color = self.GRAY
+            auto_color = VC.GRAY
         pygame.draw.rect(self.screen, auto_color, self.auto_button)
-        pygame.draw.rect(self.screen, self.BLACK, self.auto_button, 2)
-        auto_text = self.small_font.render("AUTO MODE", True, self.BLACK)
+        pygame.draw.rect(self.screen, VC.BLACK, self.auto_button, 2)
+        auto_text = self.small_font.render("AUTO MODE", True, VC.BLACK)
         self.screen.blit(auto_text, (self.auto_button.x + 35, self.auto_button.y + 12))
 
-        pygame.draw.rect(self.screen, self.BUTTON_GRAY, self.speedup_button)
-        pygame.draw.rect(self.screen, self.BLACK, self.speedup_button, 2)
-        speed_text = self.small_font.render(f"SPEED: {self.speed_multiplier}x", True, self.BLACK)
+        pygame.draw.rect(self.screen, VC.BUTTON_GRAY, self.speedup_button)
+        pygame.draw.rect(self.screen, VC.BLACK, self.speedup_button, 2)
+        speed_text = self.small_font.render(f"SPEED: {self.speed_multiplier}x", True, VC.BLACK)
         self.screen.blit(speed_text, (self.speedup_button.x + 35, self.speedup_button.y + 12))
 
-        mode_color = self.BLUE if self.dispatch_mode == "rl" else self.BUTTON_GRAY
+        mode_color = VC.BLUE if self.dispatch_mode == "rl" else VC.BUTTON_GRAY
         pygame.draw.rect(self.screen, mode_color, self.mode_button)
-        pygame.draw.rect(self.screen, self.BLACK, self.mode_button, 2)
-        mode_text = self.small_font.render(f"MODE: {self.dispatch_mode.upper()}", True, self.BLACK)
+        pygame.draw.rect(self.screen, VC.BLACK, self.mode_button, 2)
+        mode_text = self.small_font.render(f"MODE: {self.dispatch_mode.upper()}", True, VC.BLACK)
         self.screen.blit(mode_text, (self.mode_button.x + 25, self.mode_button.y + 12))
 
-        shift_color = self.ORANGE if self.shift_mode else self.BUTTON_GRAY
+        shift_color = VC.ORANGE if self.shift_mode else VC.BUTTON_GRAY
         pygame.draw.rect(self.screen, shift_color, self.shift_button)
-        pygame.draw.rect(self.screen, self.BLACK, self.shift_button, 2)
-        shift_text = self.small_font.render("8-HOUR SHIFT" if self.shift_mode else "5-MIN DEMO", True, self.BLACK)
+        pygame.draw.rect(self.screen, VC.BLACK, self.shift_button, 2)
+        shift_text = self.small_font.render("8-HOUR SHIFT" if self.shift_mode else "5-MIN DEMO", True, VC.BLACK)
         self.screen.blit(shift_text, (self.shift_button.x + 25, self.shift_button.y + 12))
 
-        train_color = self.GREEN if self.training_active else self.GRAY if self.dispatch_mode != "rl" else self.BUTTON_GRAY
+        train_color = VC.GREEN if self.training_active else VC.GRAY if self.dispatch_mode != "rl" else VC.BUTTON_GRAY
         pygame.draw.rect(self.screen, train_color, self.train_button)
-        pygame.draw.rect(self.screen, self.BLACK, self.train_button, 2)
-        train_text = self.small_font.render("TRAINING" if self.training_active else "START TRAIN", True, self.BLACK)
+        pygame.draw.rect(self.screen, VC.BLACK, self.train_button, 2)
+        train_text = self.small_font.render("TRAINING" if self.training_active else "START TRAIN", True, VC.BLACK)
         self.screen.blit(train_text, (self.train_button.x + 35, self.train_button.y + 12))
 
-        pygame.draw.rect(self.screen, self.BUTTON_GRAY, self.reset_button)
-        pygame.draw.rect(self.screen, self.BLACK, self.reset_button, 2)
-        reset_text = self.small_font.render("RESET", True, self.BLACK)
+        pygame.draw.rect(self.screen, VC.BUTTON_GRAY, self.reset_button)
+        pygame.draw.rect(self.screen, VC.BLACK, self.reset_button, 2)
+        reset_text = self.small_font.render("RESET", True, VC.BLACK)
         self.screen.blit(reset_text, (self.reset_button.x + 55, self.reset_button.y + 12))
 
         status_text = "AUTO RUNNING" if self.auto_mode else "PAUSED" if self.simulation_paused else "MANUAL"
         if self.simulation_completed:
             status_text = "COMPLETED"
-        status_color = self.GREEN if self.auto_mode else self.ORANGE if self.simulation_paused else self.BLUE
+        status_color = VC.GREEN if self.auto_mode else VC.ORANGE if self.simulation_paused else VC.BLUE
         if self.simulation_completed:
-            status_color = self.RED
+            status_color = VC.RED
 
-        status_label = self.small_font.render("Status:", True, self.BLACK)
+        status_label = self.small_font.render("Status:", True, VC.BLACK)
         self.screen.blit(status_label, (20, 410))
         status_display = self.small_font.render(status_text, True, status_color)
         self.screen.blit(status_display, (20, 430))
 
-        time_label = self.small_font.render(f"Time: {self.simulation.env.now:.0f}s", True, self.BLACK)
+        time_label = self.small_font.render(f"Time: {self.simulation.env.now:.0f}s", True, VC.BLACK)
         self.screen.blit(time_label, (20, 460))
 
         if self.dispatch_mode == "rl" and hasattr(self.simulation.dispatch_center, 'dispatch_agent'):
             agent = self.simulation.dispatch_center.dispatch_agent
             model_info = f"ε: {agent.epsilon:.3f}"
-            model_label = self.small_font.render("Model:", True, self.BLACK)
+            model_label = self.small_font.render("Model:", True, VC.BLACK)
             self.screen.blit(model_label, (20, 490))
-            model_display = self.small_font.render(model_info, True, self.BLUE)
+            model_display = self.small_font.render(model_info, True, VC.BLUE)
             self.screen.blit(model_display, (20, 510))
 
     def _get_traffic_color_by_coord(self, road_coord):
         city_graph = self.simulation.city_graph
 
         if road_coord in city_graph.blocked_roads:
-            return self.TRAFFIC_BLOCKED
+            return VC.ROAD_BLOCKED
 
         traffic_multiplier = city_graph.traffic_multipliers.get(road_coord, 1.0)
 
         if traffic_multiplier >= 2.0:
-            return self.TRAFFIC_HEAVY
+            return VC.ROAD_HEAVY
         elif traffic_multiplier >= 1.3:
-            return self.TRAFFIC_MODERATE
+            return VC.ROAD_MODERATE
         elif traffic_multiplier <= 0.9:
-            return self.TRAFFIC_LIGHT
+            return VC.ROAD_LIGHT
         else:
-            return self.GRAY
+            return VC.GRAY
 
     def draw_city(self):
         city_offset_x = self.control_panel_width
 
-        pygame.draw.rect(self.screen, self.DARK_GRAY,
+        pygame.draw.rect(self.screen, VC.DARK_GRAY,
                         (city_offset_x, 0, self.simulation_width, self.height))
 
         for u, v, data in self.simulation.city_graph.graph.edges(data=True):
@@ -176,9 +159,9 @@ class SimulationVisualizer:
 
                 pygame.draw.line(self.screen, road_color, (x1, y1), (x2, y2), 2)
 
-        pygame.draw.rect(self.screen, self.WHITE,
+        pygame.draw.rect(self.screen, VC.WHITE,
                         (city_offset_x + self.simulation_width, 0, self.sidebar_width, self.height))
-        pygame.draw.line(self.screen, self.BLACK,
+        pygame.draw.line(self.screen, VC.BLACK,
                         (city_offset_x + self.simulation_width, 0), (city_offset_x + self.simulation_width, self.height), 2)
 
     def draw_stations(self):
@@ -189,14 +172,14 @@ class SimulationVisualizer:
 
             idle_vehicles = len(station.get_available_vehicles())
 
-            pygame.draw.circle(self.screen, self.BLUE, (x, y), 18)
-            pygame.draw.circle(self.screen, self.BLACK, (x, y), 18, 2)
+            pygame.draw.circle(self.screen, VC.BLUE, (x, y), 18)
+            pygame.draw.circle(self.screen, VC.BLACK, (x, y), 18, 2)
 
-            station_text = self.small_font.render(f"R{station.id}", True, self.WHITE)
+            station_text = self.small_font.render(f"R{station.id}", True, VC.WHITE)
             station_rect = station_text.get_rect(center=(x, y - 5))
             self.screen.blit(station_text, station_rect)
 
-            vehicle_text = self.small_font.render(f"({idle_vehicles})", True, self.WHITE)
+            vehicle_text = self.small_font.render(f"({idle_vehicles})", True, VC.WHITE)
             vehicle_rect = vehicle_text.get_rect(center=(x, y + 8))
             self.screen.blit(vehicle_text, vehicle_rect)
 
@@ -205,10 +188,10 @@ class SimulationVisualizer:
         for hospital in self.simulation.hospitals:
             x = city_offset_x + int(hospital.location.x * self.scale_x)
             y = self.top_padding + int(hospital.location.y * self.scale_y)
-            pygame.draw.rect(self.screen, self.GREEN,
+            pygame.draw.rect(self.screen, VC.GREEN,
                            (x - 15, y - 10, 30, 20))
 
-            text = self.small_font.render(f"H{hospital.id}", True, self.WHITE)
+            text = self.small_font.render(f"H{hospital.id}", True, VC.WHITE)
             text_rect = text.get_rect(center=(x, y))
             self.screen.blit(text, text_rect)
 
@@ -222,20 +205,20 @@ class SimulationVisualizer:
             y = self.top_padding + int(vehicle.current_location.y * self.scale_y)
 
             if vehicle.status == VehicleStatus.EN_ROUTE_TO_INCIDENT:
-                color = self.YELLOW
+                color = VC.YELLOW
             elif vehicle.status == VehicleStatus.AT_INCIDENT:
-                color = self.ORANGE
+                color = VC.ORANGE
             elif vehicle.status == VehicleStatus.TRANSPORTING_TO_HOSPITAL:
-                color = self.PURPLE
+                color = VC.PURPLE
             elif vehicle.status == VehicleStatus.RETURNING_TO_STATION:
-                color = self.BLUE
+                color = VC.BLUE
             else:
-                color = self.BLACK
+                color = VC.BLACK
 
             pygame.draw.circle(self.screen, color, (x, y), 12)
-            pygame.draw.circle(self.screen, self.BLACK, (x, y), 12, 2)
+            pygame.draw.circle(self.screen, VC.BLACK, (x, y), 12, 2)
 
-            text = self.small_font.render(str(vehicle.id), True, self.BLACK)
+            text = self.small_font.render(str(vehicle.id), True, VC.BLACK)
             text_rect = text.get_rect(center=(x, y))
             self.screen.blit(text, text_rect)
 
@@ -256,7 +239,7 @@ class SimulationVisualizer:
                 points.append((x, y))
 
         if len(points) > 1:
-            pygame.draw.lines(self.screen, self.RED, False, points, 2)
+            pygame.draw.lines(self.screen, VC.RED, False, points, 2)
 
     def draw_incidents(self):
         city_offset_x = self.control_panel_width
@@ -278,7 +261,7 @@ class SimulationVisualizer:
         for incident_data in active_incidents:
             x = city_offset_x + int(incident_data["location_x"] * self.scale_x)
             y = self.top_padding + int(incident_data["location_y"] * self.scale_y)
-            pygame.draw.circle(self.screen, self.RED, (x, y), 8)
+            pygame.draw.circle(self.screen, VC.RED, (x, y), 8)
 
     def draw_stats(self):
         metrics = self.simulation.log_data.get_performance_metrics()
@@ -292,13 +275,13 @@ class SimulationVisualizer:
 
         sidebar_x = self.control_panel_width + self.simulation_width + 20
 
-        title = self.font.render("SIMULATION METRICS", True, self.BLACK)
+        title = self.font.render("SIMULATION METRICS", True, VC.BLACK)
         self.screen.blit(title, (sidebar_x, 20))
 
         for i, text in enumerate(stats_text):
             if len(text) > 25:
                 text = text[:22] + "..."
-            rendered = self.small_font.render(text, True, self.BLACK)
+            rendered = self.small_font.render(text, True, VC.BLACK)
             self.screen.blit(rendered, (sidebar_x, 60 + i * 25))
 
         vehicle_status_counts = {}
@@ -306,35 +289,35 @@ class SimulationVisualizer:
             status = vehicle.status.value
             vehicle_status_counts[status] = vehicle_status_counts.get(status, 0) + 1
 
-        status_title = self.font.render("VEHICLE STATUS", True, self.BLACK)
+        status_title = self.font.render("VEHICLE STATUS", True, VC.BLACK)
         self.screen.blit(status_title, (sidebar_x, 220))
 
         y_offset = 250
         for status, count in vehicle_status_counts.items():
             status_text = f"{status.replace('_', ' ').title()}: {count}"
-            rendered = self.small_font.render(status_text, True, self.BLACK)
+            rendered = self.small_font.render(status_text, True, VC.BLACK)
             self.screen.blit(rendered, (sidebar_x, y_offset))
             y_offset += 20
 
     def draw_legend(self):
         legend_items = [
-            ("Normal Roads", self.GRAY),
-            ("Light Traffic", self.TRAFFIC_LIGHT),
-            ("Moderate Traffic", self.TRAFFIC_MODERATE),
-            ("Heavy Traffic", self.TRAFFIC_HEAVY),
-            ("Road Blocked", self.TRAFFIC_BLOCKED),
-            ("Buildings", self.DARK_GRAY),
-            ("Response Stations", self.BLUE),
-            ("Hospitals", self.GREEN),
-            ("Active Incidents", self.RED),
-            ("Vehicle Responding", self.YELLOW),
-            ("Vehicle At Scene", self.ORANGE),
-            ("Vehicle To Hospital", self.PURPLE)
+            ("Normal Roads", VC.GRAY),
+            ("Light Traffic", VC.ROAD_LIGHT),
+            ("Moderate Traffic", VC.ROAD_MODERATE),
+            ("Heavy Traffic", VC.ROAD_HEAVY),
+            ("Road Blocked", VC.ROAD_BLOCKED),
+            ("Buildings", VC.DARK_GRAY),
+            ("Response Stations", VC.BLUE),
+            ("Hospitals", VC.GREEN),
+            ("Active Incidents", VC.RED),
+            ("Vehicle Responding", VC.YELLOW),
+            ("Vehicle At Scene", VC.ORANGE),
+            ("Vehicle To Hospital", VC.PURPLE)
         ]
 
         sidebar_x = self.control_panel_width + self.simulation_width + 20
 
-        title = self.font.render("LEGEND", True, self.BLACK)
+        title = self.font.render("LEGEND", True, VC.BLACK)
         self.screen.blit(title, (sidebar_x, 380))
 
         legend_x = sidebar_x
@@ -343,9 +326,9 @@ class SimulationVisualizer:
         for i, (label, color) in enumerate(legend_items):
             y_pos = legend_y + i * 30
             pygame.draw.circle(self.screen, color, (legend_x + 8, y_pos + 10), 8)
-            if color == self.WHITE:
-                pygame.draw.circle(self.screen, self.BLACK, (legend_x + 8, y_pos + 10), 8, 2)
-            text = self.small_font.render(label, True, self.BLACK)
+            if color == VC.WHITE:
+                pygame.draw.circle(self.screen, VC.BLACK, (legend_x + 8, y_pos + 10), 8, 2)
+            text = self.small_font.render(label, True, VC.BLACK)
             self.screen.blit(text, (legend_x + 25, y_pos + 2))
 
     def setup_simulation(self):
@@ -427,11 +410,11 @@ class SimulationVisualizer:
         def training_thread():
             try:
                 if self.shift_mode:
-                    print("Running shift training (20 shifts)")
-                    self.simulation.run_shift_training(num_shifts=20)
+                    print(f"Running shift training ({RLConfig.NUM_TRAINING_SHIFTS} shifts)")
+                    self.simulation.run_shift_training(num_shifts=RLConfig.NUM_TRAINING_SHIFTS)
                 else:
-                    print("Running episode training (50 episodes)")
-                    self.simulation.run_training_episodes(num_episodes=50, episode_length=300.0)
+                    print(f"Running episode training ({RLConfig.NUM_TRAINING_EPISODES} episodes)")
+                    self.simulation.run_training_episodes(num_episodes=RLConfig.NUM_TRAINING_EPISODES, episode_length=300.0)
                 print("Training completed!")
             except Exception as e:
                 print(f"Training failed: {e}")
@@ -465,7 +448,7 @@ class SimulationVisualizer:
                 self.step_simulation()
                 self.step_requested = False
 
-            self.screen.fill(self.WHITE)
+            self.screen.fill(VC.WHITE)
 
             self.draw_control_panel()
             self.draw_city()
@@ -478,7 +461,7 @@ class SimulationVisualizer:
 
             if self.simulation_completed:
                 sidebar_x = self.control_panel_width + self.simulation_width + 20
-                completion_text = self.font.render("SIMULATION COMPLETED", True, self.RED)
+                completion_text = self.font.render("SIMULATION COMPLETED", True, VC.RED)
                 self.screen.blit(completion_text, (sidebar_x, self.height - 50))
 
             pygame.display.flip()

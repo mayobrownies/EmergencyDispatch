@@ -1,5 +1,6 @@
 import random
 from enum import Enum
+from config import TrafficConfig
 
 
 
@@ -73,7 +74,7 @@ class Vehicle:
 
             traffic_multiplier = city_graph.traffic_multipliers.get(road_coord, 1.0)
 
-            move_chance = min(1.0, 1.0 / (traffic_multiplier ** 1.5))
+            move_chance = min(1.0, 1.0 / (traffic_multiplier ** TrafficConfig.MOVEMENT_PENALTY_EXPONENT))
 
             random.seed(int(current_time * 10 + self.id))
             if random.random() > move_chance:
