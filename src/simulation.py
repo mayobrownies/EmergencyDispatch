@@ -61,27 +61,13 @@ class Simulation:
         if len(road_nodes) < 10:
             raise ValueError("Not enough road nodes in the city graph")
 
-        station_coords = [
-            (33.7756, -84.3963),
-            (33.7690, -84.3880),
-            (33.7820, -84.3920),
-            (33.7600, -84.3950),
-            (33.7880, -84.3850)
-        ]
-
-        for i, (lat, lon) in enumerate(station_coords):
+        for i, (lat, lon) in enumerate(SimulationConfig.STATION_COORDS):
             nearest_node = self._find_nearest_node_to_coords(lat, lon)
             if nearest_node:
                 station = Station(id=i, location=nearest_node, capacity=3)
                 self.stations.append(station)
 
-        hospital_coords = [
-            (33.7551, -84.3885),
-            (33.7808, -84.3856),
-            (33.7650, -84.3800)
-        ]
-
-        for i, (lat, lon) in enumerate(hospital_coords):
+        for i, (lat, lon) in enumerate(SimulationConfig.HOSPITAL_COORDS):
             nearest_node = self._find_nearest_node_to_coords(lat, lon)
             if nearest_node:
                 hospital = Hospital(id=i, location=nearest_node, capacity=20)

@@ -5,8 +5,18 @@ class SimulationConfig:
     SHIFT_MODE = False
     INCIDENT_RATE = 0.05
 
-    NUM_FIRE_STATIONS = 5
-    NUM_HOSPITALS = 3
+    STATION_COORDS = [
+        (33.7756, -84.3963),
+        (33.7690, -84.3880),
+        (33.7820, -84.3920),
+        (33.7600, -84.3950),
+        (33.7880, -84.3850)
+    ]
+    HOSPITAL_COORDS = [
+        (33.7551, -84.3885),
+        (33.7808, -84.3856),
+        (33.7650, -84.3800)
+    ]
     NUM_VEHICLES_PER_STATION = 2
 
     CITY_NAME = "Midtown, Atlanta, Georgia, USA"
