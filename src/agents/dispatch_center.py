@@ -63,20 +63,13 @@ class DispatchCenter:
             return None
 
         best_vehicle = None
-        min_travel_time = float('inf')
+        min_distance = float('inf')
 
         for vehicle in vehicles:
-            if self.city_graph:
-                travel_time = self.city_graph.get_travel_time_with_traffic(
-                    vehicle.current_location, incident.location
-                )
-                if travel_time == float('inf'):
-                    travel_time = vehicle.current_location.get_distance_to(incident.location)
-            else:
-                travel_time = vehicle.current_location.get_distance_to(incident.location)
+            distance = vehicle.current_location.get_distance_to(incident.location)
 
-            if travel_time < min_travel_time:
-                min_travel_time = travel_time
+            if distance < min_distance:
+                min_distance = distance
                 best_vehicle = vehicle
 
         return best_vehicle

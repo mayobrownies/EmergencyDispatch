@@ -8,7 +8,7 @@
         "location_x": 910.2150870884603,
         "location_y": 469.52623649107187
       },
-      "real_time": "2025-10-21T22:40:47.167569"
+      "real_time": "2025-10-23T11:43:20.898923"
     },
     {
       "timestamp": 235.0,
@@ -24,7 +24,7 @@
         "estimated_travel_time": 79.77550084218646,
         "path_length": 8
       },
-      "real_time": "2025-10-21T22:40:47.175067"
+      "real_time": "2025-10-23T11:43:20.902422"
     },
     {
       "timestamp": 242.0,
@@ -34,7 +34,7 @@
         "incident_id": 0,
         "arrival_time": 242.0
       },
-      "real_time": "2025-10-21T22:40:47.175067"
+      "real_time": "2025-10-23T11:43:20.902923"
     },
     {
       "timestamp": 247.0,
@@ -45,7 +45,7 @@
         "response_time": 12.365955011570463,
         "resolution_time": 247.0
       },
-      "real_time": "2025-10-21T22:40:47.180577"
+      "real_time": "2025-10-23T11:43:20.907424"
     },
     {
       "timestamp": 255.0,
@@ -54,7 +54,7 @@
         "vehicle_id": 2,
         "delivery_time": 255.0
       },
-      "real_time": "2025-10-21T22:40:47.184577"
+      "real_time": "2025-10-23T11:43:20.910423"
     },
     {
       "timestamp": 271.0,
@@ -63,7 +63,7 @@
         "vehicle_id": 2,
         "return_time": 271.0
       },
-      "real_time": "2025-10-21T22:40:47.185079"
+      "real_time": "2025-10-23T11:43:20.910924"
     },
     {
       "timestamp": 1739.6947604471902,
@@ -73,72 +73,72 @@
         "location_x": 16.357775987116362,
         "location_y": 811.9045404662164
       },
-      "real_time": "2025-10-21T22:40:47.210107"
+      "real_time": "2025-10-23T11:43:20.934957"
     },
     {
       "timestamp": 1740.0,
       "event_type": "vehicle_dispatched",
       "data": {
-        "vehicle_id": 4,
+        "vehicle_id": 0,
         "incident_id": 1,
         "dispatch_time": 1740.0,
-        "vehicle_location_x": 635.253827558284,
-        "vehicle_location_y": 720.2544595525825,
+        "vehicle_location_x": 506.4371164692587,
+        "vehicle_location_y": 484.2097431223147,
         "incident_location_x": 16.357775987116362,
         "incident_location_y": 811.9045404662164,
-        "estimated_travel_time": 125.23109734002063,
-        "path_length": 25
+        "estimated_travel_time": 188.4835384818976,
+        "path_length": 31
       },
-      "real_time": "2025-10-21T22:40:47.221614"
+      "real_time": "2025-10-23T11:43:20.937924"
     },
     {
-      "timestamp": 1764.0,
+      "timestamp": 1770.0,
       "event_type": "vehicle_arrived_at_incident",
       "data": {
-        "vehicle_id": 4,
+        "vehicle_id": 0,
         "incident_id": 1,
-        "arrival_time": 1764.0
+        "arrival_time": 1770.0
       },
-      "real_time": "2025-10-21T22:40:47.222115"
+      "real_time": "2025-10-23T11:43:20.938426"
     },
     {
-      "timestamp": 1769.0,
+      "timestamp": 1775.0,
       "event_type": "incident_resolved",
       "data": {
         "incident_id": 1,
-        "vehicle_id": 4,
-        "response_time": 29.30523955280978,
-        "resolution_time": 1769.0
+        "vehicle_id": 0,
+        "response_time": 35.30523955280978,
+        "resolution_time": 1775.0
       },
-      "real_time": "2025-10-21T22:40:47.227120"
+      "real_time": "2025-10-23T11:43:20.943926"
     },
     {
-      "timestamp": 1800.0,
+      "timestamp": 1806.0,
       "event_type": "patient_delivered_to_hospital",
       "data": {
-        "vehicle_id": 4,
-        "delivery_time": 1800.0
+        "vehicle_id": 0,
+        "delivery_time": 1806.0
       },
-      "real_time": "2025-10-21T22:40:47.233124"
+      "real_time": "2025-10-23T11:43:20.947425"
     },
     {
-      "timestamp": 1807.0,
+      "timestamp": 1821.0,
       "event_type": "vehicle_returned_to_station",
       "data": {
-        "vehicle_id": 4,
-        "return_time": 1807.0
+        "vehicle_id": 0,
+        "return_time": 1821.0
       },
-      "real_time": "2025-10-21T22:40:47.233622"
+      "real_time": "2025-10-23T11:43:20.947425"
     },
     {
       "timestamp": 2398.067607219915,
       "event_type": "incident_received",
       "data": {
         "incident_id": 2,
-        "location_x": 593.3490361372557,
-        "location_y": 508.8447015494567
+        "location_x": 121.13370110976511,
+        "location_y": 745.3581592605055
       },
-      "real_time": "2025-10-21T22:40:47.245135"
+      "real_time": "2025-10-23T11:43:20.955926"
     },
     {
       "timestamp": 2399.0,
@@ -149,191 +149,191 @@
         "dispatch_time": 2399.0,
         "vehicle_location_x": 506.4371164692587,
         "vehicle_location_y": 484.2097431223147,
-        "incident_location_x": 593.3490361372557,
-        "incident_location_y": 508.8447015494567,
-        "estimated_travel_time": 24.08303589481813,
-        "path_length": 5
+        "incident_location_x": 121.13370110976511,
+        "incident_location_y": 745.3581592605055,
+        "estimated_travel_time": 168.16079787346501,
+        "path_length": 27
       },
-      "real_time": "2025-10-21T22:40:47.252155"
+      "real_time": "2025-10-23T11:43:20.958934"
     },
     {
-      "timestamp": 2403.0,
+      "timestamp": 2425.0,
       "event_type": "vehicle_arrived_at_incident",
       "data": {
         "vehicle_id": 0,
         "incident_id": 2,
-        "arrival_time": 2403.0
+        "arrival_time": 2425.0
       },
-      "real_time": "2025-10-21T22:40:47.252653"
+      "real_time": "2025-10-23T11:43:20.959423"
     },
     {
-      "timestamp": 2408.0,
+      "timestamp": 2430.0,
       "event_type": "incident_resolved",
       "data": {
         "incident_id": 2,
         "vehicle_id": 0,
-        "response_time": 9.932392780085138,
-        "resolution_time": 2408.0
+        "response_time": 31.932392780085138,
+        "resolution_time": 2430.0
       },
-      "real_time": "2025-10-21T22:40:47.257659"
+      "real_time": "2025-10-23T11:43:20.964422"
     },
     {
-      "timestamp": 2421.0,
+      "timestamp": 2457.0,
       "event_type": "patient_delivered_to_hospital",
       "data": {
         "vehicle_id": 0,
-        "delivery_time": 2421.0
+        "delivery_time": 2457.0
       },
-      "real_time": "2025-10-21T22:40:47.261660"
+      "real_time": "2025-10-23T11:43:20.968422"
     },
     {
-      "timestamp": 2436.0,
+      "timestamp": 2472.0,
       "event_type": "vehicle_returned_to_station",
       "data": {
         "vehicle_id": 0,
-        "return_time": 2436.0
+        "return_time": 2472.0
       },
-      "real_time": "2025-10-21T22:40:47.263161"
+      "real_time": "2025-10-23T11:43:20.969422"
     },
     {
       "timestamp": 2854.5388841078916,
       "event_type": "incident_received",
       "data": {
         "incident_id": 3,
-        "location_x": 732.5977809458948,
-        "location_y": 509.365525194857
+        "location_x": 635.3282092603737,
+        "location_y": 906.8320901769064
       },
-      "real_time": "2025-10-21T22:40:47.270165"
+      "real_time": "2025-10-23T11:43:20.976422"
     },
     {
       "timestamp": 2855.0,
       "event_type": "vehicle_dispatched",
       "data": {
-        "vehicle_id": 2,
+        "vehicle_id": 4,
         "incident_id": 3,
         "dispatch_time": 2855.0,
-        "vehicle_location_x": 774.5769540690128,
-        "vehicle_location_y": 232.85281151775467,
-        "incident_location_x": 732.5977809458948,
-        "incident_location_y": 509.365525194857,
-        "estimated_travel_time": 66.45803403304062,
-        "path_length": 9
+        "vehicle_location_x": 635.253827558284,
+        "vehicle_location_y": 720.2544595525825,
+        "incident_location_x": 635.3282092603737,
+        "incident_location_y": 906.8320901769064,
+        "estimated_travel_time": 44.4003855719986,
+        "path_length": 4
       },
-      "real_time": "2025-10-21T22:40:47.276167"
+      "real_time": "2025-10-23T11:43:20.978923"
+    },
+    {
+      "timestamp": 2858.0,
+      "event_type": "vehicle_arrived_at_incident",
+      "data": {
+        "vehicle_id": 4,
+        "incident_id": 3,
+        "arrival_time": 2858.0
+      },
+      "real_time": "2025-10-23T11:43:20.978923"
     },
     {
       "timestamp": 2863.0,
-      "event_type": "vehicle_arrived_at_incident",
-      "data": {
-        "vehicle_id": 2,
-        "incident_id": 3,
-        "arrival_time": 2863.0
-      },
-      "real_time": "2025-10-21T22:40:47.276671"
-    },
-    {
-      "timestamp": 2868.0,
       "event_type": "incident_resolved",
       "data": {
         "incident_id": 3,
-        "vehicle_id": 2,
-        "response_time": 13.46111589210841,
-        "resolution_time": 2868.0
+        "vehicle_id": 4,
+        "response_time": 8.46111589210841,
+        "resolution_time": 2863.0
       },
-      "real_time": "2025-10-21T22:40:47.280172"
+      "real_time": "2025-10-23T11:43:20.981922"
     },
     {
-      "timestamp": 2878.0,
+      "timestamp": 2873.0,
       "event_type": "patient_delivered_to_hospital",
       "data": {
-        "vehicle_id": 2,
-        "delivery_time": 2878.0
+        "vehicle_id": 4,
+        "delivery_time": 2873.0
       },
-      "real_time": "2025-10-21T22:40:47.285172"
+      "real_time": "2025-10-23T11:43:20.985422"
     },
     {
-      "timestamp": 2894.0,
+      "timestamp": 2880.0,
       "event_type": "vehicle_returned_to_station",
       "data": {
-        "vehicle_id": 2,
-        "return_time": 2894.0
+        "vehicle_id": 4,
+        "return_time": 2880.0
       },
-      "real_time": "2025-10-21T22:40:47.285172"
+      "real_time": "2025-10-23T11:43:20.985923"
     },
     {
       "timestamp": 2939.3513193390645,
       "event_type": "incident_received",
       "data": {
         "incident_id": 4,
-        "location_x": 730.6297650779228,
-        "location_y": 287.7364632353857
+        "location_x": 301.03204611655985,
+        "location_y": 719.1570097282234
       },
-      "real_time": "2025-10-21T22:40:47.286678"
+      "real_time": "2025-10-23T11:43:20.986422"
     },
     {
       "timestamp": 2940.0,
       "event_type": "vehicle_dispatched",
       "data": {
-        "vehicle_id": 2,
+        "vehicle_id": 0,
         "incident_id": 4,
         "dispatch_time": 2940.0,
-        "vehicle_location_x": 774.5769540690128,
-        "vehicle_location_y": 232.85281151775467,
-        "incident_location_x": 730.6297650779228,
-        "incident_location_y": 287.7364632353857,
-        "estimated_travel_time": 23.234998638839183,
-        "path_length": 5
+        "vehicle_location_x": 506.4371164692587,
+        "vehicle_location_y": 484.2097431223147,
+        "incident_location_x": 301.03204611655985,
+        "incident_location_y": 719.1570097282234,
+        "estimated_travel_time": 125.40641044027822,
+        "path_length": 17
       },
-      "real_time": "2025-10-21T22:40:47.294181"
+      "real_time": "2025-10-23T11:43:20.990425"
     },
     {
-      "timestamp": 2944.0,
+      "timestamp": 2956.0,
       "event_type": "vehicle_arrived_at_incident",
       "data": {
-        "vehicle_id": 2,
+        "vehicle_id": 0,
         "incident_id": 4,
-        "arrival_time": 2944.0
+        "arrival_time": 2956.0
       },
-      "real_time": "2025-10-21T22:40:47.294181"
+      "real_time": "2025-10-23T11:43:20.990925"
     },
     {
-      "timestamp": 2949.0,
+      "timestamp": 2961.0,
       "event_type": "incident_resolved",
       "data": {
         "incident_id": 4,
-        "vehicle_id": 2,
-        "response_time": 9.648680660935497,
-        "resolution_time": 2949.0
+        "vehicle_id": 0,
+        "response_time": 21.648680660935497,
+        "resolution_time": 2961.0
       },
-      "real_time": "2025-10-21T22:40:47.299188"
+      "real_time": "2025-10-23T11:43:20.994923"
     },
     {
-      "timestamp": 2962.0,
+      "timestamp": 2978.0,
       "event_type": "patient_delivered_to_hospital",
       "data": {
-        "vehicle_id": 2,
-        "delivery_time": 2962.0
+        "vehicle_id": 0,
+        "delivery_time": 2978.0
       },
-      "real_time": "2025-10-21T22:40:47.303188"
+      "real_time": "2025-10-23T11:43:20.997923"
     },
     {
-      "timestamp": 2970.0,
+      "timestamp": 2993.0,
       "event_type": "vehicle_returned_to_station",
       "data": {
-        "vehicle_id": 2,
-        "return_time": 2970.0
+        "vehicle_id": 0,
+        "return_time": 2993.0
       },
-      "real_time": "2025-10-21T22:40:47.303690"
+      "real_time": "2025-10-23T11:43:20.998423"
     },
     {
       "timestamp": 3024.149465296367,
       "event_type": "incident_received",
       "data": {
         "incident_id": 5,
-        "location_x": 298.5495568092079,
-        "location_y": 893.4394821524791
+        "location_x": 779.5047418335527,
+        "location_y": 571.4067818678687
       },
-      "real_time": "2025-10-21T22:40:47.304689"
+      "real_time": "2025-10-23T11:43:20.998924"
     },
     {
       "timestamp": 3025.0,
@@ -344,776 +344,776 @@
         "dispatch_time": 3025.0,
         "vehicle_location_x": 635.253827558284,
         "vehicle_location_y": 720.2544595525825,
-        "incident_location_x": 298.5495568092079,
-        "incident_location_y": 893.4394821524791,
-        "estimated_travel_time": 104.40163948997784,
-        "path_length": 15
+        "incident_location_x": 779.5047418335527,
+        "incident_location_y": 571.4067818678687,
+        "estimated_travel_time": 60.676017248257445,
+        "path_length": 10
       },
-      "real_time": "2025-10-21T22:40:47.313708"
+      "real_time": "2025-10-23T11:43:21.000924"
     },
     {
-      "timestamp": 3039.0,
+      "timestamp": 3034.0,
       "event_type": "vehicle_arrived_at_incident",
       "data": {
         "vehicle_id": 4,
         "incident_id": 5,
-        "arrival_time": 3039.0
+        "arrival_time": 3034.0
       },
-      "real_time": "2025-10-21T22:40:47.314213"
+      "real_time": "2025-10-23T11:43:21.001424"
     },
     {
-      "timestamp": 3044.0,
+      "timestamp": 3039.0,
       "event_type": "incident_resolved",
       "data": {
         "incident_id": 5,
         "vehicle_id": 4,
-        "response_time": 19.850534703633002,
-        "resolution_time": 3044.0
+        "response_time": 14.850534703633002,
+        "resolution_time": 3039.0
       },
-      "real_time": "2025-10-21T22:40:47.318725"
+      "real_time": "2025-10-23T11:43:21.004925"
+    },
+    {
+      "timestamp": 3045.0,
+      "event_type": "patient_delivered_to_hospital",
+      "data": {
+        "vehicle_id": 4,
+        "delivery_time": 3045.0
+      },
+      "real_time": "2025-10-23T11:43:21.008923"
+    },
+    {
+      "timestamp": 3052.0,
+      "event_type": "vehicle_returned_to_station",
+      "data": {
+        "vehicle_id": 4,
+        "return_time": 3052.0
+      },
+      "real_time": "2025-10-23T11:43:21.008923"
     },
     {
       "timestamp": 3054.0688496007074,
       "event_type": "incident_received",
       "data": {
         "incident_id": 6,
-        "location_x": 367.60057025951613,
-        "location_y": 799.0959989583617
+        "location_x": 945.7602429799434,
+        "location_y": 285.64200814723154
       },
-      "real_time": "2025-10-21T22:40:47.319226"
+      "real_time": "2025-10-23T11:43:21.008923"
     },
     {
       "timestamp": 3055.0,
       "event_type": "vehicle_dispatched",
       "data": {
-        "vehicle_id": 5,
+        "vehicle_id": 2,
         "incident_id": 6,
         "dispatch_time": 3055.0,
-        "vehicle_location_x": 635.253827558284,
-        "vehicle_location_y": 720.2544595525825,
-        "incident_location_x": 367.60057025951613,
-        "incident_location_y": 799.0959989583617,
-        "estimated_travel_time": 65.55712098725581,
-        "path_length": 9
+        "vehicle_location_x": 774.5769540690128,
+        "vehicle_location_y": 232.85281151775467,
+        "incident_location_x": 945.7602429799434,
+        "incident_location_y": 285.64200814723154,
+        "estimated_travel_time": 52.76033001279983,
+        "path_length": 6
       },
-      "real_time": "2025-10-21T22:40:47.326742"
+      "real_time": "2025-10-23T11:43:21.011424"
     },
     {
-      "timestamp": 3063.0,
+      "timestamp": 3060.0,
       "event_type": "vehicle_arrived_at_incident",
       "data": {
-        "vehicle_id": 5,
+        "vehicle_id": 2,
         "incident_id": 6,
-        "arrival_time": 3063.0
+        "arrival_time": 3060.0
       },
-      "real_time": "2025-10-21T22:40:47.327242"
+      "real_time": "2025-10-23T11:43:21.011925"
     },
     {
       "timestamp": 3065.0,
-      "event_type": "patient_delivered_to_hospital",
-      "data": {
-        "vehicle_id": 4,
-        "delivery_time": 3065.0
-      },
-      "real_time": "2025-10-21T22:40:47.330247"
-    },
-    {
-      "timestamp": 3068.0,
       "event_type": "incident_resolved",
       "data": {
         "incident_id": 6,
-        "vehicle_id": 5,
-        "response_time": 13.93115039929262,
-        "resolution_time": 3068.0
+        "vehicle_id": 2,
+        "response_time": 10.93115039929262,
+        "resolution_time": 3065.0
       },
-      "real_time": "2025-10-21T22:40:47.333746"
+      "real_time": "2025-10-23T11:43:21.015422"
     },
     {
-      "timestamp": 3072.0,
-      "event_type": "vehicle_returned_to_station",
-      "data": {
-        "vehicle_id": 4,
-        "return_time": 3072.0
-      },
-      "real_time": "2025-10-21T22:40:47.333746"
-    },
-    {
-      "timestamp": 3083.0,
+      "timestamp": 3070.0,
       "event_type": "patient_delivered_to_hospital",
       "data": {
-        "vehicle_id": 5,
-        "delivery_time": 3083.0
+        "vehicle_id": 2,
+        "delivery_time": 3070.0
       },
-      "real_time": "2025-10-21T22:40:47.336248"
+      "real_time": "2025-10-23T11:43:21.018422"
     },
     {
-      "timestamp": 3090.0,
+      "timestamp": 3078.0,
       "event_type": "vehicle_returned_to_station",
       "data": {
-        "vehicle_id": 5,
-        "return_time": 3090.0
+        "vehicle_id": 2,
+        "return_time": 3078.0
       },
-      "real_time": "2025-10-21T22:40:47.336753"
+      "real_time": "2025-10-23T11:43:21.018422"
     },
     {
       "timestamp": 4059.684281840677,
       "event_type": "incident_received",
       "data": {
         "incident_id": 7,
-        "location_x": 763.1748589843896,
-        "location_y": 719.0156433103865
+        "location_x": 97.71896113546252,
+        "location_y": 441.7998177117162
       },
-      "real_time": "2025-10-21T22:40:47.351274"
+      "real_time": "2025-10-23T11:43:21.033423"
     },
     {
       "timestamp": 4060.0,
       "event_type": "vehicle_dispatched",
       "data": {
-        "vehicle_id": 4,
+        "vehicle_id": 0,
         "incident_id": 7,
         "dispatch_time": 4060.0,
-        "vehicle_location_x": 635.253827558284,
-        "vehicle_location_y": 720.2544595525825,
-        "incident_location_x": 763.1748589843896,
-        "incident_location_y": 719.0156433103865,
-        "estimated_travel_time": 30.840734771640502,
-        "path_length": 5
+        "vehicle_location_x": 506.4371164692587,
+        "vehicle_location_y": 484.2097431223147,
+        "incident_location_x": 97.71896113546252,
+        "incident_location_y": 441.7998177117162,
+        "estimated_travel_time": 200.12291241704702,
+        "path_length": 24
       },
-      "real_time": "2025-10-21T22:40:47.356277"
+      "real_time": "2025-10-23T11:43:21.036423"
     },
     {
-      "timestamp": 4064.0,
+      "timestamp": 4083.0,
       "event_type": "vehicle_arrived_at_incident",
       "data": {
-        "vehicle_id": 4,
+        "vehicle_id": 0,
         "incident_id": 7,
-        "arrival_time": 4064.0
+        "arrival_time": 4083.0
       },
-      "real_time": "2025-10-21T22:40:47.356277"
+      "real_time": "2025-10-23T11:43:21.036923"
     },
     {
-      "timestamp": 4069.0,
+      "timestamp": 4088.0,
       "event_type": "incident_resolved",
       "data": {
         "incident_id": 7,
-        "vehicle_id": 4,
-        "response_time": 9.315718159322842,
-        "resolution_time": 4069.0
+        "vehicle_id": 0,
+        "response_time": 28.31571815932284,
+        "resolution_time": 4088.0
       },
-      "real_time": "2025-10-21T22:40:47.359812"
+      "real_time": "2025-10-23T11:43:21.042422"
     },
     {
-      "timestamp": 4072.0,
+      "timestamp": 4124.0,
       "event_type": "patient_delivered_to_hospital",
       "data": {
-        "vehicle_id": 4,
-        "delivery_time": 4072.0
+        "vehicle_id": 0,
+        "delivery_time": 4124.0
       },
-      "real_time": "2025-10-21T22:40:47.362283"
+      "real_time": "2025-10-23T11:43:21.046423"
     },
     {
-      "timestamp": 4079.0,
+      "timestamp": 4145.0,
       "event_type": "vehicle_returned_to_station",
       "data": {
-        "vehicle_id": 4,
-        "return_time": 4079.0
+        "vehicle_id": 0,
+        "return_time": 4145.0
       },
-      "real_time": "2025-10-21T22:40:47.362783"
+      "real_time": "2025-10-23T11:43:21.046922"
     },
     {
       "timestamp": 4519.225358654309,
       "event_type": "incident_received",
       "data": {
         "incident_id": 8,
-        "location_x": 699.6869770037868,
-        "location_y": 155.70022879052115
+        "location_x": 388.49253083757793,
+        "location_y": 718.6696676030112
       },
-      "real_time": "2025-10-21T22:40:47.368789"
+      "real_time": "2025-10-23T11:43:21.051923"
     },
     {
       "timestamp": 4520.0,
       "event_type": "vehicle_dispatched",
       "data": {
-        "vehicle_id": 2,
+        "vehicle_id": 4,
         "incident_id": 8,
         "dispatch_time": 4520.0,
-        "vehicle_location_x": 774.5769540690128,
-        "vehicle_location_y": 232.85281151775467,
-        "incident_location_x": 699.6869770037868,
-        "incident_location_y": 155.70022879052115,
-        "estimated_travel_time": 60.20711297107121,
-        "path_length": 7
+        "vehicle_location_x": 635.253827558284,
+        "vehicle_location_y": 720.2544595525825,
+        "incident_location_x": 388.49253083757793,
+        "incident_location_y": 718.6696676030112,
+        "estimated_travel_time": 42.33621817593239,
+        "path_length": 6
       },
-      "real_time": "2025-10-21T22:40:47.374289"
+      "real_time": "2025-10-23T11:43:21.054425"
     },
     {
-      "timestamp": 4526.0,
+      "timestamp": 4525.0,
       "event_type": "vehicle_arrived_at_incident",
       "data": {
-        "vehicle_id": 2,
+        "vehicle_id": 4,
         "incident_id": 8,
-        "arrival_time": 4526.0
+        "arrival_time": 4525.0
       },
-      "real_time": "2025-10-21T22:40:47.374289"
+      "real_time": "2025-10-23T11:43:21.054425"
     },
     {
-      "timestamp": 4531.0,
+      "timestamp": 4530.0,
       "event_type": "incident_resolved",
       "data": {
         "incident_id": 8,
-        "vehicle_id": 2,
-        "response_time": 11.774641345690725,
-        "resolution_time": 4531.0
+        "vehicle_id": 4,
+        "response_time": 10.774641345690725,
+        "resolution_time": 4530.0
       },
-      "real_time": "2025-10-21T22:40:47.378297"
+      "real_time": "2025-10-23T11:43:21.057924"
     },
     {
-      "timestamp": 4538.0,
+      "timestamp": 4542.0,
       "event_type": "patient_delivered_to_hospital",
       "data": {
-        "vehicle_id": 2,
-        "delivery_time": 4538.0
+        "vehicle_id": 4,
+        "delivery_time": 4542.0
       },
-      "real_time": "2025-10-21T22:40:47.380797"
+      "real_time": "2025-10-23T11:43:21.060923"
     },
     {
-      "timestamp": 4546.0,
+      "timestamp": 4549.0,
       "event_type": "vehicle_returned_to_station",
       "data": {
-        "vehicle_id": 2,
-        "return_time": 4546.0
+        "vehicle_id": 4,
+        "return_time": 4549.0
       },
-      "real_time": "2025-10-21T22:40:47.380797"
+      "real_time": "2025-10-23T11:43:21.060923"
     },
     {
       "timestamp": 5134.850389506604,
       "event_type": "incident_received",
       "data": {
         "incident_id": 9,
-        "location_x": 763.6831339489624,
-        "location_y": 225.8142519671049
+        "location_x": 861.1262629392126,
+        "location_y": 691.9253734119584
       },
-      "real_time": "2025-10-21T22:40:47.389807"
+      "real_time": "2025-10-23T11:43:21.069425"
     },
     {
       "timestamp": 5135.0,
       "event_type": "vehicle_dispatched",
       "data": {
-        "vehicle_id": 2,
+        "vehicle_id": 4,
         "incident_id": 9,
         "dispatch_time": 5135.0,
-        "vehicle_location_x": 774.5769540690128,
-        "vehicle_location_y": 232.85281151775467,
-        "incident_location_x": 763.6831339489624,
-        "incident_location_y": 225.8142519671049,
-        "estimated_travel_time": 3.6838725958791914,
-        "path_length": 3
+        "vehicle_location_x": 635.253827558284,
+        "vehicle_location_y": 720.2544595525825,
+        "incident_location_x": 861.1262629392126,
+        "incident_location_y": 691.9253734119584,
+        "estimated_travel_time": 57.68605312317749,
+        "path_length": 8
       },
-      "real_time": "2025-10-21T22:40:47.394806"
-    },
-    {
-      "timestamp": 5137.0,
-      "event_type": "vehicle_arrived_at_incident",
-      "data": {
-        "vehicle_id": 2,
-        "incident_id": 9,
-        "arrival_time": 5137.0
-      },
-      "real_time": "2025-10-21T22:40:47.395307"
+      "real_time": "2025-10-23T11:43:21.071923"
     },
     {
       "timestamp": 5142.0,
-      "event_type": "incident_resolved",
+      "event_type": "vehicle_arrived_at_incident",
       "data": {
+        "vehicle_id": 4,
         "incident_id": 9,
-        "vehicle_id": 2,
-        "response_time": 7.149610493395812,
-        "resolution_time": 5142.0
+        "arrival_time": 5142.0
       },
-      "real_time": "2025-10-21T22:40:47.398315"
+      "real_time": "2025-10-23T11:43:21.071923"
     },
     {
       "timestamp": 5145.250043506174,
       "event_type": "incident_received",
       "data": {
         "incident_id": 10,
-        "location_x": 62.82154589963999,
-        "location_y": 405.50212979675865
+        "location_x": 412.25438542133855,
+        "location_y": 718.5171406783567
       },
-      "real_time": "2025-10-21T22:40:47.398315"
+      "real_time": "2025-10-23T11:43:21.071923"
     },
     {
       "timestamp": 5146.0,
       "event_type": "vehicle_dispatched",
       "data": {
-        "vehicle_id": 4,
+        "vehicle_id": 5,
         "incident_id": 10,
         "dispatch_time": 5146.0,
         "vehicle_location_x": 635.253827558284,
         "vehicle_location_y": 720.2544595525825,
-        "incident_location_x": 62.82154589963999,
-        "incident_location_y": 405.50212979675865,
-        "estimated_travel_time": 150.05156072249613,
-        "path_length": 27
+        "incident_location_x": 412.25438542133855,
+        "incident_location_y": 718.5171406783567,
+        "estimated_travel_time": 38.268759347410324,
+        "path_length": 5
       },
-      "real_time": "2025-10-21T22:40:47.407823"
+      "real_time": "2025-10-23T11:43:21.074425"
     },
     {
-      "timestamp": 5153.0,
+      "timestamp": 5147.0,
+      "event_type": "incident_resolved",
+      "data": {
+        "incident_id": 9,
+        "vehicle_id": 4,
+        "response_time": 12.149610493395812,
+        "resolution_time": 5147.0
+      },
+      "real_time": "2025-10-23T11:43:21.076923"
+    },
+    {
+      "timestamp": 5149.0,
       "event_type": "patient_delivered_to_hospital",
       "data": {
-        "vehicle_id": 2,
-        "delivery_time": 5153.0
+        "vehicle_id": 4,
+        "delivery_time": 5149.0
       },
-      "real_time": "2025-10-21T22:40:47.410821"
+      "real_time": "2025-10-23T11:43:21.079924"
     },
     {
-      "timestamp": 5161.0,
-      "event_type": "vehicle_returned_to_station",
-      "data": {
-        "vehicle_id": 2,
-        "return_time": 5161.0
-      },
-      "real_time": "2025-10-21T22:40:47.411321"
-    },
-    {
-      "timestamp": 5172.0,
+      "timestamp": 5150.0,
       "event_type": "vehicle_arrived_at_incident",
       "data": {
-        "vehicle_id": 4,
+        "vehicle_id": 5,
         "incident_id": 10,
-        "arrival_time": 5172.0
+        "arrival_time": 5150.0
       },
-      "real_time": "2025-10-21T22:40:47.411321"
+      "real_time": "2025-10-23T11:43:21.079924"
     },
     {
-      "timestamp": 5177.0,
+      "timestamp": 5155.0,
       "event_type": "incident_resolved",
       "data": {
         "incident_id": 10,
-        "vehicle_id": 4,
-        "response_time": 31.749956493826176,
-        "resolution_time": 5177.0
+        "vehicle_id": 5,
+        "response_time": 9.749956493826176,
+        "resolution_time": 5155.0
       },
-      "real_time": "2025-10-21T22:40:47.415322"
+      "real_time": "2025-10-23T11:43:21.082924"
     },
     {
-      "timestamp": 5211.0,
-      "event_type": "patient_delivered_to_hospital",
-      "data": {
-        "vehicle_id": 4,
-        "delivery_time": 5211.0
-      },
-      "real_time": "2025-10-21T22:40:47.419330"
-    },
-    {
-      "timestamp": 5223.0,
+      "timestamp": 5156.0,
       "event_type": "vehicle_returned_to_station",
       "data": {
         "vehicle_id": 4,
-        "return_time": 5223.0
+        "return_time": 5156.0
       },
-      "real_time": "2025-10-21T22:40:47.419831"
+      "real_time": "2025-10-23T11:43:21.082924"
+    },
+    {
+      "timestamp": 5166.0,
+      "event_type": "patient_delivered_to_hospital",
+      "data": {
+        "vehicle_id": 5,
+        "delivery_time": 5166.0
+      },
+      "real_time": "2025-10-23T11:43:21.085923"
+    },
+    {
+      "timestamp": 5173.0,
+      "event_type": "vehicle_returned_to_station",
+      "data": {
+        "vehicle_id": 5,
+        "return_time": 5173.0
+      },
+      "real_time": "2025-10-23T11:43:21.086423"
     },
     {
       "timestamp": 6897.02878108533,
       "event_type": "incident_received",
       "data": {
         "incident_id": 11,
-        "location_x": 631.2527118329016,
-        "location_y": 593.5194657838776
+        "location_x": 553.3006880306243,
+        "location_y": 91.44175145542087
       },
-      "real_time": "2025-10-21T22:40:47.444847"
+      "real_time": "2025-10-23T11:43:21.110423"
     },
     {
       "timestamp": 6898.0,
       "event_type": "vehicle_dispatched",
       "data": {
-        "vehicle_id": 4,
+        "vehicle_id": 6,
         "incident_id": 11,
         "dispatch_time": 6898.0,
-        "vehicle_location_x": 635.253827558284,
-        "vehicle_location_y": 720.2544595525825,
-        "incident_location_x": 631.2527118329016,
-        "incident_location_y": 593.5194657838776,
-        "estimated_travel_time": 50.71964482252282,
-        "path_length": 5
+        "vehicle_location_x": 550.49277877652,
+        "vehicle_location_y": 2.9612544409296953,
+        "incident_location_x": 553.3006880306243,
+        "incident_location_y": 91.44175145542087,
+        "estimated_travel_time": 39.74613042587176,
+        "path_length": 7
       },
-      "real_time": "2025-10-21T22:40:47.449853"
+      "real_time": "2025-10-23T11:43:21.112925"
     },
     {
-      "timestamp": 6902.0,
+      "timestamp": 6904.0,
       "event_type": "vehicle_arrived_at_incident",
       "data": {
-        "vehicle_id": 4,
+        "vehicle_id": 6,
         "incident_id": 11,
-        "arrival_time": 6902.0
+        "arrival_time": 6904.0
       },
-      "real_time": "2025-10-21T22:40:47.449853"
+      "real_time": "2025-10-23T11:43:21.113423"
     },
     {
-      "timestamp": 6907.0,
+      "timestamp": 6909.0,
       "event_type": "incident_resolved",
       "data": {
         "incident_id": 11,
-        "vehicle_id": 4,
-        "response_time": 9.971218914670317,
-        "resolution_time": 6907.0
+        "vehicle_id": 6,
+        "response_time": 11.971218914670317,
+        "resolution_time": 6909.0
       },
-      "real_time": "2025-10-21T22:40:47.453361"
+      "real_time": "2025-10-23T11:43:21.116428"
     },
     {
-      "timestamp": 6918.0,
+      "timestamp": 6917.0,
       "event_type": "patient_delivered_to_hospital",
       "data": {
-        "vehicle_id": 4,
-        "delivery_time": 6918.0
+        "vehicle_id": 6,
+        "delivery_time": 6917.0
       },
-      "real_time": "2025-10-21T22:40:47.456365"
+      "real_time": "2025-10-23T11:43:21.118923"
     },
     {
-      "timestamp": 6925.0,
+      "timestamp": 6921.0,
       "event_type": "vehicle_returned_to_station",
       "data": {
-        "vehicle_id": 4,
-        "return_time": 6925.0
+        "vehicle_id": 6,
+        "return_time": 6921.0
       },
-      "real_time": "2025-10-21T22:40:47.456365"
+      "real_time": "2025-10-23T11:43:21.118923"
     },
     {
       "timestamp": 7790.243552762668,
       "event_type": "incident_received",
       "data": {
         "incident_id": 12,
-        "location_x": 456.365834004947,
-        "location_y": 718.491099496047
+        "location_x": 145.57118948758006,
+        "location_y": 76.82520786455399
       },
-      "real_time": "2025-10-21T22:40:47.472887"
+      "real_time": "2025-10-23T11:43:21.131423"
     },
     {
       "timestamp": 7791.0,
       "event_type": "vehicle_dispatched",
       "data": {
-        "vehicle_id": 4,
+        "vehicle_id": 6,
         "incident_id": 12,
         "dispatch_time": 7791.0,
-        "vehicle_location_x": 635.253827558284,
-        "vehicle_location_y": 720.2544595525825,
-        "incident_location_x": 456.365834004947,
-        "incident_location_y": 718.491099496047,
-        "estimated_travel_time": 30.82574037531327,
-        "path_length": 4
+        "vehicle_location_x": 550.49277877652,
+        "vehicle_location_y": 2.9612544409296953,
+        "incident_location_x": 145.57118948758006,
+        "incident_location_y": 76.82520786455399,
+        "estimated_travel_time": 114.33182386008816,
+        "path_length": 16
       },
-      "real_time": "2025-10-21T22:40:47.480400"
+      "real_time": "2025-10-23T11:43:21.134423"
     },
     {
-      "timestamp": 7794.0,
+      "timestamp": 7806.0,
       "event_type": "vehicle_arrived_at_incident",
       "data": {
-        "vehicle_id": 4,
+        "vehicle_id": 6,
         "incident_id": 12,
-        "arrival_time": 7794.0
+        "arrival_time": 7806.0
       },
-      "real_time": "2025-10-21T22:40:47.480400"
+      "real_time": "2025-10-23T11:43:21.135424"
     },
     {
-      "timestamp": 7799.0,
+      "timestamp": 7811.0,
       "event_type": "incident_resolved",
       "data": {
         "incident_id": 12,
-        "vehicle_id": 4,
-        "response_time": 8.756447237332395,
-        "resolution_time": 7799.0
+        "vehicle_id": 6,
+        "response_time": 20.756447237332395,
+        "resolution_time": 7811.0
       },
-      "real_time": "2025-10-21T22:40:47.484899"
+      "real_time": "2025-10-23T11:43:21.138923"
     },
     {
-      "timestamp": 7809.0,
+      "timestamp": 7830.0,
       "event_type": "patient_delivered_to_hospital",
       "data": {
-        "vehicle_id": 4,
-        "delivery_time": 7809.0
+        "vehicle_id": 6,
+        "delivery_time": 7830.0
       },
-      "real_time": "2025-10-21T22:40:47.487921"
+      "real_time": "2025-10-23T11:43:21.141924"
     },
     {
-      "timestamp": 7816.0,
+      "timestamp": 7834.0,
       "event_type": "vehicle_returned_to_station",
       "data": {
-        "vehicle_id": 4,
-        "return_time": 7816.0
+        "vehicle_id": 6,
+        "return_time": 7834.0
       },
-      "real_time": "2025-10-21T22:40:47.488420"
+      "real_time": "2025-10-23T11:43:21.141924"
     },
     {
       "timestamp": 7909.587365387141,
       "event_type": "incident_received",
       "data": {
         "incident_id": 13,
-        "location_x": 411.1138659890038,
-        "location_y": 598.20687859248
+        "location_x": 154.39471889917505,
+        "location_y": 631.7702423691522
       },
-      "real_time": "2025-10-21T22:40:47.489419"
+      "real_time": "2025-10-23T11:43:21.142923"
     },
     {
       "timestamp": 7910.0,
       "event_type": "vehicle_dispatched",
       "data": {
-        "vehicle_id": 4,
+        "vehicle_id": 0,
         "incident_id": 13,
         "dispatch_time": 7910.0,
-        "vehicle_location_x": 635.253827558284,
-        "vehicle_location_y": 720.2544595525825,
-        "incident_location_x": 411.1138659890038,
-        "incident_location_y": 598.20687859248,
-        "estimated_travel_time": 67.61895932880434,
-        "path_length": 8
+        "vehicle_location_x": 506.4371164692587,
+        "vehicle_location_y": 484.2097431223147,
+        "incident_location_x": 154.39471889917505,
+        "incident_location_y": 631.7702423691522,
+        "estimated_travel_time": 163.9396309613345,
+        "path_length": 26
       },
-      "real_time": "2025-10-21T22:40:47.496425"
+      "real_time": "2025-10-23T11:43:21.145924"
     },
     {
-      "timestamp": 7917.0,
+      "timestamp": 7935.0,
       "event_type": "vehicle_arrived_at_incident",
       "data": {
-        "vehicle_id": 4,
+        "vehicle_id": 0,
         "incident_id": 13,
-        "arrival_time": 7917.0
+        "arrival_time": 7935.0
       },
-      "real_time": "2025-10-21T22:40:47.496931"
+      "real_time": "2025-10-23T11:43:21.146924"
     },
     {
-      "timestamp": 7922.0,
+      "timestamp": 7940.0,
       "event_type": "incident_resolved",
       "data": {
         "incident_id": 13,
-        "vehicle_id": 4,
-        "response_time": 12.41263461285871,
-        "resolution_time": 7922.0
+        "vehicle_id": 0,
+        "response_time": 30.41263461285871,
+        "resolution_time": 7940.0
       },
-      "real_time": "2025-10-21T22:40:47.500428"
+      "real_time": "2025-10-23T11:43:21.150427"
     },
     {
-      "timestamp": 7936.0,
+      "timestamp": 7966.0,
       "event_type": "patient_delivered_to_hospital",
       "data": {
-        "vehicle_id": 4,
-        "delivery_time": 7936.0
+        "vehicle_id": 0,
+        "delivery_time": 7966.0
       },
-      "real_time": "2025-10-21T22:40:47.503430"
+      "real_time": "2025-10-23T11:43:21.153423"
     },
     {
-      "timestamp": 7943.0,
+      "timestamp": 7981.0,
       "event_type": "vehicle_returned_to_station",
       "data": {
-        "vehicle_id": 4,
-        "return_time": 7943.0
+        "vehicle_id": 0,
+        "return_time": 7981.0
       },
-      "real_time": "2025-10-21T22:40:47.503430"
+      "real_time": "2025-10-23T11:43:21.153923"
     },
     {
       "timestamp": 8009.926859761973,
       "event_type": "incident_received",
       "data": {
         "incident_id": 14,
-        "location_x": 936.8902250046526,
-        "location_y": 513.866929558617
+        "location_x": 105.47325357984924,
+        "location_y": 831.9525306450555
       },
-      "real_time": "2025-10-21T22:40:47.504429"
+      "real_time": "2025-10-23T11:43:21.154424"
     },
     {
       "timestamp": 8010.0,
       "event_type": "vehicle_dispatched",
       "data": {
-        "vehicle_id": 2,
+        "vehicle_id": 0,
         "incident_id": 14,
         "dispatch_time": 8010.0,
-        "vehicle_location_x": 774.5769540690128,
-        "vehicle_location_y": 232.85281151775467,
-        "incident_location_x": 936.8902250046526,
-        "incident_location_y": 513.866929558617,
-        "estimated_travel_time": 95.0430923139565,
-        "path_length": 12
+        "vehicle_location_x": 506.4371164692587,
+        "vehicle_location_y": 484.2097431223147,
+        "incident_location_x": 105.47325357984924,
+        "incident_location_y": 831.9525306450555,
+        "estimated_travel_time": 181.08889435905567,
+        "path_length": 27
       },
-      "real_time": "2025-10-21T22:40:47.510436"
+      "real_time": "2025-10-23T11:43:21.156924"
     },
     {
-      "timestamp": 8021.0,
+      "timestamp": 8036.0,
       "event_type": "vehicle_arrived_at_incident",
       "data": {
-        "vehicle_id": 2,
+        "vehicle_id": 0,
         "incident_id": 14,
-        "arrival_time": 8021.0
+        "arrival_time": 8036.0
       },
-      "real_time": "2025-10-21T22:40:47.510436"
+      "real_time": "2025-10-23T11:43:21.157423"
     },
     {
-      "timestamp": 8026.0,
+      "timestamp": 8041.0,
       "event_type": "incident_resolved",
       "data": {
         "incident_id": 14,
-        "vehicle_id": 2,
-        "response_time": 16.07314023802701,
-        "resolution_time": 8026.0
+        "vehicle_id": 0,
+        "response_time": 31.07314023802701,
+        "resolution_time": 8041.0
       },
-      "real_time": "2025-10-21T22:40:47.513936"
+      "real_time": "2025-10-23T11:43:21.161424"
     },
     {
-      "timestamp": 8034.0,
+      "timestamp": 8068.0,
       "event_type": "patient_delivered_to_hospital",
       "data": {
-        "vehicle_id": 2,
-        "delivery_time": 8034.0
+        "vehicle_id": 0,
+        "delivery_time": 8068.0
       },
-      "real_time": "2025-10-21T22:40:47.518960"
+      "real_time": "2025-10-23T11:43:21.164423"
     },
     {
-      "timestamp": 8050.0,
+      "timestamp": 8083.0,
       "event_type": "vehicle_returned_to_station",
       "data": {
-        "vehicle_id": 2,
-        "return_time": 8050.0
+        "vehicle_id": 0,
+        "return_time": 8083.0
       },
-      "real_time": "2025-10-21T22:40:47.519458"
+      "real_time": "2025-10-23T11:43:21.164923"
     },
     {
       "timestamp": 8111.232571178101,
       "event_type": "incident_received",
       "data": {
         "incident_id": 15,
-        "location_x": 945.7602429799434,
-        "location_y": 285.64200814723154
+        "location_x": 411.1138659890038,
+        "location_y": 598.20687859248
       },
-      "real_time": "2025-10-21T22:40:47.520457"
+      "real_time": "2025-10-23T11:43:21.165422"
     },
     {
       "timestamp": 8112.0,
       "event_type": "vehicle_dispatched",
       "data": {
-        "vehicle_id": 2,
+        "vehicle_id": 0,
         "incident_id": 15,
         "dispatch_time": 8112.0,
-        "vehicle_location_x": 774.5769540690128,
-        "vehicle_location_y": 232.85281151775467,
-        "incident_location_x": 945.7602429799434,
-        "incident_location_y": 285.64200814723154,
-        "estimated_travel_time": 51.211274937911114,
-        "path_length": 6
+        "vehicle_location_x": 506.4371164692587,
+        "vehicle_location_y": 484.2097431223147,
+        "incident_location_x": 411.1138659890038,
+        "incident_location_y": 598.20687859248,
+        "estimated_travel_time": 76.66212827676203,
+        "path_length": 7
       },
-      "real_time": "2025-10-21T22:40:47.528469"
+      "real_time": "2025-10-23T11:43:21.167423"
     },
     {
-      "timestamp": 8117.0,
+      "timestamp": 8118.0,
       "event_type": "vehicle_arrived_at_incident",
       "data": {
-        "vehicle_id": 2,
+        "vehicle_id": 0,
         "incident_id": 15,
-        "arrival_time": 8117.0
+        "arrival_time": 8118.0
       },
-      "real_time": "2025-10-21T22:40:47.528469"
+      "real_time": "2025-10-23T11:43:21.167923"
     },
     {
-      "timestamp": 8122.0,
+      "timestamp": 8123.0,
       "event_type": "incident_resolved",
       "data": {
         "incident_id": 15,
-        "vehicle_id": 2,
-        "response_time": 10.767428821898648,
-        "resolution_time": 8122.0
+        "vehicle_id": 0,
+        "response_time": 11.767428821898648,
+        "resolution_time": 8123.0
       },
-      "real_time": "2025-10-21T22:40:47.531468"
+      "real_time": "2025-10-23T11:43:21.170924"
     },
     {
-      "timestamp": 8127.0,
+      "timestamp": 8137.0,
       "event_type": "patient_delivered_to_hospital",
       "data": {
-        "vehicle_id": 2,
-        "delivery_time": 8127.0
+        "vehicle_id": 0,
+        "delivery_time": 8137.0
       },
-      "real_time": "2025-10-21T22:40:47.533968"
+      "real_time": "2025-10-23T11:43:21.174425"
     },
     {
-      "timestamp": 8135.0,
+      "timestamp": 8152.0,
       "event_type": "vehicle_returned_to_station",
       "data": {
-        "vehicle_id": 2,
-        "return_time": 8135.0
+        "vehicle_id": 0,
+        "return_time": 8152.0
       },
-      "real_time": "2025-10-21T22:40:47.534469"
+      "real_time": "2025-10-23T11:43:21.174425"
     },
     {
       "timestamp": 8292.60943590834,
       "event_type": "incident_received",
       "data": {
         "incident_id": 16,
-        "location_x": 907.0042769476702,
-        "location_y": 284.83845166562844
+        "location_x": 254.23045930722927,
+        "location_y": 830.9034430163767
       },
-      "real_time": "2025-10-21T22:40:47.536974"
+      "real_time": "2025-10-23T11:43:21.176424"
     },
     {
       "timestamp": 8293.0,
       "event_type": "vehicle_dispatched",
       "data": {
-        "vehicle_id": 2,
+        "vehicle_id": 4,
         "incident_id": 16,
         "dispatch_time": 8293.0,
-        "vehicle_location_x": 774.5769540690128,
-        "vehicle_location_y": 232.85281151775467,
-        "incident_location_x": 907.0042769476702,
-        "incident_location_y": 284.83845166562844,
-        "estimated_travel_time": 41.82172879290635,
-        "path_length": 5
+        "vehicle_location_x": 635.253827558284,
+        "vehicle_location_y": 720.2544595525825,
+        "incident_location_x": 254.23045930722927,
+        "incident_location_y": 830.9034430163767,
+        "estimated_travel_time": 94.24396458356257,
+        "path_length": 17
       },
-      "real_time": "2025-10-21T22:40:47.542479"
+      "real_time": "2025-10-23T11:43:21.178923"
     },
     {
-      "timestamp": 8297.0,
+      "timestamp": 8309.0,
       "event_type": "vehicle_arrived_at_incident",
       "data": {
-        "vehicle_id": 2,
+        "vehicle_id": 4,
         "incident_id": 16,
-        "arrival_time": 8297.0
+        "arrival_time": 8309.0
       },
-      "real_time": "2025-10-21T22:40:47.542982"
+      "real_time": "2025-10-23T11:43:21.179424"
     },
     {
-      "timestamp": 8302.0,
+      "timestamp": 8314.0,
       "event_type": "incident_resolved",
       "data": {
         "incident_id": 16,
-        "vehicle_id": 2,
-        "response_time": 9.390564091660053,
-        "resolution_time": 8302.0
+        "vehicle_id": 4,
+        "response_time": 21.390564091660053,
+        "resolution_time": 8314.0
       },
-      "real_time": "2025-10-21T22:40:47.545480"
+      "real_time": "2025-10-23T11:43:21.182924"
     },
     {
-      "timestamp": 8308.0,
+      "timestamp": 8337.0,
       "event_type": "patient_delivered_to_hospital",
       "data": {
-        "vehicle_id": 2,
-        "delivery_time": 8308.0
+        "vehicle_id": 4,
+        "delivery_time": 8337.0
       },
-      "real_time": "2025-10-21T22:40:47.548487"
+      "real_time": "2025-10-23T11:43:21.185923"
     },
     {
-      "timestamp": 8316.0,
+      "timestamp": 8344.0,
       "event_type": "vehicle_returned_to_station",
       "data": {
-        "vehicle_id": 2,
-        "return_time": 8316.0
+        "vehicle_id": 4,
+        "return_time": 8344.0
       },
-      "real_time": "2025-10-21T22:40:47.548987"
+      "real_time": "2025-10-23T11:43:21.185923"
     },
     {
       "timestamp": 8664.573351338768,
       "event_type": "incident_received",
       "data": {
         "incident_id": 17,
-        "location_x": 188.08962995106822,
-        "location_y": 21.930395639841198
+        "location_x": 530.09979545038,
+        "location_y": 91.6947229403749
       },
-      "real_time": "2025-10-21T22:40:47.553998"
+      "real_time": "2025-10-23T11:43:21.190422"
     },
     {
       "timestamp": 8665.0,
@@ -1124,451 +1124,451 @@
         "dispatch_time": 8665.0,
         "vehicle_location_x": 550.49277877652,
         "vehicle_location_y": 2.9612544409296953,
-        "incident_location_x": 188.08962995106822,
-        "incident_location_y": 21.930395639841198,
-        "estimated_travel_time": 106.40079341500007,
-        "path_length": 15
+        "incident_location_x": 530.09979545038,
+        "incident_location_y": 91.6947229403749,
+        "estimated_travel_time": 34.14238787332948,
+        "path_length": 6
       },
-      "real_time": "2025-10-21T22:40:47.563504"
+      "real_time": "2025-10-23T11:43:21.192924"
     },
     {
-      "timestamp": 8679.0,
+      "timestamp": 8670.0,
       "event_type": "vehicle_arrived_at_incident",
       "data": {
         "vehicle_id": 6,
         "incident_id": 17,
-        "arrival_time": 8679.0
+        "arrival_time": 8670.0
       },
-      "real_time": "2025-10-21T22:40:47.564005"
+      "real_time": "2025-10-23T11:43:21.193424"
     },
     {
-      "timestamp": 8684.0,
+      "timestamp": 8675.0,
       "event_type": "incident_resolved",
       "data": {
         "incident_id": 17,
         "vehicle_id": 6,
-        "response_time": 19.42664866123232,
-        "resolution_time": 8684.0
+        "response_time": 10.42664866123232,
+        "resolution_time": 8675.0
       },
-      "real_time": "2025-10-21T22:40:47.568013"
+      "real_time": "2025-10-23T11:43:21.196424"
     },
     {
-      "timestamp": 8702.0,
+      "timestamp": 8684.0,
       "event_type": "patient_delivered_to_hospital",
       "data": {
         "vehicle_id": 6,
-        "delivery_time": 8702.0
+        "delivery_time": 8684.0
       },
-      "real_time": "2025-10-21T22:40:47.571011"
+      "real_time": "2025-10-23T11:43:21.199424"
     },
     {
-      "timestamp": 8706.0,
+      "timestamp": 8688.0,
       "event_type": "vehicle_returned_to_station",
       "data": {
         "vehicle_id": 6,
-        "return_time": 8706.0
+        "return_time": 8688.0
       },
-      "real_time": "2025-10-21T22:40:47.571011"
+      "real_time": "2025-10-23T11:43:21.199424"
     },
     {
       "timestamp": 8947.341884728936,
       "event_type": "incident_received",
       "data": {
         "incident_id": 18,
-        "location_x": 254.23045930722927,
-        "location_y": 830.9034430163767
+        "location_x": 66.61811194449616,
+        "location_y": 840.7953721100428
       },
-      "real_time": "2025-10-21T22:40:47.574512"
+      "real_time": "2025-10-23T11:43:21.203424"
     },
     {
       "timestamp": 8948.0,
       "event_type": "vehicle_dispatched",
       "data": {
-        "vehicle_id": 4,
+        "vehicle_id": 0,
         "incident_id": 18,
         "dispatch_time": 8948.0,
-        "vehicle_location_x": 635.253827558284,
-        "vehicle_location_y": 720.2544595525825,
-        "incident_location_x": 254.23045930722927,
-        "incident_location_y": 830.9034430163767,
-        "estimated_travel_time": 92.67689837727829,
-        "path_length": 17
+        "vehicle_location_x": 506.4371164692587,
+        "vehicle_location_y": 484.2097431223147,
+        "incident_location_x": 66.61811194449616,
+        "incident_location_y": 840.7953721100428,
+        "estimated_travel_time": 199.80097499375196,
+        "path_length": 31
       },
-      "real_time": "2025-10-21T22:40:47.583019"
+      "real_time": "2025-10-23T11:43:21.206424"
     },
     {
-      "timestamp": 8964.0,
+      "timestamp": 8978.0,
       "event_type": "vehicle_arrived_at_incident",
       "data": {
-        "vehicle_id": 4,
+        "vehicle_id": 0,
         "incident_id": 18,
-        "arrival_time": 8964.0
+        "arrival_time": 8978.0
       },
-      "real_time": "2025-10-21T22:40:47.583520"
+      "real_time": "2025-10-23T11:43:21.207424"
     },
     {
-      "timestamp": 8969.0,
+      "timestamp": 8983.0,
       "event_type": "incident_resolved",
       "data": {
         "incident_id": 18,
-        "vehicle_id": 4,
-        "response_time": 21.658115271064162,
-        "resolution_time": 8969.0
+        "vehicle_id": 0,
+        "response_time": 35.65811527106416,
+        "resolution_time": 8983.0
       },
-      "real_time": "2025-10-21T22:40:47.587029"
+      "real_time": "2025-10-23T11:43:21.211424"
     },
     {
-      "timestamp": 8992.0,
+      "timestamp": 9014.0,
       "event_type": "patient_delivered_to_hospital",
       "data": {
-        "vehicle_id": 4,
-        "delivery_time": 8992.0
+        "vehicle_id": 0,
+        "delivery_time": 9014.0
       },
-      "real_time": "2025-10-21T22:40:47.590027"
+      "real_time": "2025-10-23T11:43:21.214924"
     },
     {
-      "timestamp": 8999.0,
+      "timestamp": 9029.0,
       "event_type": "vehicle_returned_to_station",
       "data": {
-        "vehicle_id": 4,
-        "return_time": 8999.0
+        "vehicle_id": 0,
+        "return_time": 9029.0
       },
-      "real_time": "2025-10-21T22:40:47.590027"
+      "real_time": "2025-10-23T11:43:21.214924"
     },
     {
       "timestamp": 9119.453381005907,
       "event_type": "incident_received",
       "data": {
         "incident_id": 19,
-        "location_x": 777.6978863198146,
-        "location_y": 376.6484998420594
+        "location_x": 255.6809024979773,
+        "location_y": 719.7113148938118
       },
-      "real_time": "2025-10-21T22:40:47.592028"
+      "real_time": "2025-10-23T11:43:21.216423"
     },
     {
       "timestamp": 9120.0,
       "event_type": "vehicle_dispatched",
       "data": {
-        "vehicle_id": 2,
+        "vehicle_id": 0,
         "incident_id": 19,
         "dispatch_time": 9120.0,
-        "vehicle_location_x": 774.5769540690128,
-        "vehicle_location_y": 232.85281151775467,
-        "incident_location_x": 777.6978863198146,
-        "incident_location_y": 376.6484998420594,
-        "estimated_travel_time": 29.071043908914717,
-        "path_length": 5
+        "vehicle_location_x": 506.4371164692587,
+        "vehicle_location_y": 484.2097431223147,
+        "incident_location_x": 255.6809024979773,
+        "incident_location_y": 719.7113148938118,
+        "estimated_travel_time": 131.03469037059628,
+        "path_length": 18
       },
-      "real_time": "2025-10-21T22:40:47.597536"
+      "real_time": "2025-10-23T11:43:21.219422"
     },
     {
-      "timestamp": 9124.0,
+      "timestamp": 9137.0,
       "event_type": "vehicle_arrived_at_incident",
       "data": {
-        "vehicle_id": 2,
+        "vehicle_id": 0,
         "incident_id": 19,
-        "arrival_time": 9124.0
+        "arrival_time": 9137.0
       },
-      "real_time": "2025-10-21T22:40:47.597536"
+      "real_time": "2025-10-23T11:43:21.219924"
     },
     {
-      "timestamp": 9129.0,
+      "timestamp": 9142.0,
       "event_type": "incident_resolved",
       "data": {
         "incident_id": 19,
-        "vehicle_id": 2,
-        "response_time": 9.546618994092569,
-        "resolution_time": 9129.0
+        "vehicle_id": 0,
+        "response_time": 22.54661899409257,
+        "resolution_time": 9142.0
       },
-      "real_time": "2025-10-21T22:40:47.601037"
+      "real_time": "2025-10-23T11:43:21.223424"
     },
     {
-      "timestamp": 9140.0,
+      "timestamp": 9160.0,
       "event_type": "patient_delivered_to_hospital",
       "data": {
-        "vehicle_id": 2,
-        "delivery_time": 9140.0
+        "vehicle_id": 0,
+        "delivery_time": 9160.0
       },
-      "real_time": "2025-10-21T22:40:47.604036"
+      "real_time": "2025-10-23T11:43:21.227423"
     },
     {
-      "timestamp": 9148.0,
+      "timestamp": 9175.0,
       "event_type": "vehicle_returned_to_station",
       "data": {
-        "vehicle_id": 2,
-        "return_time": 9148.0
+        "vehicle_id": 0,
+        "return_time": 9175.0
       },
-      "real_time": "2025-10-21T22:40:47.604036"
+      "real_time": "2025-10-23T11:43:21.227423"
     },
     {
       "timestamp": 9592.638817955807,
       "event_type": "incident_received",
       "data": {
         "incident_id": 20,
-        "location_x": 772.1595487510995,
-        "location_y": 45.10332769108196
+        "location_x": 456.365834004947,
+        "location_y": 718.491099496047
       },
-      "real_time": "2025-10-21T22:40:47.610542"
+      "real_time": "2025-10-23T11:43:21.233923"
     },
     {
       "timestamp": 9593.0,
       "event_type": "vehicle_dispatched",
       "data": {
-        "vehicle_id": 2,
+        "vehicle_id": 4,
         "incident_id": 20,
         "dispatch_time": 9593.0,
-        "vehicle_location_x": 774.5769540690128,
-        "vehicle_location_y": 232.85281151775467,
-        "incident_location_x": 772.1595487510995,
-        "incident_location_y": 45.10332769108196,
-        "estimated_travel_time": 45.42282134825012,
-        "path_length": 6
+        "vehicle_location_x": 635.253827558284,
+        "vehicle_location_y": 720.2544595525825,
+        "incident_location_x": 456.365834004947,
+        "incident_location_y": 718.491099496047,
+        "estimated_travel_time": 30.702540401338435,
+        "path_length": 4
       },
-      "real_time": "2025-10-21T22:40:47.616552"
+      "real_time": "2025-10-23T11:43:21.236423"
     },
     {
-      "timestamp": 9598.0,
+      "timestamp": 9596.0,
       "event_type": "vehicle_arrived_at_incident",
       "data": {
-        "vehicle_id": 2,
+        "vehicle_id": 4,
         "incident_id": 20,
-        "arrival_time": 9598.0
+        "arrival_time": 9596.0
       },
-      "real_time": "2025-10-21T22:40:47.617053"
+      "real_time": "2025-10-23T11:43:21.236923"
     },
     {
-      "timestamp": 9603.0,
+      "timestamp": 9601.0,
       "event_type": "incident_resolved",
       "data": {
         "incident_id": 20,
-        "vehicle_id": 2,
-        "response_time": 10.361182044192901,
-        "resolution_time": 9603.0
+        "vehicle_id": 4,
+        "response_time": 8.361182044192901,
+        "resolution_time": 9601.0
       },
-      "real_time": "2025-10-21T22:40:47.621051"
+      "real_time": "2025-10-23T11:43:21.240423"
     },
     {
-      "timestamp": 9607.0,
+      "timestamp": 9611.0,
       "event_type": "patient_delivered_to_hospital",
       "data": {
-        "vehicle_id": 2,
-        "delivery_time": 9607.0
+        "vehicle_id": 4,
+        "delivery_time": 9611.0
       },
-      "real_time": "2025-10-21T22:40:47.624050"
+      "real_time": "2025-10-23T11:43:21.242923"
     },
     {
-      "timestamp": 9615.0,
+      "timestamp": 9618.0,
       "event_type": "vehicle_returned_to_station",
       "data": {
-        "vehicle_id": 2,
-        "return_time": 9615.0
+        "vehicle_id": 4,
+        "return_time": 9618.0
       },
-      "real_time": "2025-10-21T22:40:47.624050"
+      "real_time": "2025-10-23T11:43:21.242923"
     },
     {
       "timestamp": 9667.756082319476,
       "event_type": "incident_received",
       "data": {
         "incident_id": 21,
-        "location_x": 677.7722680222125,
-        "location_y": 828.0389129668074
+        "location_x": 913.8411950659911,
+        "location_y": 515.433120663757
       },
-      "real_time": "2025-10-21T22:40:47.625052"
+      "real_time": "2025-10-23T11:43:21.243924"
     },
     {
       "timestamp": 9668.0,
       "event_type": "vehicle_dispatched",
       "data": {
-        "vehicle_id": 4,
+        "vehicle_id": 2,
         "incident_id": 21,
         "dispatch_time": 9668.0,
-        "vehicle_location_x": 635.253827558284,
-        "vehicle_location_y": 720.2544595525825,
-        "incident_location_x": 677.7722680222125,
-        "incident_location_y": 828.0389129668074,
-        "estimated_travel_time": 35.907855595715425,
-        "path_length": 4
+        "vehicle_location_x": 774.5769540690128,
+        "vehicle_location_y": 232.85281151775467,
+        "incident_location_x": 913.8411950659911,
+        "incident_location_y": 515.433120663757,
+        "estimated_travel_time": 90.76421816621898,
+        "path_length": 9
       },
-      "real_time": "2025-10-21T22:40:47.630559"
-    },
-    {
-      "timestamp": 9671.0,
-      "event_type": "vehicle_arrived_at_incident",
-      "data": {
-        "vehicle_id": 4,
-        "incident_id": 21,
-        "arrival_time": 9671.0
-      },
-      "real_time": "2025-10-21T22:40:47.630559"
+      "real_time": "2025-10-23T11:43:21.247424"
     },
     {
       "timestamp": 9676.0,
+      "event_type": "vehicle_arrived_at_incident",
+      "data": {
+        "vehicle_id": 2,
+        "incident_id": 21,
+        "arrival_time": 9676.0
+      },
+      "real_time": "2025-10-23T11:43:21.247795"
+    },
+    {
+      "timestamp": 9681.0,
       "event_type": "incident_resolved",
       "data": {
         "incident_id": 21,
-        "vehicle_id": 4,
-        "response_time": 8.243917680523737,
-        "resolution_time": 9676.0
+        "vehicle_id": 2,
+        "response_time": 13.243917680523737,
+        "resolution_time": 9681.0
       },
-      "real_time": "2025-10-21T22:40:47.634060"
+      "real_time": "2025-10-23T11:43:21.250877"
     },
     {
-      "timestamp": 9683.0,
+      "timestamp": 9688.0,
       "event_type": "patient_delivered_to_hospital",
       "data": {
-        "vehicle_id": 4,
-        "delivery_time": 9683.0
+        "vehicle_id": 2,
+        "delivery_time": 9688.0
       },
-      "real_time": "2025-10-21T22:40:47.638069"
+      "real_time": "2025-10-23T11:43:21.253836"
     },
     {
-      "timestamp": 9690.0,
+      "timestamp": 9704.0,
       "event_type": "vehicle_returned_to_station",
       "data": {
-        "vehicle_id": 4,
-        "return_time": 9690.0
+        "vehicle_id": 2,
+        "return_time": 9704.0
       },
-      "real_time": "2025-10-21T22:40:47.638567"
+      "real_time": "2025-10-23T11:43:21.254336"
     },
     {
       "timestamp": 9840.513838320678,
       "event_type": "incident_received",
       "data": {
         "incident_id": 22,
-        "location_x": 89.81590528733695,
-        "location_y": 751.9242573614353
+        "location_x": 524.6699311969552,
+        "location_y": 339.8039470991276
       },
-      "real_time": "2025-10-21T22:40:47.641066"
+      "real_time": "2025-10-23T11:43:21.256834"
     },
     {
       "timestamp": 9841.0,
       "event_type": "vehicle_dispatched",
       "data": {
-        "vehicle_id": 4,
+        "vehicle_id": 0,
         "incident_id": 22,
         "dispatch_time": 9841.0,
-        "vehicle_location_x": 635.253827558284,
-        "vehicle_location_y": 720.2544595525825,
-        "incident_location_x": 89.81590528733695,
-        "incident_location_y": 751.9242573614353,
-        "estimated_travel_time": 102.06627202795397,
-        "path_length": 21
+        "vehicle_location_x": 506.4371164692587,
+        "vehicle_location_y": 484.2097431223147,
+        "incident_location_x": 524.6699311969552,
+        "incident_location_y": 339.8039470991276,
+        "estimated_travel_time": 71.55618705707235,
+        "path_length": 9
       },
-      "real_time": "2025-10-21T22:40:47.650074"
+      "real_time": "2025-10-23T11:43:21.259335"
     },
     {
-      "timestamp": 9861.0,
+      "timestamp": 9849.0,
       "event_type": "vehicle_arrived_at_incident",
       "data": {
-        "vehicle_id": 4,
+        "vehicle_id": 0,
         "incident_id": 22,
-        "arrival_time": 9861.0
+        "arrival_time": 9849.0
       },
-      "real_time": "2025-10-21T22:40:47.650074"
+      "real_time": "2025-10-23T11:43:21.259835"
     },
     {
-      "timestamp": 9866.0,
+      "timestamp": 9854.0,
       "event_type": "incident_resolved",
       "data": {
         "incident_id": 22,
-        "vehicle_id": 4,
-        "response_time": 25.486161679322322,
-        "resolution_time": 9866.0
+        "vehicle_id": 0,
+        "response_time": 13.486161679322322,
+        "resolution_time": 9854.0
       },
-      "real_time": "2025-10-21T22:40:47.654582"
+      "real_time": "2025-10-23T11:43:21.264336"
     },
     {
-      "timestamp": 9893.0,
+      "timestamp": 9868.0,
       "event_type": "patient_delivered_to_hospital",
       "data": {
-        "vehicle_id": 4,
-        "delivery_time": 9893.0
+        "vehicle_id": 0,
+        "delivery_time": 9868.0
       },
-      "real_time": "2025-10-21T22:40:47.658092"
+      "real_time": "2025-10-23T11:43:21.267334"
     },
     {
-      "timestamp": 9900.0,
+      "timestamp": 9889.0,
       "event_type": "vehicle_returned_to_station",
       "data": {
-        "vehicle_id": 4,
-        "return_time": 9900.0
+        "vehicle_id": 0,
+        "return_time": 9889.0
       },
-      "real_time": "2025-10-21T22:40:47.658591"
+      "real_time": "2025-10-23T11:43:21.267836"
     },
     {
       "timestamp": 10068.6524474311,
       "event_type": "incident_received",
       "data": {
         "incident_id": 23,
-        "location_x": 84.33955247021626,
-        "location_y": 531.6456167110126
+        "location_x": 412.353561023978,
+        "location_y": 681.3340525661923
       },
-      "real_time": "2025-10-21T22:40:47.661096"
+      "real_time": "2025-10-23T11:43:21.270336"
     },
     {
       "timestamp": 10069.0,
       "event_type": "vehicle_dispatched",
       "data": {
-        "vehicle_id": 4,
+        "vehicle_id": 0,
         "incident_id": 23,
         "dispatch_time": 10069.0,
-        "vehicle_location_x": 635.253827558284,
-        "vehicle_location_y": 720.2544595525825,
-        "incident_location_x": 84.33955247021626,
-        "incident_location_y": 531.6456167110126,
-        "estimated_travel_time": 185.35664401602327,
-        "path_length": 30
+        "vehicle_location_x": 506.4371164692587,
+        "vehicle_location_y": 484.2097431223147,
+        "incident_location_x": 412.353561023978,
+        "incident_location_y": 681.3340525661923,
+        "estimated_travel_time": 97.54598898475197,
+        "path_length": 9
       },
-      "real_time": "2025-10-21T22:40:47.672110"
+      "real_time": "2025-10-23T11:43:21.273335"
     },
     {
-      "timestamp": 10098.0,
+      "timestamp": 10077.0,
       "event_type": "vehicle_arrived_at_incident",
       "data": {
-        "vehicle_id": 4,
+        "vehicle_id": 0,
         "incident_id": 23,
-        "arrival_time": 10098.0
+        "arrival_time": 10077.0
       },
-      "real_time": "2025-10-21T22:40:47.673110"
+      "real_time": "2025-10-23T11:43:21.273335"
     },
     {
-      "timestamp": 10103.0,
+      "timestamp": 10082.0,
       "event_type": "incident_resolved",
       "data": {
         "incident_id": 23,
-        "vehicle_id": 4,
-        "response_time": 34.34755256889912,
-        "resolution_time": 10103.0
+        "vehicle_id": 0,
+        "response_time": 13.347552568899118,
+        "resolution_time": 10082.0
       },
-      "real_time": "2025-10-21T22:40:47.676617"
+      "real_time": "2025-10-23T11:43:21.277334"
     },
     {
-      "timestamp": 10139.0,
+      "timestamp": 10094.0,
       "event_type": "patient_delivered_to_hospital",
       "data": {
-        "vehicle_id": 4,
-        "delivery_time": 10139.0
+        "vehicle_id": 0,
+        "delivery_time": 10094.0
       },
-      "real_time": "2025-10-21T22:40:47.680617"
+      "real_time": "2025-10-23T11:43:21.280834"
     },
     {
-      "timestamp": 10146.0,
+      "timestamp": 10109.0,
       "event_type": "vehicle_returned_to_station",
       "data": {
-        "vehicle_id": 4,
-        "return_time": 10146.0
+        "vehicle_id": 0,
+        "return_time": 10109.0
       },
-      "real_time": "2025-10-21T22:40:47.680617"
+      "real_time": "2025-10-23T11:43:21.280834"
     },
     {
       "timestamp": 10373.119791360989,
       "event_type": "incident_received",
       "data": {
         "incident_id": 24,
-        "location_x": 286.15260645902566,
-        "location_y": 294.24675880302124
+        "location_x": 635.83958346235,
+        "location_y": 90.77212105430525
       },
-      "real_time": "2025-10-21T22:40:47.684124"
+      "real_time": "2025-10-23T11:43:21.284836"
     },
     {
       "timestamp": 10374.0,
@@ -1579,516 +1579,516 @@
         "dispatch_time": 10374.0,
         "vehicle_location_x": 550.49277877652,
         "vehicle_location_y": 2.9612544409296953,
-        "incident_location_x": 286.15260645902566,
-        "incident_location_y": 294.24675880302124,
-        "estimated_travel_time": 131.84733674817753,
-        "path_length": 23
+        "incident_location_x": 635.83958346235,
+        "incident_location_y": 90.77212105430525,
+        "estimated_travel_time": 41.22746748324029,
+        "path_length": 6
       },
-      "real_time": "2025-10-21T22:40:47.694131"
+      "real_time": "2025-10-23T11:43:21.287336"
     },
     {
-      "timestamp": 10396.0,
+      "timestamp": 10379.0,
       "event_type": "vehicle_arrived_at_incident",
       "data": {
         "vehicle_id": 6,
         "incident_id": 24,
-        "arrival_time": 10396.0
+        "arrival_time": 10379.0
       },
-      "real_time": "2025-10-21T22:40:47.694630"
+      "real_time": "2025-10-23T11:43:21.287336"
     },
     {
-      "timestamp": 10401.0,
+      "timestamp": 10384.0,
       "event_type": "incident_resolved",
       "data": {
         "incident_id": 24,
         "vehicle_id": 6,
-        "response_time": 27.88020863901147,
-        "resolution_time": 10401.0
+        "response_time": 10.880208639011471,
+        "resolution_time": 10384.0
       },
-      "real_time": "2025-10-21T22:40:47.699136"
+      "real_time": "2025-10-23T11:43:21.290835"
     },
     {
-      "timestamp": 10427.0,
+      "timestamp": 10390.0,
       "event_type": "patient_delivered_to_hospital",
       "data": {
         "vehicle_id": 6,
-        "delivery_time": 10427.0
+        "delivery_time": 10390.0
       },
-      "real_time": "2025-10-21T22:40:47.702137"
+      "real_time": "2025-10-23T11:43:21.293334"
     },
     {
-      "timestamp": 10431.0,
+      "timestamp": 10394.0,
       "event_type": "vehicle_returned_to_station",
       "data": {
         "vehicle_id": 6,
-        "return_time": 10431.0
+        "return_time": 10394.0
       },
-      "real_time": "2025-10-21T22:40:47.702137"
+      "real_time": "2025-10-23T11:43:21.293334"
     },
     {
       "timestamp": 11142.087796876445,
       "event_type": "incident_received",
       "data": {
         "incident_id": 25,
-        "location_x": 853.1147337753561,
-        "location_y": 721.1026580606623
+        "location_x": 95.58978491281619,
+        "location_y": 292.57640296864264
       },
-      "real_time": "2025-10-21T22:40:47.713145"
+      "real_time": "2025-10-23T11:43:21.304055"
     },
     {
       "timestamp": 11143.0,
       "event_type": "vehicle_dispatched",
       "data": {
-        "vehicle_id": 4,
+        "vehicle_id": 0,
         "incident_id": 25,
         "dispatch_time": 11143.0,
-        "vehicle_location_x": 635.253827558284,
-        "vehicle_location_y": 720.2544595525825,
-        "incident_location_x": 853.1147337753561,
-        "incident_location_y": 721.1026580606623,
-        "estimated_travel_time": 51.96036834411848,
-        "path_length": 7
+        "vehicle_location_x": 506.4371164692587,
+        "vehicle_location_y": 484.2097431223147,
+        "incident_location_x": 95.58978491281619,
+        "incident_location_y": 292.57640296864264,
+        "estimated_travel_time": 178.12999977641525,
+        "path_length": 20
       },
-      "real_time": "2025-10-21T22:40:47.719654"
+      "real_time": "2025-10-23T11:43:21.307054"
     },
     {
-      "timestamp": 11149.0,
+      "timestamp": 11162.0,
       "event_type": "vehicle_arrived_at_incident",
       "data": {
-        "vehicle_id": 4,
+        "vehicle_id": 0,
         "incident_id": 25,
-        "arrival_time": 11149.0
+        "arrival_time": 11162.0
       },
-      "real_time": "2025-10-21T22:40:47.719654"
+      "real_time": "2025-10-23T11:43:21.308055"
     },
     {
-      "timestamp": 11154.0,
+      "timestamp": 11167.0,
       "event_type": "incident_resolved",
       "data": {
         "incident_id": 25,
-        "vehicle_id": 4,
-        "response_time": 11.912203123554718,
-        "resolution_time": 11154.0
+        "vehicle_id": 0,
+        "response_time": 24.91220312355472,
+        "resolution_time": 11167.0
       },
-      "real_time": "2025-10-21T22:40:47.722656"
+      "real_time": "2025-10-23T11:43:21.311553"
     },
     {
-      "timestamp": 11157.0,
+      "timestamp": 11197.0,
       "event_type": "patient_delivered_to_hospital",
       "data": {
-        "vehicle_id": 4,
-        "delivery_time": 11157.0
+        "vehicle_id": 0,
+        "delivery_time": 11197.0
       },
-      "real_time": "2025-10-21T22:40:47.725156"
+      "real_time": "2025-10-23T11:43:21.315053"
     },
     {
-      "timestamp": 11164.0,
+      "timestamp": 11218.0,
       "event_type": "vehicle_returned_to_station",
       "data": {
-        "vehicle_id": 4,
-        "return_time": 11164.0
+        "vehicle_id": 0,
+        "return_time": 11218.0
       },
-      "real_time": "2025-10-21T22:40:47.726160"
+      "real_time": "2025-10-23T11:43:21.315555"
     },
     {
       "timestamp": 11253.45572794079,
       "event_type": "incident_received",
       "data": {
         "incident_id": 26,
-        "location_x": 165.53337878908096,
-        "location_y": 901.6573352430917
+        "location_x": 78.34872621327521,
+        "location_y": 189.62072878112164
       },
-      "real_time": "2025-10-21T22:40:47.727665"
+      "real_time": "2025-10-23T11:43:21.316055"
     },
     {
       "timestamp": 11254.0,
       "event_type": "vehicle_dispatched",
       "data": {
-        "vehicle_id": 4,
+        "vehicle_id": 6,
         "incident_id": 26,
         "dispatch_time": 11254.0,
-        "vehicle_location_x": 635.253827558284,
-        "vehicle_location_y": 720.2544595525825,
-        "incident_location_x": 165.53337878908096,
-        "incident_location_y": 901.6573352430917,
-        "estimated_travel_time": 114.10075424067401,
-        "path_length": 18
+        "vehicle_location_x": 550.49277877652,
+        "vehicle_location_y": 2.9612544409296953,
+        "incident_location_x": 78.34872621327521,
+        "incident_location_y": 189.62072878112164,
+        "estimated_travel_time": 145.3092645414729,
+        "path_length": 22
       },
-      "real_time": "2025-10-21T22:40:47.736165"
+      "real_time": "2025-10-23T11:43:21.319054"
     },
     {
-      "timestamp": 11271.0,
+      "timestamp": 11275.0,
       "event_type": "vehicle_arrived_at_incident",
       "data": {
-        "vehicle_id": 4,
+        "vehicle_id": 6,
         "incident_id": 26,
-        "arrival_time": 11271.0
+        "arrival_time": 11275.0
       },
-      "real_time": "2025-10-21T22:40:47.736669"
+      "real_time": "2025-10-23T11:43:21.319054"
     },
     {
-      "timestamp": 11276.0,
+      "timestamp": 11280.0,
       "event_type": "incident_resolved",
       "data": {
         "incident_id": 26,
-        "vehicle_id": 4,
-        "response_time": 22.544272059209106,
-        "resolution_time": 11276.0
+        "vehicle_id": 6,
+        "response_time": 26.544272059209106,
+        "resolution_time": 11280.0
       },
-      "real_time": "2025-10-21T22:40:47.740168"
+      "real_time": "2025-10-23T11:43:21.323054"
     },
     {
-      "timestamp": 11300.0,
+      "timestamp": 11305.0,
       "event_type": "patient_delivered_to_hospital",
       "data": {
-        "vehicle_id": 4,
-        "delivery_time": 11300.0
+        "vehicle_id": 6,
+        "delivery_time": 11305.0
       },
-      "real_time": "2025-10-21T22:40:47.743669"
+      "real_time": "2025-10-23T11:43:21.326053"
     },
     {
-      "timestamp": 11307.0,
+      "timestamp": 11309.0,
       "event_type": "vehicle_returned_to_station",
       "data": {
-        "vehicle_id": 4,
-        "return_time": 11307.0
+        "vehicle_id": 6,
+        "return_time": 11309.0
       },
-      "real_time": "2025-10-21T22:40:47.743669"
+      "real_time": "2025-10-23T11:43:21.326053"
     },
     {
       "timestamp": 11614.470305457355,
       "event_type": "incident_received",
       "data": {
         "incident_id": 27,
-        "location_x": 300.06818322679806,
-        "location_y": 770.0414798833278
+        "location_x": 308.8514225499447,
+        "location_y": 429.0954409331001
       },
-      "real_time": "2025-10-21T22:40:47.748679"
+      "real_time": "2025-10-23T11:43:21.331054"
     },
     {
       "timestamp": 11615.0,
       "event_type": "vehicle_dispatched",
       "data": {
-        "vehicle_id": 4,
+        "vehicle_id": 0,
         "incident_id": 27,
         "dispatch_time": 11615.0,
-        "vehicle_location_x": 635.253827558284,
-        "vehicle_location_y": 720.2544595525825,
-        "incident_location_x": 300.06818322679806,
-        "incident_location_y": 770.0414798833278,
-        "estimated_travel_time": 69.66220105899055,
-        "path_length": 13
+        "vehicle_location_x": 506.4371164692587,
+        "vehicle_location_y": 484.2097431223147,
+        "incident_location_x": 308.8514225499447,
+        "incident_location_y": 429.0954409331001,
+        "estimated_travel_time": 119.87359530666795,
+        "path_length": 11
       },
-      "real_time": "2025-10-21T22:40:47.756699"
+      "real_time": "2025-10-23T11:43:21.333555"
     },
     {
-      "timestamp": 11627.0,
+      "timestamp": 11625.0,
       "event_type": "vehicle_arrived_at_incident",
       "data": {
-        "vehicle_id": 4,
+        "vehicle_id": 0,
         "incident_id": 27,
-        "arrival_time": 11627.0
+        "arrival_time": 11625.0
       },
-      "real_time": "2025-10-21T22:40:47.756699"
+      "real_time": "2025-10-23T11:43:21.334055"
     },
     {
-      "timestamp": 11632.0,
+      "timestamp": 11630.0,
       "event_type": "incident_resolved",
       "data": {
         "incident_id": 27,
-        "vehicle_id": 4,
-        "response_time": 17.529694542645302,
-        "resolution_time": 11632.0
+        "vehicle_id": 0,
+        "response_time": 15.529694542645302,
+        "resolution_time": 11630.0
       },
-      "real_time": "2025-10-21T22:40:47.842260"
+      "real_time": "2025-10-23T11:43:21.337559"
     },
     {
-      "timestamp": 11651.0,
+      "timestamp": 11650.0,
       "event_type": "patient_delivered_to_hospital",
       "data": {
-        "vehicle_id": 4,
-        "delivery_time": 11651.0
+        "vehicle_id": 0,
+        "delivery_time": 11650.0
       },
-      "real_time": "2025-10-21T22:40:47.845261"
+      "real_time": "2025-10-23T11:43:21.341558"
     },
     {
-      "timestamp": 11658.0,
+      "timestamp": 11665.0,
       "event_type": "vehicle_returned_to_station",
       "data": {
-        "vehicle_id": 4,
-        "return_time": 11658.0
+        "vehicle_id": 0,
+        "return_time": 11665.0
       },
-      "real_time": "2025-10-21T22:40:47.845261"
+      "real_time": "2025-10-23T11:43:21.341558"
     },
     {
       "timestamp": 12063.222666112235,
       "event_type": "incident_received",
       "data": {
         "incident_id": 28,
-        "location_x": 699.9628091489992,
-        "location_y": 292.48339874622144
+        "location_x": 624.4932746545143,
+        "location_y": 487.8183069512538
       },
-      "real_time": "2025-10-21T22:40:47.852776"
+      "real_time": "2025-10-23T11:43:21.347560"
     },
     {
       "timestamp": 12064.0,
       "event_type": "vehicle_dispatched",
       "data": {
-        "vehicle_id": 2,
+        "vehicle_id": 0,
         "incident_id": 28,
         "dispatch_time": 12064.0,
-        "vehicle_location_x": 774.5769540690128,
-        "vehicle_location_y": 232.85281151775467,
-        "incident_location_x": 699.9628091489992,
-        "incident_location_y": 292.48339874622144,
-        "estimated_travel_time": 29.745567323925222,
-        "path_length": 5
+        "vehicle_location_x": 506.4371164692587,
+        "vehicle_location_y": 484.2097431223147,
+        "incident_location_x": 624.4932746545143,
+        "incident_location_y": 487.8183069512538,
+        "estimated_travel_time": 33.6180604613238,
+        "path_length": 6
       },
-      "real_time": "2025-10-21T22:40:47.857284"
+      "real_time": "2025-10-23T11:43:21.350068"
     },
     {
-      "timestamp": 12068.0,
+      "timestamp": 12069.0,
       "event_type": "vehicle_arrived_at_incident",
       "data": {
-        "vehicle_id": 2,
+        "vehicle_id": 0,
         "incident_id": 28,
-        "arrival_time": 12068.0
+        "arrival_time": 12069.0
       },
-      "real_time": "2025-10-21T22:40:47.857284"
+      "real_time": "2025-10-23T11:43:21.350068"
     },
     {
-      "timestamp": 12073.0,
+      "timestamp": 12074.0,
       "event_type": "incident_resolved",
       "data": {
         "incident_id": 28,
-        "vehicle_id": 2,
-        "response_time": 9.777333887765053,
-        "resolution_time": 12073.0
+        "vehicle_id": 0,
+        "response_time": 10.777333887765053,
+        "resolution_time": 12074.0
       },
-      "real_time": "2025-10-21T22:40:47.861283"
+      "real_time": "2025-10-23T11:43:21.353576"
     },
     {
-      "timestamp": 12084.0,
+      "timestamp": 12086.0,
       "event_type": "patient_delivered_to_hospital",
       "data": {
-        "vehicle_id": 2,
-        "delivery_time": 12084.0
+        "vehicle_id": 0,
+        "delivery_time": 12086.0
       },
-      "real_time": "2025-10-21T22:40:47.865283"
+      "real_time": "2025-10-23T11:43:21.356574"
     },
     {
       "timestamp": 12087.004590990438,
       "event_type": "incident_received",
       "data": {
         "incident_id": 29,
-        "location_x": 823.6223888924086,
-        "location_y": 567.7052138167727
+        "location_x": 600.8058017728433,
+        "location_y": 91.43431111780693
       },
-      "real_time": "2025-10-21T22:40:47.865283"
+      "real_time": "2025-10-23T11:43:21.356574"
     },
     {
       "timestamp": 12088.0,
       "event_type": "vehicle_dispatched",
       "data": {
-        "vehicle_id": 4,
+        "vehicle_id": 6,
         "incident_id": 29,
         "dispatch_time": 12088.0,
-        "vehicle_location_x": 635.253827558284,
-        "vehicle_location_y": 720.2544595525825,
-        "incident_location_x": 823.6223888924086,
-        "incident_location_y": 567.7052138167727,
-        "estimated_travel_time": 71.14807303913688,
-        "path_length": 11
+        "vehicle_location_x": 550.49277877652,
+        "vehicle_location_y": 2.9612544409296953,
+        "incident_location_x": 600.8058017728433,
+        "incident_location_y": 91.43431111780693,
+        "estimated_travel_time": 49.68491593759686,
+        "path_length": 7
       },
-      "real_time": "2025-10-21T22:40:47.870792"
+      "real_time": "2025-10-23T11:43:21.359574"
     },
     {
-      "timestamp": 12092.0,
-      "event_type": "vehicle_returned_to_station",
-      "data": {
-        "vehicle_id": 2,
-        "return_time": 12092.0
-      },
-      "real_time": "2025-10-21T22:40:47.871297"
-    },
-    {
-      "timestamp": 12098.0,
+      "timestamp": 12094.0,
       "event_type": "vehicle_arrived_at_incident",
       "data": {
-        "vehicle_id": 4,
+        "vehicle_id": 6,
         "incident_id": 29,
-        "arrival_time": 12098.0
+        "arrival_time": 12094.0
       },
-      "real_time": "2025-10-21T22:40:47.871795"
+      "real_time": "2025-10-23T11:43:21.360575"
     },
     {
-      "timestamp": 12103.0,
+      "timestamp": 12099.0,
       "event_type": "incident_resolved",
       "data": {
         "incident_id": 29,
-        "vehicle_id": 4,
-        "response_time": 15.995409009561627,
-        "resolution_time": 12103.0
+        "vehicle_id": 6,
+        "response_time": 11.995409009561627,
+        "resolution_time": 12099.0
       },
-      "real_time": "2025-10-21T22:40:47.874796"
+      "real_time": "2025-10-23T11:43:21.363575"
     },
     {
-      "timestamp": 12107.0,
-      "event_type": "patient_delivered_to_hospital",
-      "data": {
-        "vehicle_id": 4,
-        "delivery_time": 12107.0
-      },
-      "real_time": "2025-10-21T22:40:47.877804"
-    },
-    {
-      "timestamp": 12114.0,
+      "timestamp": 12101.0,
       "event_type": "vehicle_returned_to_station",
       "data": {
-        "vehicle_id": 4,
-        "return_time": 12114.0
+        "vehicle_id": 0,
+        "return_time": 12101.0
       },
-      "real_time": "2025-10-21T22:40:47.877804"
+      "real_time": "2025-10-23T11:43:21.363575"
+    },
+    {
+      "timestamp": 12106.0,
+      "event_type": "patient_delivered_to_hospital",
+      "data": {
+        "vehicle_id": 6,
+        "delivery_time": 12106.0
+      },
+      "real_time": "2025-10-23T11:43:21.366576"
+    },
+    {
+      "timestamp": 12110.0,
+      "event_type": "vehicle_returned_to_station",
+      "data": {
+        "vehicle_id": 6,
+        "return_time": 12110.0
+      },
+      "real_time": "2025-10-23T11:43:21.366576"
     },
     {
       "timestamp": 12554.671101315244,
       "event_type": "incident_received",
       "data": {
         "incident_id": 30,
-        "location_x": 506.26045992668566,
-        "location_y": 165.66284109297354
+        "location_x": 174.87758011530346,
+        "location_y": 495.8873532858867
       },
-      "real_time": "2025-10-21T22:40:47.885303"
+      "real_time": "2025-10-23T11:43:21.373079"
     },
     {
       "timestamp": 12555.0,
       "event_type": "vehicle_dispatched",
       "data": {
-        "vehicle_id": 6,
+        "vehicle_id": 0,
         "incident_id": 30,
         "dispatch_time": 12555.0,
-        "vehicle_location_x": 550.49277877652,
-        "vehicle_location_y": 2.9612544409296953,
-        "incident_location_x": 506.26045992668566,
-        "incident_location_y": 165.66284109297354,
-        "estimated_travel_time": 46.78971294751928,
-        "path_length": 8
+        "vehicle_location_x": 506.4371164692587,
+        "vehicle_location_y": 484.2097431223147,
+        "incident_location_x": 174.87758011530346,
+        "incident_location_y": 495.8873532858867,
+        "estimated_travel_time": 159.31108334426204,
+        "path_length": 17
       },
-      "real_time": "2025-10-21T22:40:47.892309"
+      "real_time": "2025-10-23T11:43:21.376081"
     },
     {
-      "timestamp": 12562.0,
+      "timestamp": 12571.0,
       "event_type": "vehicle_arrived_at_incident",
       "data": {
-        "vehicle_id": 6,
+        "vehicle_id": 0,
         "incident_id": 30,
-        "arrival_time": 12562.0
+        "arrival_time": 12571.0
       },
-      "real_time": "2025-10-21T22:40:47.892809"
+      "real_time": "2025-10-23T11:43:21.376581"
     },
     {
-      "timestamp": 12567.0,
+      "timestamp": 12576.0,
       "event_type": "incident_resolved",
       "data": {
         "incident_id": 30,
-        "vehicle_id": 6,
-        "response_time": 12.328898684756496,
-        "resolution_time": 12567.0
+        "vehicle_id": 0,
+        "response_time": 21.328898684756496,
+        "resolution_time": 12576.0
       },
-      "real_time": "2025-10-21T22:40:47.896310"
+      "real_time": "2025-10-23T11:43:21.381580"
     },
     {
-      "timestamp": 12578.0,
+      "timestamp": 12604.0,
       "event_type": "patient_delivered_to_hospital",
       "data": {
-        "vehicle_id": 6,
-        "delivery_time": 12578.0
+        "vehicle_id": 0,
+        "delivery_time": 12604.0
       },
-      "real_time": "2025-10-21T22:40:47.899313"
+      "real_time": "2025-10-23T11:43:21.461079"
     },
     {
-      "timestamp": 12582.0,
+      "timestamp": 12619.0,
       "event_type": "vehicle_returned_to_station",
       "data": {
-        "vehicle_id": 6,
-        "return_time": 12582.0
+        "vehicle_id": 0,
+        "return_time": 12619.0
       },
-      "real_time": "2025-10-21T22:40:47.899313"
+      "real_time": "2025-10-23T11:43:21.461079"
     },
     {
       "timestamp": 12648.151727303952,
       "event_type": "incident_received",
       "data": {
         "incident_id": 31,
-        "location_x": 593.9471889913764,
-        "location_y": 908.4168821264777
+        "location_x": 600.8058017728433,
+        "location_y": 91.43431111780693
       },
-      "real_time": "2025-10-21T22:40:47.900316"
+      "real_time": "2025-10-23T11:43:21.461579"
     },
     {
       "timestamp": 12649.0,
       "event_type": "vehicle_dispatched",
       "data": {
-        "vehicle_id": 4,
+        "vehicle_id": 6,
         "incident_id": 31,
         "dispatch_time": 12649.0,
-        "vehicle_location_x": 635.253827558284,
-        "vehicle_location_y": 720.2544595525825,
-        "incident_location_x": 593.9471889913764,
-        "incident_location_y": 908.4168821264777,
-        "estimated_travel_time": 57.25434806558328,
-        "path_length": 5
+        "vehicle_location_x": 550.49277877652,
+        "vehicle_location_y": 2.9612544409296953,
+        "incident_location_x": 600.8058017728433,
+        "incident_location_y": 91.43431111780693,
+        "estimated_travel_time": 49.681882688058685,
+        "path_length": 7
       },
-      "real_time": "2025-10-21T22:40:47.907320"
+      "real_time": "2025-10-23T11:43:21.464080"
     },
     {
-      "timestamp": 12653.0,
+      "timestamp": 12655.0,
       "event_type": "vehicle_arrived_at_incident",
       "data": {
-        "vehicle_id": 4,
+        "vehicle_id": 6,
         "incident_id": 31,
-        "arrival_time": 12653.0
+        "arrival_time": 12655.0
       },
-      "real_time": "2025-10-21T22:40:47.907320"
+      "real_time": "2025-10-23T11:43:21.464579"
     },
     {
-      "timestamp": 12658.0,
+      "timestamp": 12660.0,
       "event_type": "incident_resolved",
       "data": {
         "incident_id": 31,
-        "vehicle_id": 4,
-        "response_time": 9.848272696048298,
-        "resolution_time": 12658.0
+        "vehicle_id": 6,
+        "response_time": 11.848272696048298,
+        "resolution_time": 12660.0
       },
-      "real_time": "2025-10-21T22:40:47.911819"
+      "real_time": "2025-10-23T11:43:21.468081"
     },
     {
-      "timestamp": 12669.0,
+      "timestamp": 12667.0,
       "event_type": "patient_delivered_to_hospital",
       "data": {
-        "vehicle_id": 4,
-        "delivery_time": 12669.0
+        "vehicle_id": 6,
+        "delivery_time": 12667.0
       },
-      "real_time": "2025-10-21T22:40:47.916321"
+      "real_time": "2025-10-23T11:43:21.470582"
     },
     {
-      "timestamp": 12676.0,
+      "timestamp": 12671.0,
       "event_type": "vehicle_returned_to_station",
       "data": {
-        "vehicle_id": 4,
-        "return_time": 12676.0
+        "vehicle_id": 6,
+        "return_time": 12671.0
       },
-      "real_time": "2025-10-21T22:40:47.916321"
+      "real_time": "2025-10-23T11:43:21.470582"
     },
     {
       "timestamp": 12681.783692743604,
       "event_type": "incident_received",
       "data": {
         "incident_id": 32,
-        "location_x": 157.37618545844873,
-        "location_y": 575.1306709325996
+        "location_x": 152.33992437861838,
+        "location_y": 925.3734119531032
       },
-      "real_time": "2025-10-21T22:40:47.916321"
+      "real_time": "2025-10-23T11:43:21.470582"
     },
     {
       "timestamp": 12682.0,
@@ -2099,61 +2099,61 @@
         "dispatch_time": 12682.0,
         "vehicle_location_x": 635.253827558284,
         "vehicle_location_y": 720.2544595525825,
-        "incident_location_x": 157.37618545844873,
-        "incident_location_y": 575.1306709325996,
-        "estimated_travel_time": 107.97364745752004,
-        "path_length": 20
+        "incident_location_x": 152.33992437861838,
+        "incident_location_y": 925.3734119531032,
+        "estimated_travel_time": 118.49522894212667,
+        "path_length": 21
       },
-      "real_time": "2025-10-21T22:40:47.925328"
+      "real_time": "2025-10-23T11:43:21.474147"
     },
     {
-      "timestamp": 12701.0,
+      "timestamp": 12702.0,
       "event_type": "vehicle_arrived_at_incident",
       "data": {
         "vehicle_id": 4,
         "incident_id": 32,
-        "arrival_time": 12701.0
+        "arrival_time": 12702.0
       },
-      "real_time": "2025-10-21T22:40:47.926838"
+      "real_time": "2025-10-23T11:43:21.475178"
     },
     {
-      "timestamp": 12706.0,
+      "timestamp": 12707.0,
       "event_type": "incident_resolved",
       "data": {
         "incident_id": 32,
         "vehicle_id": 4,
-        "response_time": 24.21630725639625,
-        "resolution_time": 12706.0
+        "response_time": 25.21630725639625,
+        "resolution_time": 12707.0
       },
-      "real_time": "2025-10-21T22:40:47.930873"
+      "real_time": "2025-10-23T11:43:21.478748"
     },
     {
-      "timestamp": 12732.0,
+      "timestamp": 12734.0,
       "event_type": "patient_delivered_to_hospital",
       "data": {
         "vehicle_id": 4,
-        "delivery_time": 12732.0
+        "delivery_time": 12734.0
       },
-      "real_time": "2025-10-21T22:40:47.935341"
+      "real_time": "2025-10-23T11:43:21.482253"
     },
     {
-      "timestamp": 12739.0,
+      "timestamp": 12741.0,
       "event_type": "vehicle_returned_to_station",
       "data": {
         "vehicle_id": 4,
-        "return_time": 12739.0
+        "return_time": 12741.0
       },
-      "real_time": "2025-10-21T22:40:47.935341"
+      "real_time": "2025-10-23T11:43:21.482253"
     },
     {
       "timestamp": 14168.62758949707,
       "event_type": "incident_received",
       "data": {
         "incident_id": 33,
-        "location_x": 312.08702659128454,
-        "location_y": 450.0511523222524
+        "location_x": 583.5554453602109,
+        "location_y": 594.6355164524036
       },
-      "real_time": "2025-10-21T22:40:47.956871"
+      "real_time": "2025-10-23T11:43:21.503546"
     },
     {
       "timestamp": 14169.0,
@@ -2164,321 +2164,321 @@
         "dispatch_time": 14169.0,
         "vehicle_location_x": 506.4371164692587,
         "vehicle_location_y": 484.2097431223147,
-        "incident_location_x": 312.08702659128454,
-        "incident_location_y": 450.0511523222524,
-        "estimated_travel_time": 118.28776403498044,
-        "path_length": 11
+        "incident_location_x": 583.5554453602109,
+        "incident_location_y": 594.6355164524036,
+        "estimated_travel_time": 41.864224470550596,
+        "path_length": 6
       },
-      "real_time": "2025-10-21T22:40:47.963371"
+      "real_time": "2025-10-23T11:43:21.506045"
     },
     {
-      "timestamp": 14179.0,
+      "timestamp": 14174.0,
       "event_type": "vehicle_arrived_at_incident",
       "data": {
         "vehicle_id": 0,
         "incident_id": 33,
-        "arrival_time": 14179.0
+        "arrival_time": 14174.0
       },
-      "real_time": "2025-10-21T22:40:47.963871"
+      "real_time": "2025-10-23T11:43:21.506045"
     },
     {
-      "timestamp": 14184.0,
+      "timestamp": 14179.0,
       "event_type": "incident_resolved",
       "data": {
         "incident_id": 33,
         "vehicle_id": 0,
-        "response_time": 15.372410502930506,
-        "resolution_time": 14184.0
+        "response_time": 10.372410502930506,
+        "resolution_time": 14179.0
       },
-      "real_time": "2025-10-21T22:40:47.967377"
+      "real_time": "2025-10-23T11:43:21.510045"
     },
     {
-      "timestamp": 14201.0,
+      "timestamp": 14189.0,
       "event_type": "patient_delivered_to_hospital",
       "data": {
         "vehicle_id": 0,
-        "delivery_time": 14201.0
+        "delivery_time": 14189.0
       },
-      "real_time": "2025-10-21T22:40:47.970876"
+      "real_time": "2025-10-23T11:43:21.512544"
     },
     {
-      "timestamp": 14216.0,
+      "timestamp": 14204.0,
       "event_type": "vehicle_returned_to_station",
       "data": {
         "vehicle_id": 0,
-        "return_time": 14216.0
+        "return_time": 14204.0
       },
-      "real_time": "2025-10-21T22:40:47.970876"
+      "real_time": "2025-10-23T11:43:21.513044"
     },
     {
       "timestamp": 15853.942760727656,
       "event_type": "incident_received",
       "data": {
         "incident_id": 34,
-        "location_x": 749.7117709044027,
-        "location_y": 201.51782890945978
+        "location_x": 678.2526498479513,
+        "location_y": 581.7786127491331
       },
-      "real_time": "2025-10-21T22:40:47.996897"
+      "real_time": "2025-10-23T11:43:21.536545"
     },
     {
       "timestamp": 15854.0,
       "event_type": "vehicle_dispatched",
       "data": {
-        "vehicle_id": 2,
+        "vehicle_id": 4,
         "incident_id": 34,
         "dispatch_time": 15854.0,
-        "vehicle_location_x": 774.5769540690128,
-        "vehicle_location_y": 232.85281151775467,
-        "incident_location_x": 749.7117709044027,
-        "incident_location_y": 201.51782890945978,
-        "estimated_travel_time": 10.489898411302054,
-        "path_length": 4
+        "vehicle_location_x": 635.253827558284,
+        "vehicle_location_y": 720.2544595525825,
+        "incident_location_x": 678.2526498479513,
+        "incident_location_y": 581.7786127491331,
+        "estimated_travel_time": 42.94454909608193,
+        "path_length": 7
       },
-      "real_time": "2025-10-21T22:40:48.003395"
+      "real_time": "2025-10-23T11:43:21.539045"
     },
     {
-      "timestamp": 15857.0,
+      "timestamp": 15860.0,
       "event_type": "vehicle_arrived_at_incident",
       "data": {
-        "vehicle_id": 2,
+        "vehicle_id": 4,
         "incident_id": 34,
-        "arrival_time": 15857.0
+        "arrival_time": 15860.0
       },
-      "real_time": "2025-10-21T22:40:48.003395"
+      "real_time": "2025-10-23T11:43:21.539045"
     },
     {
-      "timestamp": 15862.0,
+      "timestamp": 15865.0,
       "event_type": "incident_resolved",
       "data": {
         "incident_id": 34,
-        "vehicle_id": 2,
-        "response_time": 8.057239272344304,
-        "resolution_time": 15862.0
+        "vehicle_id": 4,
+        "response_time": 11.057239272344304,
+        "resolution_time": 15865.0
       },
-      "real_time": "2025-10-21T22:40:48.006903"
+      "real_time": "2025-10-23T11:43:21.542045"
     },
     {
-      "timestamp": 15868.0,
+      "timestamp": 15873.0,
       "event_type": "patient_delivered_to_hospital",
       "data": {
-        "vehicle_id": 2,
-        "delivery_time": 15868.0
+        "vehicle_id": 4,
+        "delivery_time": 15873.0
       },
-      "real_time": "2025-10-21T22:40:48.009906"
+      "real_time": "2025-10-23T11:43:21.545044"
     },
     {
-      "timestamp": 15876.0,
+      "timestamp": 15880.0,
       "event_type": "vehicle_returned_to_station",
       "data": {
-        "vehicle_id": 2,
-        "return_time": 15876.0
+        "vehicle_id": 4,
+        "return_time": 15880.0
       },
-      "real_time": "2025-10-21T22:40:48.009906"
+      "real_time": "2025-10-23T11:43:21.545546"
     },
     {
       "timestamp": 16680.108547134096,
       "event_type": "incident_received",
       "data": {
         "incident_id": 35,
-        "location_x": 231.11324614128526,
-        "location_y": 291.6947229403749
+        "location_x": 562.0684311658722,
+        "location_y": 436.08563828806973
       },
-      "real_time": "2025-10-21T22:40:48.023921"
+      "real_time": "2025-10-23T11:43:21.557045"
     },
     {
       "timestamp": 16681.0,
       "event_type": "vehicle_dispatched",
       "data": {
-        "vehicle_id": 6,
+        "vehicle_id": 0,
         "incident_id": 35,
         "dispatch_time": 16681.0,
-        "vehicle_location_x": 550.49277877652,
-        "vehicle_location_y": 2.9612544409296953,
-        "incident_location_x": 231.11324614128526,
-        "incident_location_y": 291.6947229403749,
-        "estimated_travel_time": 122.94246620528682,
-        "path_length": 23
+        "vehicle_location_x": 506.4371164692587,
+        "vehicle_location_y": 484.2097431223147,
+        "incident_location_x": 562.0684311658722,
+        "incident_location_y": 436.08563828806973,
+        "estimated_travel_time": 39.499134095680034,
+        "path_length": 6
       },
-      "real_time": "2025-10-21T22:40:48.032426"
+      "real_time": "2025-10-23T11:43:21.560047"
     },
     {
-      "timestamp": 16703.0,
+      "timestamp": 16686.0,
       "event_type": "vehicle_arrived_at_incident",
       "data": {
-        "vehicle_id": 6,
+        "vehicle_id": 0,
         "incident_id": 35,
-        "arrival_time": 16703.0
+        "arrival_time": 16686.0
       },
-      "real_time": "2025-10-21T22:40:48.032926"
+      "real_time": "2025-10-23T11:43:21.560047"
     },
     {
-      "timestamp": 16708.0,
+      "timestamp": 16691.0,
       "event_type": "incident_resolved",
       "data": {
         "incident_id": 35,
-        "vehicle_id": 6,
-        "response_time": 27.891452865904284,
-        "resolution_time": 16708.0
+        "vehicle_id": 0,
+        "response_time": 10.891452865904284,
+        "resolution_time": 16691.0
       },
-      "real_time": "2025-10-21T22:40:48.036936"
+      "real_time": "2025-10-23T11:43:21.563046"
     },
     {
-      "timestamp": 16734.0,
+      "timestamp": 16708.0,
       "event_type": "patient_delivered_to_hospital",
       "data": {
-        "vehicle_id": 6,
-        "delivery_time": 16734.0
+        "vehicle_id": 0,
+        "delivery_time": 16708.0
       },
-      "real_time": "2025-10-21T22:40:48.040440"
+      "real_time": "2025-10-23T11:43:21.566046"
     },
     {
-      "timestamp": 16738.0,
+      "timestamp": 16723.0,
       "event_type": "vehicle_returned_to_station",
       "data": {
-        "vehicle_id": 6,
-        "return_time": 16738.0
+        "vehicle_id": 0,
+        "return_time": 16723.0
       },
-      "real_time": "2025-10-21T22:40:48.040440"
+      "real_time": "2025-10-23T11:43:21.566546"
     },
     {
       "timestamp": 16861.752477118476,
       "event_type": "incident_received",
       "data": {
         "incident_id": 36,
-        "location_x": 38.988408851633714,
-        "location_y": 76.52759435285894
+        "location_x": 1000.0,
+        "location_y": 415.7325942599216
       },
-      "real_time": "2025-10-21T22:40:48.042940"
+      "real_time": "2025-10-23T11:43:21.568545"
     },
     {
       "timestamp": 16862.0,
       "event_type": "vehicle_dispatched",
       "data": {
-        "vehicle_id": 6,
+        "vehicle_id": 2,
         "incident_id": 36,
         "dispatch_time": 16862.0,
-        "vehicle_location_x": 550.49277877652,
-        "vehicle_location_y": 2.9612544409296953,
-        "incident_location_x": 38.988408851633714,
-        "incident_location_y": 76.52759435285894,
-        "estimated_travel_time": 142.25476474042972,
-        "path_length": 19
+        "vehicle_location_x": 774.5769540690128,
+        "vehicle_location_y": 232.85281151775467,
+        "incident_location_x": 1000.0,
+        "incident_location_y": 415.7325942599216,
+        "estimated_travel_time": 86.67740758472571,
+        "path_length": 10
       },
-      "real_time": "2025-10-21T22:40:48.052955"
+      "real_time": "2025-10-23T11:43:21.571046"
     },
     {
-      "timestamp": 16880.0,
+      "timestamp": 16871.0,
       "event_type": "vehicle_arrived_at_incident",
       "data": {
-        "vehicle_id": 6,
+        "vehicle_id": 2,
         "incident_id": 36,
-        "arrival_time": 16880.0
+        "arrival_time": 16871.0
       },
-      "real_time": "2025-10-21T22:40:48.053455"
+      "real_time": "2025-10-23T11:43:21.571046"
     },
     {
-      "timestamp": 16885.0,
+      "timestamp": 16876.0,
       "event_type": "incident_resolved",
       "data": {
         "incident_id": 36,
-        "vehicle_id": 6,
-        "response_time": 23.247522881523764,
-        "resolution_time": 16885.0
+        "vehicle_id": 2,
+        "response_time": 14.247522881523764,
+        "resolution_time": 16876.0
       },
-      "real_time": "2025-10-21T22:40:48.056966"
+      "real_time": "2025-10-23T11:43:21.574045"
     },
     {
-      "timestamp": 16907.0,
+      "timestamp": 16885.0,
       "event_type": "patient_delivered_to_hospital",
       "data": {
-        "vehicle_id": 6,
-        "delivery_time": 16907.0
+        "vehicle_id": 2,
+        "delivery_time": 16885.0
       },
-      "real_time": "2025-10-21T22:40:48.060996"
+      "real_time": "2025-10-23T11:43:21.577045"
     },
     {
-      "timestamp": 16911.0,
+      "timestamp": 16893.0,
       "event_type": "vehicle_returned_to_station",
       "data": {
-        "vehicle_id": 6,
-        "return_time": 16911.0
+        "vehicle_id": 2,
+        "return_time": 16893.0
       },
-      "real_time": "2025-10-21T22:40:48.060996"
+      "real_time": "2025-10-23T11:43:21.577045"
     },
     {
       "timestamp": 16913.14113461973,
       "event_type": "incident_received",
       "data": {
         "incident_id": 37,
-        "location_x": 63.44139341734731,
-        "location_y": 519.1904912484115
+        "location_x": 145.57118948758006,
+        "location_y": 76.82520786455399
       },
-      "real_time": "2025-10-21T22:40:48.060996"
+      "real_time": "2025-10-23T11:43:21.577545"
     },
     {
       "timestamp": 16914.0,
       "event_type": "vehicle_dispatched",
       "data": {
-        "vehicle_id": 4,
+        "vehicle_id": 6,
         "incident_id": 37,
         "dispatch_time": 16914.0,
-        "vehicle_location_x": 635.253827558284,
-        "vehicle_location_y": 720.2544595525825,
-        "incident_location_x": 63.44139341734731,
-        "incident_location_y": 519.1904912484115,
-        "estimated_travel_time": 176.91531448946125,
-        "path_length": 29
+        "vehicle_location_x": 550.49277877652,
+        "vehicle_location_y": 2.9612544409296953,
+        "incident_location_x": 145.57118948758006,
+        "incident_location_y": 76.82520786455399,
+        "estimated_travel_time": 113.56598708208247,
+        "path_length": 16
       },
-      "real_time": "2025-10-21T22:40:48.071616"
+      "real_time": "2025-10-23T11:43:21.580051"
     },
     {
-      "timestamp": 16942.0,
+      "timestamp": 16929.0,
       "event_type": "vehicle_arrived_at_incident",
       "data": {
-        "vehicle_id": 4,
+        "vehicle_id": 6,
         "incident_id": 37,
-        "arrival_time": 16942.0
+        "arrival_time": 16929.0
       },
-      "real_time": "2025-10-21T22:40:48.072614"
+      "real_time": "2025-10-23T11:43:21.580550"
     },
     {
-      "timestamp": 16947.0,
+      "timestamp": 16934.0,
       "event_type": "incident_resolved",
       "data": {
         "incident_id": 37,
-        "vehicle_id": 4,
-        "response_time": 33.85886538026898,
-        "resolution_time": 16947.0
+        "vehicle_id": 6,
+        "response_time": 20.85886538026898,
+        "resolution_time": 16934.0
       },
-      "real_time": "2025-10-21T22:40:48.076632"
+      "real_time": "2025-10-23T11:43:21.583550"
     },
     {
-      "timestamp": 16982.0,
+      "timestamp": 16953.0,
       "event_type": "patient_delivered_to_hospital",
       "data": {
-        "vehicle_id": 4,
-        "delivery_time": 16982.0
+        "vehicle_id": 6,
+        "delivery_time": 16953.0
       },
-      "real_time": "2025-10-21T22:40:48.080633"
+      "real_time": "2025-10-23T11:43:21.587048"
     },
     {
-      "timestamp": 16989.0,
+      "timestamp": 16957.0,
       "event_type": "vehicle_returned_to_station",
       "data": {
-        "vehicle_id": 4,
-        "return_time": 16989.0
+        "vehicle_id": 6,
+        "return_time": 16957.0
       },
-      "real_time": "2025-10-21T22:40:48.081131"
+      "real_time": "2025-10-23T11:43:21.587048"
     },
     {
       "timestamp": 17489.51651616906,
       "event_type": "incident_received",
       "data": {
         "incident_id": 38,
-        "location_x": 580.0347114610075,
-        "location_y": 435.8698684919785
+        "location_x": 67.15428004702231,
+        "location_y": 810.6768847305734
       },
-      "real_time": "2025-10-21T22:40:48.088140"
+      "real_time": "2025-10-23T11:43:21.594552"
     },
     {
       "timestamp": 17490.0,
@@ -2489,321 +2489,321 @@
         "dispatch_time": 17490.0,
         "vehicle_location_x": 506.4371164692587,
         "vehicle_location_y": 484.2097431223147,
-        "incident_location_x": 580.0347114610075,
-        "incident_location_y": 435.8698684919785,
-        "estimated_travel_time": 35.00321601253705,
-        "path_length": 4
+        "incident_location_x": 67.15428004702231,
+        "incident_location_y": 810.6768847305734,
+        "estimated_travel_time": 192.10748670153205,
+        "path_length": 30
       },
-      "real_time": "2025-10-21T22:40:48.093140"
+      "real_time": "2025-10-23T11:43:21.597555"
     },
     {
-      "timestamp": 17493.0,
+      "timestamp": 17519.0,
       "event_type": "vehicle_arrived_at_incident",
       "data": {
         "vehicle_id": 0,
         "incident_id": 38,
-        "arrival_time": 17493.0
+        "arrival_time": 17519.0
       },
-      "real_time": "2025-10-21T22:40:48.093140"
+      "real_time": "2025-10-23T11:43:21.598056"
     },
     {
-      "timestamp": 17498.0,
+      "timestamp": 17524.0,
       "event_type": "incident_resolved",
       "data": {
         "incident_id": 38,
         "vehicle_id": 0,
-        "response_time": 8.483483830939804,
-        "resolution_time": 17498.0
+        "response_time": 34.483483830939804,
+        "resolution_time": 17524.0
       },
-      "real_time": "2025-10-21T22:40:48.096647"
+      "real_time": "2025-10-23T11:43:21.601557"
     },
     {
-      "timestamp": 17513.0,
+      "timestamp": 17554.0,
       "event_type": "patient_delivered_to_hospital",
       "data": {
         "vehicle_id": 0,
-        "delivery_time": 17513.0
+        "delivery_time": 17554.0
       },
-      "real_time": "2025-10-21T22:40:48.099645"
+      "real_time": "2025-10-23T11:43:21.605060"
     },
     {
-      "timestamp": 17528.0,
+      "timestamp": 17569.0,
       "event_type": "vehicle_returned_to_station",
       "data": {
         "vehicle_id": 0,
-        "return_time": 17528.0
+        "return_time": 17569.0
       },
-      "real_time": "2025-10-21T22:40:48.100146"
+      "real_time": "2025-10-23T11:43:21.605060"
     },
     {
       "timestamp": 17779.56193746176,
       "event_type": "incident_received",
       "data": {
         "incident_id": 39,
-        "location_x": 344.29430360138485,
-        "location_y": 797.8311415338559
+        "location_x": 524.6699311969552,
+        "location_y": 339.8039470991276
       },
-      "real_time": "2025-10-21T22:40:48.103645"
+      "real_time": "2025-10-23T11:43:21.608063"
     },
     {
       "timestamp": 17780.0,
       "event_type": "vehicle_dispatched",
       "data": {
-        "vehicle_id": 4,
+        "vehicle_id": 0,
         "incident_id": 39,
         "dispatch_time": 17780.0,
-        "vehicle_location_x": 635.253827558284,
-        "vehicle_location_y": 720.2544595525825,
-        "incident_location_x": 344.29430360138485,
-        "incident_location_y": 797.8311415338559,
-        "estimated_travel_time": 68.78125675537791,
-        "path_length": 12
+        "vehicle_location_x": 506.4371164692587,
+        "vehicle_location_y": 484.2097431223147,
+        "incident_location_x": 524.6699311969552,
+        "incident_location_y": 339.8039470991276,
+        "estimated_travel_time": 71.24289887599379,
+        "path_length": 9
       },
-      "real_time": "2025-10-21T22:40:48.110651"
+      "real_time": "2025-10-23T11:43:21.610565"
     },
     {
-      "timestamp": 17791.0,
+      "timestamp": 17788.0,
       "event_type": "vehicle_arrived_at_incident",
       "data": {
-        "vehicle_id": 4,
+        "vehicle_id": 0,
         "incident_id": 39,
-        "arrival_time": 17791.0
+        "arrival_time": 17788.0
       },
-      "real_time": "2025-10-21T22:40:48.111151"
+      "real_time": "2025-10-23T11:43:21.610565"
     },
     {
-      "timestamp": 17796.0,
+      "timestamp": 17793.0,
       "event_type": "incident_resolved",
       "data": {
         "incident_id": 39,
-        "vehicle_id": 4,
-        "response_time": 16.438062538240047,
-        "resolution_time": 17796.0
+        "vehicle_id": 0,
+        "response_time": 13.438062538240047,
+        "resolution_time": 17793.0
       },
-      "real_time": "2025-10-21T22:40:48.115153"
+      "real_time": "2025-10-23T11:43:21.614064"
     },
     {
-      "timestamp": 17814.0,
+      "timestamp": 17807.0,
       "event_type": "patient_delivered_to_hospital",
       "data": {
-        "vehicle_id": 4,
-        "delivery_time": 17814.0
+        "vehicle_id": 0,
+        "delivery_time": 17807.0
       },
-      "real_time": "2025-10-21T22:40:48.118661"
+      "real_time": "2025-10-23T11:43:21.617064"
     },
     {
-      "timestamp": 17821.0,
+      "timestamp": 17828.0,
       "event_type": "vehicle_returned_to_station",
       "data": {
-        "vehicle_id": 4,
-        "return_time": 17821.0
+        "vehicle_id": 0,
+        "return_time": 17828.0
       },
-      "real_time": "2025-10-21T22:40:48.118661"
+      "real_time": "2025-10-23T11:43:21.617565"
     },
     {
       "timestamp": 17844.638054438983,
       "event_type": "incident_received",
       "data": {
         "incident_id": 40,
-        "location_x": 147.86462530230432,
-        "location_y": 258.5926601068697
+        "location_x": 677.4778404512576,
+        "location_y": 669.4109112555445
       },
-      "real_time": "2025-10-21T22:40:48.119160"
+      "real_time": "2025-10-23T11:43:21.617565"
     },
     {
       "timestamp": 17845.0,
       "event_type": "vehicle_dispatched",
       "data": {
-        "vehicle_id": 6,
+        "vehicle_id": 4,
         "incident_id": 40,
         "dispatch_time": 17845.0,
-        "vehicle_location_x": 550.49277877652,
-        "vehicle_location_y": 2.9612544409296953,
-        "incident_location_x": 147.86462530230432,
-        "incident_location_y": 258.5926601068697,
-        "estimated_travel_time": 138.25120275007308,
-        "path_length": 21
+        "vehicle_location_x": 635.253827558284,
+        "vehicle_location_y": 720.2544595525825,
+        "incident_location_x": 677.4778404512576,
+        "incident_location_y": 669.4109112555445,
+        "estimated_travel_time": 21.731324204029136,
+        "path_length": 5
       },
-      "real_time": "2025-10-21T22:40:48.129172"
+      "real_time": "2025-10-23T11:43:21.620073"
     },
     {
-      "timestamp": 17865.0,
+      "timestamp": 17849.0,
       "event_type": "vehicle_arrived_at_incident",
       "data": {
-        "vehicle_id": 6,
+        "vehicle_id": 4,
         "incident_id": 40,
-        "arrival_time": 17865.0
+        "arrival_time": 17849.0
       },
-      "real_time": "2025-10-21T22:40:48.130170"
+      "real_time": "2025-10-23T11:43:21.620073"
     },
     {
-      "timestamp": 17870.0,
+      "timestamp": 17854.0,
       "event_type": "incident_resolved",
       "data": {
         "incident_id": 40,
-        "vehicle_id": 6,
-        "response_time": 25.36194556101691,
-        "resolution_time": 17870.0
+        "vehicle_id": 4,
+        "response_time": 9.36194556101691,
+        "resolution_time": 17854.0
       },
-      "real_time": "2025-10-21T22:40:48.133669"
+      "real_time": "2025-10-23T11:43:21.623074"
     },
     {
-      "timestamp": 17894.0,
+      "timestamp": 17859.0,
       "event_type": "patient_delivered_to_hospital",
       "data": {
-        "vehicle_id": 6,
-        "delivery_time": 17894.0
+        "vehicle_id": 4,
+        "delivery_time": 17859.0
       },
-      "real_time": "2025-10-21T22:40:48.136675"
+      "real_time": "2025-10-23T11:43:21.626074"
     },
     {
-      "timestamp": 17898.0,
+      "timestamp": 17866.0,
       "event_type": "vehicle_returned_to_station",
       "data": {
-        "vehicle_id": 6,
-        "return_time": 17898.0
+        "vehicle_id": 4,
+        "return_time": 17866.0
       },
-      "real_time": "2025-10-21T22:40:48.136675"
+      "real_time": "2025-10-23T11:43:21.626074"
     },
     {
       "timestamp": 18186.411668506058,
       "event_type": "incident_received",
       "data": {
         "incident_id": 41,
-        "location_x": 783.5585445978786,
-        "location_y": 99.72284741720588
+        "location_x": 343.7674332115098,
+        "location_y": 829.9734007924287
       },
-      "real_time": "2025-10-21T22:40:48.141176"
+      "real_time": "2025-10-23T11:43:21.631073"
     },
     {
       "timestamp": 18187.0,
       "event_type": "vehicle_dispatched",
       "data": {
-        "vehicle_id": 2,
+        "vehicle_id": 4,
         "incident_id": 41,
         "dispatch_time": 18187.0,
-        "vehicle_location_x": 774.5769540690128,
-        "vehicle_location_y": 232.85281151775467,
-        "incident_location_x": 783.5585445978786,
-        "incident_location_y": 99.72284741720588,
-        "estimated_travel_time": 35.74214639263907,
-        "path_length": 4
+        "vehicle_location_x": 635.253827558284,
+        "vehicle_location_y": 720.2544595525825,
+        "incident_location_x": 343.7674332115098,
+        "incident_location_y": 829.9734007924287,
+        "estimated_travel_time": 76.68368489851689,
+        "path_length": 13
       },
-      "real_time": "2025-10-21T22:40:48.148184"
+      "real_time": "2025-10-23T11:43:21.634074"
     },
     {
-      "timestamp": 18190.0,
+      "timestamp": 18199.0,
       "event_type": "vehicle_arrived_at_incident",
       "data": {
-        "vehicle_id": 2,
+        "vehicle_id": 4,
         "incident_id": 41,
-        "arrival_time": 18190.0
+        "arrival_time": 18199.0
       },
-      "real_time": "2025-10-21T22:40:48.148184"
-    },
-    {
-      "timestamp": 18195.0,
-      "event_type": "incident_resolved",
-      "data": {
-        "incident_id": 41,
-        "vehicle_id": 2,
-        "response_time": 8.58833149394195,
-        "resolution_time": 18195.0
-      },
-      "real_time": "2025-10-21T22:40:48.151686"
-    },
-    {
-      "timestamp": 18201.0,
-      "event_type": "patient_delivered_to_hospital",
-      "data": {
-        "vehicle_id": 2,
-        "delivery_time": 18201.0
-      },
-      "real_time": "2025-10-21T22:40:48.154190"
+      "real_time": "2025-10-23T11:43:21.634074"
     },
     {
       "timestamp": 18203.908529227796,
       "event_type": "incident_received",
       "data": {
         "incident_id": 42,
-        "location_x": 676.0955804873516,
-        "location_y": 369.6024999535313
+        "location_x": 108.464017851774,
+        "location_y": 407.54078235161865
       },
-      "real_time": "2025-10-21T22:40:48.154190"
+      "real_time": "2025-10-23T11:43:21.634074"
     },
     {
       "timestamp": 18204.0,
       "event_type": "vehicle_dispatched",
       "data": {
-        "vehicle_id": 3,
+        "vehicle_id": 0,
         "incident_id": 42,
         "dispatch_time": 18204.0,
-        "vehicle_location_x": 774.5769540690128,
-        "vehicle_location_y": 232.85281151775467,
-        "incident_location_x": 676.0955804873516,
-        "incident_location_y": 369.6024999535313,
-        "estimated_travel_time": 53.48080610737048,
-        "path_length": 7
+        "vehicle_location_x": 506.4371164692587,
+        "vehicle_location_y": 484.2097431223147,
+        "incident_location_x": 108.464017851774,
+        "incident_location_y": 407.54078235161865,
+        "estimated_travel_time": 173.7227487547799,
+        "path_length": 19
       },
-      "real_time": "2025-10-21T22:40:48.159700"
+      "real_time": "2025-10-23T11:43:21.637573"
     },
     {
-      "timestamp": 18209.0,
-      "event_type": "vehicle_returned_to_station",
+      "timestamp": 18204.0,
+      "event_type": "incident_resolved",
       "data": {
-        "vehicle_id": 2,
-        "return_time": 18209.0
+        "incident_id": 41,
+        "vehicle_id": 4,
+        "response_time": 17.58833149394195,
+        "resolution_time": 18204.0
       },
-      "real_time": "2025-10-21T22:40:48.159700"
+      "real_time": "2025-10-23T11:43:21.641074"
     },
     {
-      "timestamp": 18210.0,
+      "timestamp": 18222.0,
       "event_type": "vehicle_arrived_at_incident",
       "data": {
-        "vehicle_id": 3,
+        "vehicle_id": 0,
         "incident_id": 42,
-        "arrival_time": 18210.0
+        "arrival_time": 18222.0
       },
-      "real_time": "2025-10-21T22:40:48.160199"
+      "real_time": "2025-10-23T11:43:21.641574"
     },
     {
-      "timestamp": 18215.0,
+      "timestamp": 18223.0,
+      "event_type": "patient_delivered_to_hospital",
+      "data": {
+        "vehicle_id": 4,
+        "delivery_time": 18223.0
+      },
+      "real_time": "2025-10-23T11:43:21.644573"
+    },
+    {
+      "timestamp": 18227.0,
       "event_type": "incident_resolved",
       "data": {
         "incident_id": 42,
-        "vehicle_id": 3,
-        "response_time": 11.091470772204048,
-        "resolution_time": 18215.0
+        "vehicle_id": 0,
+        "response_time": 23.091470772204048,
+        "resolution_time": 18227.0
       },
-      "real_time": "2025-10-21T22:40:48.163700"
+      "real_time": "2025-10-23T11:43:21.648075"
     },
     {
-      "timestamp": 18224.0,
-      "event_type": "patient_delivered_to_hospital",
-      "data": {
-        "vehicle_id": 3,
-        "delivery_time": 18224.0
-      },
-      "real_time": "2025-10-21T22:40:48.166706"
-    },
-    {
-      "timestamp": 18240.0,
+      "timestamp": 18230.0,
       "event_type": "vehicle_returned_to_station",
       "data": {
-        "vehicle_id": 3,
-        "return_time": 18240.0
+        "vehicle_id": 4,
+        "return_time": 18230.0
       },
-      "real_time": "2025-10-21T22:40:48.167706"
+      "real_time": "2025-10-23T11:43:21.648075"
+    },
+    {
+      "timestamp": 18258.0,
+      "event_type": "patient_delivered_to_hospital",
+      "data": {
+        "vehicle_id": 0,
+        "delivery_time": 18258.0
+      },
+      "real_time": "2025-10-23T11:43:21.652575"
+    },
+    {
+      "timestamp": 18280.0,
+      "event_type": "vehicle_returned_to_station",
+      "data": {
+        "vehicle_id": 0,
+        "return_time": 18280.0
+      },
+      "real_time": "2025-10-23T11:43:21.653073"
     },
     {
       "timestamp": 19404.11997292431,
       "event_type": "incident_received",
       "data": {
         "incident_id": 43,
-        "location_x": 858.7119568587028,
-        "location_y": 82.0855266829117
+        "location_x": 678.0821917806257,
+        "location_y": 260.80988076869386
       },
-      "real_time": "2025-10-21T22:40:48.184250"
+      "real_time": "2025-10-23T11:43:21.670072"
     },
     {
       "timestamp": 19405.0,
@@ -2814,646 +2814,646 @@
         "dispatch_time": 19405.0,
         "vehicle_location_x": 774.5769540690128,
         "vehicle_location_y": 232.85281151775467,
-        "incident_location_x": 858.7119568587028,
-        "incident_location_y": 82.0855266829117,
-        "estimated_travel_time": 54.03542662402516,
-        "path_length": 6
+        "incident_location_x": 678.0821917806257,
+        "incident_location_y": 260.80988076869386,
+        "estimated_travel_time": 87.05699714022187,
+        "path_length": 8
       },
-      "real_time": "2025-10-21T22:40:48.190757"
+      "real_time": "2025-10-23T11:43:21.672574"
     },
     {
-      "timestamp": 19410.0,
+      "timestamp": 19412.0,
       "event_type": "vehicle_arrived_at_incident",
       "data": {
         "vehicle_id": 2,
         "incident_id": 43,
-        "arrival_time": 19410.0
+        "arrival_time": 19412.0
       },
-      "real_time": "2025-10-21T22:40:48.191257"
+      "real_time": "2025-10-23T11:43:21.673076"
     },
     {
-      "timestamp": 19415.0,
+      "timestamp": 19417.0,
       "event_type": "incident_resolved",
       "data": {
         "incident_id": 43,
         "vehicle_id": 2,
-        "response_time": 10.880027075691032,
-        "resolution_time": 19415.0
+        "response_time": 12.880027075691032,
+        "resolution_time": 19417.0
       },
-      "real_time": "2025-10-21T22:40:48.195257"
+      "real_time": "2025-10-23T11:43:21.676577"
     },
     {
-      "timestamp": 19419.0,
+      "timestamp": 19424.0,
       "event_type": "patient_delivered_to_hospital",
       "data": {
         "vehicle_id": 2,
-        "delivery_time": 19419.0
+        "delivery_time": 19424.0
       },
-      "real_time": "2025-10-21T22:40:48.197766"
+      "real_time": "2025-10-23T11:43:21.679576"
     },
     {
-      "timestamp": 19427.0,
+      "timestamp": 19432.0,
       "event_type": "vehicle_returned_to_station",
       "data": {
         "vehicle_id": 2,
-        "return_time": 19427.0
+        "return_time": 19432.0
       },
-      "real_time": "2025-10-21T22:40:48.197766"
+      "real_time": "2025-10-23T11:43:21.679576"
     },
     {
       "timestamp": 19553.848861344653,
       "event_type": "incident_received",
       "data": {
         "incident_id": 44,
-        "location_x": 731.8601623998054,
-        "location_y": 434.7835791744369
+        "location_x": 473.0056406125233,
+        "location_y": 44.45973847201166
       },
-      "real_time": "2025-10-21T22:40:48.199765"
+      "real_time": "2025-10-23T11:43:21.681578"
     },
     {
       "timestamp": 19554.0,
       "event_type": "vehicle_dispatched",
       "data": {
-        "vehicle_id": 2,
+        "vehicle_id": 6,
         "incident_id": 44,
         "dispatch_time": 19554.0,
-        "vehicle_location_x": 774.5769540690128,
-        "vehicle_location_y": 232.85281151775467,
-        "incident_location_x": 731.8601623998054,
-        "incident_location_y": 434.7835791744369,
-        "estimated_travel_time": 52.41786110240404,
-        "path_length": 7
+        "vehicle_location_x": 550.49277877652,
+        "vehicle_location_y": 2.9612544409296953,
+        "incident_location_x": 473.0056406125233,
+        "incident_location_y": 44.45973847201166,
+        "estimated_travel_time": 25.009500949006345,
+        "path_length": 5
       },
-      "real_time": "2025-10-21T22:40:48.204766"
+      "real_time": "2025-10-23T11:43:21.685078"
     },
     {
-      "timestamp": 19560.0,
+      "timestamp": 19558.0,
       "event_type": "vehicle_arrived_at_incident",
       "data": {
-        "vehicle_id": 2,
+        "vehicle_id": 6,
         "incident_id": 44,
-        "arrival_time": 19560.0
+        "arrival_time": 19558.0
       },
-      "real_time": "2025-10-21T22:40:48.205266"
+      "real_time": "2025-10-23T11:43:21.685078"
     },
     {
-      "timestamp": 19565.0,
+      "timestamp": 19563.0,
       "event_type": "incident_resolved",
       "data": {
         "incident_id": 44,
-        "vehicle_id": 2,
-        "response_time": 11.151138655346585,
-        "resolution_time": 19565.0
+        "vehicle_id": 6,
+        "response_time": 9.151138655346585,
+        "resolution_time": 19563.0
       },
-      "real_time": "2025-10-21T22:40:48.208276"
+      "real_time": "2025-10-23T11:43:21.688078"
     },
     {
-      "timestamp": 19577.0,
+      "timestamp": 19571.0,
       "event_type": "patient_delivered_to_hospital",
       "data": {
-        "vehicle_id": 2,
-        "delivery_time": 19577.0
+        "vehicle_id": 6,
+        "delivery_time": 19571.0
       },
-      "real_time": "2025-10-21T22:40:48.212277"
+      "real_time": "2025-10-23T11:43:21.691085"
     },
     {
-      "timestamp": 19591.0,
+      "timestamp": 19575.0,
       "event_type": "vehicle_returned_to_station",
       "data": {
-        "vehicle_id": 2,
-        "return_time": 19591.0
+        "vehicle_id": 6,
+        "return_time": 19575.0
       },
-      "real_time": "2025-10-21T22:40:48.212776"
+      "real_time": "2025-10-23T11:43:21.691085"
     },
     {
       "timestamp": 20096.976760627145,
       "event_type": "incident_received",
       "data": {
         "incident_id": 45,
-        "location_x": 415.85569949787913,
-        "location_y": 767.7349751680215
+        "location_x": 58.42062852541558,
+        "location_y": 317.66894217001254
       },
-      "real_time": "2025-10-21T22:40:48.219783"
+      "real_time": "2025-10-23T11:43:21.698586"
     },
     {
       "timestamp": 20097.0,
       "event_type": "vehicle_dispatched",
       "data": {
-        "vehicle_id": 4,
+        "vehicle_id": 0,
         "incident_id": 45,
         "dispatch_time": 20097.0,
-        "vehicle_location_x": 635.253827558284,
-        "vehicle_location_y": 720.2544595525825,
-        "incident_location_x": 415.85569949787913,
-        "incident_location_y": 767.7349751680215,
-        "estimated_travel_time": 50.20518573872718,
-        "path_length": 7
+        "vehicle_location_x": 506.4371164692587,
+        "vehicle_location_y": 484.2097431223147,
+        "incident_location_x": 58.42062852541558,
+        "incident_location_y": 317.66894217001254,
+        "estimated_travel_time": 194.33051151831754,
+        "path_length": 22
       },
-      "real_time": "2025-10-21T22:40:48.226791"
+      "real_time": "2025-10-23T11:43:21.701588"
     },
     {
-      "timestamp": 20103.0,
+      "timestamp": 20118.0,
       "event_type": "vehicle_arrived_at_incident",
       "data": {
-        "vehicle_id": 4,
+        "vehicle_id": 0,
         "incident_id": 45,
-        "arrival_time": 20103.0
+        "arrival_time": 20118.0
       },
-      "real_time": "2025-10-21T22:40:48.227290"
+      "real_time": "2025-10-23T11:43:21.702087"
     },
     {
-      "timestamp": 20108.0,
+      "timestamp": 20123.0,
       "event_type": "incident_resolved",
       "data": {
         "incident_id": 45,
-        "vehicle_id": 4,
-        "response_time": 11.023239372854732,
-        "resolution_time": 20108.0
+        "vehicle_id": 0,
+        "response_time": 26.023239372854732,
+        "resolution_time": 20123.0
       },
-      "real_time": "2025-10-21T22:40:48.230793"
+      "real_time": "2025-10-23T11:43:21.706586"
     },
     {
-      "timestamp": 20121.0,
+      "timestamp": 20155.0,
       "event_type": "patient_delivered_to_hospital",
       "data": {
-        "vehicle_id": 4,
-        "delivery_time": 20121.0
+        "vehicle_id": 0,
+        "delivery_time": 20155.0
       },
-      "real_time": "2025-10-21T22:40:48.233290"
+      "real_time": "2025-10-23T11:43:21.710586"
     },
     {
-      "timestamp": 20128.0,
+      "timestamp": 20176.0,
       "event_type": "vehicle_returned_to_station",
       "data": {
-        "vehicle_id": 4,
-        "return_time": 20128.0
+        "vehicle_id": 0,
+        "return_time": 20176.0
       },
-      "real_time": "2025-10-21T22:40:48.233290"
+      "real_time": "2025-10-23T11:43:21.711087"
     },
     {
       "timestamp": 20283.750051455958,
       "event_type": "incident_received",
       "data": {
         "incident_id": 46,
-        "location_x": 249.82024421991332,
-        "location_y": 146.63417719156442
+        "location_x": 101.80995475127372,
+        "location_y": 720.61531593545
       },
-      "real_time": "2025-10-21T22:40:48.236298"
+      "real_time": "2025-10-23T11:43:21.712587"
     },
     {
       "timestamp": 20284.0,
       "event_type": "vehicle_dispatched",
       "data": {
-        "vehicle_id": 6,
+        "vehicle_id": 0,
         "incident_id": 46,
         "dispatch_time": 20284.0,
-        "vehicle_location_x": 550.49277877652,
-        "vehicle_location_y": 2.9612544409296953,
-        "incident_location_x": 249.82024421991332,
-        "incident_location_y": 146.63417719156442,
-        "estimated_travel_time": 97.48185475522962,
-        "path_length": 15
+        "vehicle_location_x": 506.4371164692587,
+        "vehicle_location_y": 484.2097431223147,
+        "incident_location_x": 101.80995475127372,
+        "incident_location_y": 720.61531593545,
+        "estimated_travel_time": 156.5304419823098,
+        "path_length": 25
       },
-      "real_time": "2025-10-21T22:40:48.245302"
+      "real_time": "2025-10-23T11:43:21.715085"
     },
     {
-      "timestamp": 20298.0,
+      "timestamp": 20308.0,
       "event_type": "vehicle_arrived_at_incident",
       "data": {
-        "vehicle_id": 6,
+        "vehicle_id": 0,
         "incident_id": 46,
-        "arrival_time": 20298.0
+        "arrival_time": 20308.0
       },
-      "real_time": "2025-10-21T22:40:48.245302"
+      "real_time": "2025-10-23T11:43:21.715586"
     },
     {
-      "timestamp": 20303.0,
+      "timestamp": 20313.0,
       "event_type": "incident_resolved",
       "data": {
         "incident_id": 46,
-        "vehicle_id": 6,
-        "response_time": 19.249948544042127,
-        "resolution_time": 20303.0
+        "vehicle_id": 0,
+        "response_time": 29.249948544042127,
+        "resolution_time": 20313.0
       },
-      "real_time": "2025-10-21T22:40:48.248813"
+      "real_time": "2025-10-23T11:43:21.719086"
     },
     {
-      "timestamp": 20321.0,
+      "timestamp": 20338.0,
       "event_type": "patient_delivered_to_hospital",
       "data": {
-        "vehicle_id": 6,
-        "delivery_time": 20321.0
+        "vehicle_id": 0,
+        "delivery_time": 20338.0
       },
-      "real_time": "2025-10-21T22:40:48.252321"
+      "real_time": "2025-10-23T11:43:21.722585"
     },
     {
-      "timestamp": 20325.0,
+      "timestamp": 20353.0,
       "event_type": "vehicle_returned_to_station",
       "data": {
-        "vehicle_id": 6,
-        "return_time": 20325.0
+        "vehicle_id": 0,
+        "return_time": 20353.0
       },
-      "real_time": "2025-10-21T22:40:48.252321"
+      "real_time": "2025-10-23T11:43:21.723087"
     },
     {
       "timestamp": 20650.805499410573,
       "event_type": "incident_received",
       "data": {
         "incident_id": 47,
-        "location_x": 726.6472447778425,
-        "location_y": 683.5847547479401
+        "location_x": 463.8628897289831,
+        "location_y": 148.88487937357655
       },
-      "real_time": "2025-10-21T22:40:48.257331"
+      "real_time": "2025-10-23T11:43:21.727585"
     },
     {
       "timestamp": 20651.0,
       "event_type": "vehicle_dispatched",
       "data": {
-        "vehicle_id": 4,
+        "vehicle_id": 6,
         "incident_id": 47,
         "dispatch_time": 20651.0,
-        "vehicle_location_x": 635.253827558284,
-        "vehicle_location_y": 720.2544595525825,
-        "incident_location_x": 726.6472447778425,
-        "incident_location_y": 683.5847547479401,
-        "estimated_travel_time": 28.79941651225525,
-        "path_length": 5
+        "vehicle_location_x": 550.49277877652,
+        "vehicle_location_y": 2.9612544409296953,
+        "incident_location_x": 463.8628897289831,
+        "incident_location_y": 148.88487937357655,
+        "estimated_travel_time": 46.08785016035427,
+        "path_length": 9
       },
-      "real_time": "2025-10-21T22:40:48.262830"
+      "real_time": "2025-10-23T11:43:21.730086"
     },
     {
-      "timestamp": 20655.0,
+      "timestamp": 20659.0,
       "event_type": "vehicle_arrived_at_incident",
       "data": {
-        "vehicle_id": 4,
+        "vehicle_id": 6,
         "incident_id": 47,
-        "arrival_time": 20655.0
+        "arrival_time": 20659.0
       },
-      "real_time": "2025-10-21T22:40:48.262830"
+      "real_time": "2025-10-23T11:43:21.730086"
     },
     {
-      "timestamp": 20660.0,
+      "timestamp": 20664.0,
       "event_type": "incident_resolved",
       "data": {
         "incident_id": 47,
-        "vehicle_id": 4,
-        "response_time": 9.194500589426752,
-        "resolution_time": 20660.0
+        "vehicle_id": 6,
+        "response_time": 13.194500589426752,
+        "resolution_time": 20664.0
       },
-      "real_time": "2025-10-21T22:40:48.265329"
+      "real_time": "2025-10-23T11:43:21.733587"
     },
     {
-      "timestamp": 20663.0,
+      "timestamp": 20676.0,
       "event_type": "patient_delivered_to_hospital",
       "data": {
-        "vehicle_id": 4,
-        "delivery_time": 20663.0
+        "vehicle_id": 6,
+        "delivery_time": 20676.0
       },
-      "real_time": "2025-10-21T22:40:48.268837"
+      "real_time": "2025-10-23T11:43:21.736586"
     },
     {
-      "timestamp": 20670.0,
+      "timestamp": 20680.0,
       "event_type": "vehicle_returned_to_station",
       "data": {
-        "vehicle_id": 4,
-        "return_time": 20670.0
+        "vehicle_id": 6,
+        "return_time": 20680.0
       },
-      "real_time": "2025-10-21T22:40:48.269337"
+      "real_time": "2025-10-23T11:43:21.736586"
     },
     {
       "timestamp": 21046.41739840147,
       "event_type": "incident_received",
       "data": {
         "incident_id": 48,
-        "location_x": 189.6733403580969,
-        "location_y": 102.12235635493342
+        "location_x": 0.21384739361782903,
+        "location_y": 370.9045590668998
       },
-      "real_time": "2025-10-21T22:40:48.274338"
+      "real_time": "2025-10-23T11:43:21.741585"
     },
     {
       "timestamp": 21047.0,
       "event_type": "vehicle_dispatched",
       "data": {
-        "vehicle_id": 6,
+        "vehicle_id": 0,
         "incident_id": 48,
         "dispatch_time": 21047.0,
-        "vehicle_location_x": 550.49277877652,
-        "vehicle_location_y": 2.9612544409296953,
-        "incident_location_x": 189.6733403580969,
-        "incident_location_y": 102.12235635493342,
-        "estimated_travel_time": 103.7800502730233,
-        "path_length": 15
+        "vehicle_location_x": 506.4371164692587,
+        "vehicle_location_y": 484.2097431223147,
+        "incident_location_x": 0.21384739361782903,
+        "incident_location_y": 370.9045590668998,
+        "estimated_travel_time": 206.55564061396962,
+        "path_length": 26
       },
-      "real_time": "2025-10-21T22:40:48.283918"
+      "real_time": "2025-10-23T11:43:21.744585"
     },
     {
-      "timestamp": 21061.0,
+      "timestamp": 21072.0,
       "event_type": "vehicle_arrived_at_incident",
       "data": {
-        "vehicle_id": 6,
+        "vehicle_id": 0,
         "incident_id": 48,
-        "arrival_time": 21061.0
+        "arrival_time": 21072.0
       },
-      "real_time": "2025-10-21T22:40:48.284380"
+      "real_time": "2025-10-23T11:43:21.745086"
     },
     {
-      "timestamp": 21066.0,
+      "timestamp": 21077.0,
       "event_type": "incident_resolved",
       "data": {
         "incident_id": 48,
-        "vehicle_id": 6,
-        "response_time": 19.582601598529436,
-        "resolution_time": 21066.0
+        "vehicle_id": 0,
+        "response_time": 30.582601598529436,
+        "resolution_time": 21077.0
       },
-      "real_time": "2025-10-21T22:40:48.288458"
+      "real_time": "2025-10-23T11:43:21.749086"
     },
     {
-      "timestamp": 21084.0,
+      "timestamp": 21115.0,
       "event_type": "patient_delivered_to_hospital",
       "data": {
-        "vehicle_id": 6,
-        "delivery_time": 21084.0
+        "vehicle_id": 0,
+        "delivery_time": 21115.0
       },
-      "real_time": "2025-10-21T22:40:48.290957"
+      "real_time": "2025-10-23T11:43:21.752585"
     },
     {
-      "timestamp": 21088.0,
+      "timestamp": 21136.0,
       "event_type": "vehicle_returned_to_station",
       "data": {
-        "vehicle_id": 6,
-        "return_time": 21088.0
+        "vehicle_id": 0,
+        "return_time": 21136.0
       },
-      "real_time": "2025-10-21T22:40:48.291459"
+      "real_time": "2025-10-23T11:43:21.753085"
     },
     {
       "timestamp": 21148.611698155422,
       "event_type": "incident_received",
       "data": {
         "incident_id": 49,
-        "location_x": 165.53337878908096,
-        "location_y": 901.6573352430917
+        "location_x": 686.8654311037725,
+        "location_y": 114.70024739120458
       },
-      "real_time": "2025-10-21T22:40:48.292457"
+      "real_time": "2025-10-23T11:43:21.753085"
     },
     {
       "timestamp": 21149.0,
       "event_type": "vehicle_dispatched",
       "data": {
-        "vehicle_id": 4,
+        "vehicle_id": 2,
         "incident_id": 49,
         "dispatch_time": 21149.0,
-        "vehicle_location_x": 635.253827558284,
-        "vehicle_location_y": 720.2544595525825,
-        "incident_location_x": 165.53337878908096,
-        "incident_location_y": 901.6573352430917,
-        "estimated_travel_time": 114.54587681106769,
-        "path_length": 18
+        "vehicle_location_x": 774.5769540690128,
+        "vehicle_location_y": 232.85281151775467,
+        "incident_location_x": 686.8654311037725,
+        "incident_location_y": 114.70024739120458,
+        "estimated_travel_time": 51.39226927641188,
+        "path_length": 7
       },
-      "real_time": "2025-10-21T22:40:48.301470"
+      "real_time": "2025-10-23T11:43:21.755585"
     },
     {
-      "timestamp": 21166.0,
+      "timestamp": 21155.0,
       "event_type": "vehicle_arrived_at_incident",
       "data": {
-        "vehicle_id": 4,
+        "vehicle_id": 2,
         "incident_id": 49,
-        "arrival_time": 21166.0
+        "arrival_time": 21155.0
       },
-      "real_time": "2025-10-21T22:40:48.301971"
+      "real_time": "2025-10-23T11:43:21.756086"
     },
     {
-      "timestamp": 21171.0,
+      "timestamp": 21160.0,
       "event_type": "incident_resolved",
       "data": {
         "incident_id": 49,
-        "vehicle_id": 4,
-        "response_time": 22.388301844577654,
-        "resolution_time": 21171.0
+        "vehicle_id": 2,
+        "response_time": 11.388301844577654,
+        "resolution_time": 21160.0
       },
-      "real_time": "2025-10-21T22:40:48.305470"
+      "real_time": "2025-10-23T11:43:21.758586"
     },
     {
-      "timestamp": 21195.0,
+      "timestamp": 21166.0,
       "event_type": "patient_delivered_to_hospital",
       "data": {
-        "vehicle_id": 4,
-        "delivery_time": 21195.0
+        "vehicle_id": 2,
+        "delivery_time": 21166.0
       },
-      "real_time": "2025-10-21T22:40:48.308978"
+      "real_time": "2025-10-23T11:43:21.761586"
     },
     {
-      "timestamp": 21202.0,
+      "timestamp": 21174.0,
       "event_type": "vehicle_returned_to_station",
       "data": {
-        "vehicle_id": 4,
-        "return_time": 21202.0
+        "vehicle_id": 2,
+        "return_time": 21174.0
       },
-      "real_time": "2025-10-21T22:40:48.308978"
+      "real_time": "2025-10-23T11:43:21.761586"
     },
     {
       "timestamp": 22895.015264523536,
       "event_type": "incident_received",
       "data": {
         "incident_id": 50,
-        "location_x": 885.3282092602635,
-        "location_y": 977.4297353100276
+        "location_x": 77.26399305772786,
+        "location_y": 142.96981082933112
       },
-      "real_time": "2025-10-21T22:40:48.334493"
+      "real_time": "2025-10-23T11:43:21.786586"
     },
     {
       "timestamp": 22896.0,
       "event_type": "vehicle_dispatched",
       "data": {
-        "vehicle_id": 8,
+        "vehicle_id": 6,
         "incident_id": 50,
         "dispatch_time": 22896.0,
-        "vehicle_location_x": 885.3282092602635,
-        "vehicle_location_y": 977.4297353100276,
-        "incident_location_x": 885.3282092602635,
-        "incident_location_y": 977.4297353100276,
-        "estimated_travel_time": 0.0,
-        "path_length": 1
+        "vehicle_location_x": 550.49277877652,
+        "vehicle_location_y": 2.9612544409296953,
+        "incident_location_x": 77.26399305772786,
+        "incident_location_y": 142.96981082933112,
+        "estimated_travel_time": 143.1540043529825,
+        "path_length": 19
       },
-      "real_time": "2025-10-21T22:40:48.341001"
+      "real_time": "2025-10-23T11:43:21.789087"
     },
     {
-      "timestamp": 22896.0,
+      "timestamp": 22914.0,
       "event_type": "vehicle_arrived_at_incident",
       "data": {
-        "vehicle_id": 8,
+        "vehicle_id": 6,
         "incident_id": 50,
-        "arrival_time": 22896.0
+        "arrival_time": 22914.0
       },
-      "real_time": "2025-10-21T22:40:48.341001"
+      "real_time": "2025-10-23T11:43:21.789586"
     },
     {
-      "timestamp": 22901.0,
+      "timestamp": 22919.0,
       "event_type": "incident_resolved",
       "data": {
         "incident_id": 50,
-        "vehicle_id": 8,
-        "response_time": 5.984735476464266,
-        "resolution_time": 22901.0
+        "vehicle_id": 6,
+        "response_time": 23.984735476464266,
+        "resolution_time": 22919.0
       },
-      "real_time": "2025-10-21T22:40:48.344003"
+      "real_time": "2025-10-23T11:43:21.793085"
     },
     {
-      "timestamp": 22913.0,
+      "timestamp": 22941.0,
       "event_type": "patient_delivered_to_hospital",
       "data": {
-        "vehicle_id": 8,
-        "delivery_time": 22913.0
+        "vehicle_id": 6,
+        "delivery_time": 22941.0
       },
-      "real_time": "2025-10-21T22:40:48.347013"
+      "real_time": "2025-10-23T11:43:21.796587"
     },
     {
-      "timestamp": 22925.0,
+      "timestamp": 22945.0,
       "event_type": "vehicle_returned_to_station",
       "data": {
-        "vehicle_id": 8,
-        "return_time": 22925.0
+        "vehicle_id": 6,
+        "return_time": 22945.0
       },
-      "real_time": "2025-10-21T22:40:48.347513"
+      "real_time": "2025-10-23T11:43:21.796587"
     },
     {
       "timestamp": 23641.137953092606,
       "event_type": "incident_received",
       "data": {
         "incident_id": 51,
-        "location_x": 783.5585445978786,
-        "location_y": 99.72284741720588
+        "location_x": 101.71697762344145,
+        "location_y": 685.0356206172883
       },
-      "real_time": "2025-10-21T22:40:48.358027"
+      "real_time": "2025-10-23T11:43:21.806585"
     },
     {
       "timestamp": 23642.0,
       "event_type": "vehicle_dispatched",
       "data": {
-        "vehicle_id": 2,
+        "vehicle_id": 0,
         "incident_id": 51,
         "dispatch_time": 23642.0,
-        "vehicle_location_x": 774.5769540690128,
-        "vehicle_location_y": 232.85281151775467,
-        "incident_location_x": 783.5585445978786,
-        "incident_location_y": 99.72284741720588,
-        "estimated_travel_time": 35.735061478028264,
-        "path_length": 4
+        "vehicle_location_x": 506.4371164692587,
+        "vehicle_location_y": 484.2097431223147,
+        "incident_location_x": 101.71697762344145,
+        "incident_location_y": 685.0356206172883,
+        "estimated_travel_time": 179.07065685378646,
+        "path_length": 26
       },
-      "real_time": "2025-10-21T22:40:48.364028"
+      "real_time": "2025-10-23T11:43:21.809586"
     },
     {
-      "timestamp": 23645.0,
+      "timestamp": 23667.0,
       "event_type": "vehicle_arrived_at_incident",
       "data": {
-        "vehicle_id": 2,
+        "vehicle_id": 0,
         "incident_id": 51,
-        "arrival_time": 23645.0
+        "arrival_time": 23667.0
       },
-      "real_time": "2025-10-21T22:40:48.364028"
+      "real_time": "2025-10-23T11:43:21.809586"
     },
     {
-      "timestamp": 23650.0,
+      "timestamp": 23672.0,
       "event_type": "incident_resolved",
       "data": {
         "incident_id": 51,
-        "vehicle_id": 2,
-        "response_time": 8.86204690739396,
-        "resolution_time": 23650.0
+        "vehicle_id": 0,
+        "response_time": 30.86204690739396,
+        "resolution_time": 23672.0
       },
-      "real_time": "2025-10-21T22:40:48.367536"
+      "real_time": "2025-10-23T11:43:21.813588"
     },
     {
-      "timestamp": 23656.0,
+      "timestamp": 23698.0,
       "event_type": "patient_delivered_to_hospital",
       "data": {
-        "vehicle_id": 2,
-        "delivery_time": 23656.0
+        "vehicle_id": 0,
+        "delivery_time": 23698.0
       },
-      "real_time": "2025-10-21T22:40:48.370534"
+      "real_time": "2025-10-23T11:43:21.817086"
     },
     {
-      "timestamp": 23664.0,
+      "timestamp": 23713.0,
       "event_type": "vehicle_returned_to_station",
       "data": {
-        "vehicle_id": 2,
-        "return_time": 23664.0
+        "vehicle_id": 0,
+        "return_time": 23713.0
       },
-      "real_time": "2025-10-21T22:40:48.370534"
+      "real_time": "2025-10-23T11:43:21.817586"
     },
     {
       "timestamp": 25043.6851627384,
       "event_type": "incident_received",
       "data": {
         "incident_id": 52,
-        "location_x": 155.96913159355265,
-        "location_y": 677.558081136842
+        "location_x": 634.1473997395905,
+        "location_y": 435.7917449453138
       },
-      "real_time": "2025-10-21T22:40:48.390556"
+      "real_time": "2025-10-23T11:43:21.837086"
     },
     {
       "timestamp": 25044.0,
       "event_type": "vehicle_dispatched",
       "data": {
-        "vehicle_id": 4,
+        "vehicle_id": 0,
         "incident_id": 52,
         "dispatch_time": 25044.0,
-        "vehicle_location_x": 635.253827558284,
-        "vehicle_location_y": 720.2544595525825,
-        "incident_location_x": 155.96913159355265,
-        "incident_location_y": 677.558081136842,
-        "estimated_travel_time": 98.43897419380788,
-        "path_length": 17
+        "vehicle_location_x": 506.4371164692587,
+        "vehicle_location_y": 484.2097431223147,
+        "incident_location_x": 634.1473997395905,
+        "incident_location_y": 435.7917449453138,
+        "estimated_travel_time": 47.601621513783385,
+        "path_length": 8
       },
-      "real_time": "2025-10-21T22:40:48.399563"
+      "real_time": "2025-10-23T11:43:21.840086"
     },
     {
-      "timestamp": 25060.0,
+      "timestamp": 25051.0,
       "event_type": "vehicle_arrived_at_incident",
       "data": {
-        "vehicle_id": 4,
+        "vehicle_id": 0,
         "incident_id": 52,
-        "arrival_time": 25060.0
+        "arrival_time": 25051.0
       },
-      "real_time": "2025-10-21T22:40:48.400562"
+      "real_time": "2025-10-23T11:43:21.840586"
     },
     {
-      "timestamp": 25065.0,
+      "timestamp": 25056.0,
       "event_type": "incident_resolved",
       "data": {
         "incident_id": 52,
-        "vehicle_id": 4,
-        "response_time": 21.314837261601497,
-        "resolution_time": 25065.0
+        "vehicle_id": 0,
+        "response_time": 12.314837261601497,
+        "resolution_time": 25056.0
       },
-      "real_time": "2025-10-21T22:40:48.404062"
+      "real_time": "2025-10-23T11:43:21.845586"
     },
     {
-      "timestamp": 25088.0,
+      "timestamp": 25069.0,
       "event_type": "patient_delivered_to_hospital",
       "data": {
-        "vehicle_id": 4,
-        "delivery_time": 25088.0
+        "vehicle_id": 0,
+        "delivery_time": 25069.0
       },
-      "real_time": "2025-10-21T22:40:48.407070"
+      "real_time": "2025-10-23T11:43:21.848587"
     },
     {
-      "timestamp": 25095.0,
+      "timestamp": 25084.0,
       "event_type": "vehicle_returned_to_station",
       "data": {
-        "vehicle_id": 4,
-        "return_time": 25095.0
+        "vehicle_id": 0,
+        "return_time": 25084.0
       },
-      "real_time": "2025-10-21T22:40:48.407070"
+      "real_time": "2025-10-23T11:43:21.849086"
     },
     {
       "timestamp": 26169.761161505496,
       "event_type": "incident_received",
       "data": {
         "incident_id": 53,
-        "location_x": 634.3550486579608,
-        "location_y": 491.78028682518215
+        "location_x": 126.69683257903009,
+        "location_y": 649.3219992189034
       },
-      "real_time": "2025-10-21T22:40:48.423082"
+      "real_time": "2025-10-23T11:43:21.865616"
     },
     {
       "timestamp": 26170.0,
@@ -3464,516 +3464,516 @@
         "dispatch_time": 26170.0,
         "vehicle_location_x": 506.4371164692587,
         "vehicle_location_y": 484.2097431223147,
-        "incident_location_x": 634.3550486579608,
-        "incident_location_y": 491.78028682518215,
-        "estimated_travel_time": 38.821337409756495,
-        "path_length": 7
+        "incident_location_x": 126.69683257903009,
+        "incident_location_y": 649.3219992189034,
+        "estimated_travel_time": 170.2792953586415,
+        "path_length": 25
       },
-      "real_time": "2025-10-21T22:40:48.427588"
+      "real_time": "2025-10-23T11:43:21.868586"
     },
     {
-      "timestamp": 26176.0,
+      "timestamp": 26194.0,
       "event_type": "vehicle_arrived_at_incident",
       "data": {
         "vehicle_id": 0,
         "incident_id": 53,
-        "arrival_time": 26176.0
+        "arrival_time": 26194.0
       },
-      "real_time": "2025-10-21T22:40:48.427588"
+      "real_time": "2025-10-23T11:43:21.869589"
     },
     {
-      "timestamp": 26181.0,
+      "timestamp": 26199.0,
       "event_type": "incident_resolved",
       "data": {
         "incident_id": 53,
         "vehicle_id": 0,
-        "response_time": 11.238838494504307,
-        "resolution_time": 26181.0
+        "response_time": 29.238838494504307,
+        "resolution_time": 26199.0
       },
-      "real_time": "2025-10-21T22:40:48.431089"
+      "real_time": "2025-10-23T11:43:21.873586"
     },
     {
-      "timestamp": 26192.0,
+      "timestamp": 26224.0,
       "event_type": "patient_delivered_to_hospital",
       "data": {
         "vehicle_id": 0,
-        "delivery_time": 26192.0
+        "delivery_time": 26224.0
       },
-      "real_time": "2025-10-21T22:40:48.434596"
+      "real_time": "2025-10-23T11:43:21.876585"
     },
     {
-      "timestamp": 26207.0,
+      "timestamp": 26239.0,
       "event_type": "vehicle_returned_to_station",
       "data": {
         "vehicle_id": 0,
-        "return_time": 26207.0
+        "return_time": 26239.0
       },
-      "real_time": "2025-10-21T22:40:48.434596"
+      "real_time": "2025-10-23T11:43:21.877086"
     },
     {
       "timestamp": 26625.288367697132,
       "event_type": "incident_received",
       "data": {
         "incident_id": 54,
-        "location_x": 850.1115725529362,
-        "location_y": 338.33820055428714
+        "location_x": 554.311039484082,
+        "location_y": 165.5177545061973
       },
-      "real_time": "2025-10-21T22:40:48.441103"
+      "real_time": "2025-10-23T11:43:21.882585"
     },
     {
       "timestamp": 26626.0,
       "event_type": "vehicle_dispatched",
       "data": {
-        "vehicle_id": 2,
+        "vehicle_id": 6,
         "incident_id": 54,
         "dispatch_time": 26626.0,
-        "vehicle_location_x": 774.5769540690128,
-        "vehicle_location_y": 232.85281151775467,
-        "incident_location_x": 850.1115725529362,
-        "incident_location_y": 338.33820055428714,
-        "estimated_travel_time": 39.85579210221874,
-        "path_length": 5
+        "vehicle_location_x": 550.49277877652,
+        "vehicle_location_y": 2.9612544409296953,
+        "incident_location_x": 554.311039484082,
+        "incident_location_y": 165.5177545061973,
+        "estimated_travel_time": 58.194238669777974,
+        "path_length": 9
       },
-      "real_time": "2025-10-21T22:40:48.447118"
+      "real_time": "2025-10-23T11:43:21.885087"
     },
     {
-      "timestamp": 26630.0,
+      "timestamp": 26634.0,
       "event_type": "vehicle_arrived_at_incident",
       "data": {
-        "vehicle_id": 2,
+        "vehicle_id": 6,
         "incident_id": 54,
-        "arrival_time": 26630.0
+        "arrival_time": 26634.0
       },
-      "real_time": "2025-10-21T22:40:48.447118"
+      "real_time": "2025-10-23T11:43:21.885087"
     },
     {
-      "timestamp": 26635.0,
+      "timestamp": 26639.0,
       "event_type": "incident_resolved",
       "data": {
         "incident_id": 54,
-        "vehicle_id": 2,
-        "response_time": 9.711632302867656,
-        "resolution_time": 26635.0
+        "vehicle_id": 6,
+        "response_time": 13.711632302867656,
+        "resolution_time": 26639.0
       },
-      "real_time": "2025-10-21T22:40:48.450616"
+      "real_time": "2025-10-23T11:43:21.888087"
     },
     {
-      "timestamp": 26644.0,
+      "timestamp": 26650.0,
       "event_type": "patient_delivered_to_hospital",
       "data": {
-        "vehicle_id": 2,
-        "delivery_time": 26644.0
+        "vehicle_id": 6,
+        "delivery_time": 26650.0
       },
-      "real_time": "2025-10-21T22:40:48.453625"
+      "real_time": "2025-10-23T11:43:21.891585"
     },
     {
-      "timestamp": 26652.0,
+      "timestamp": 26654.0,
       "event_type": "vehicle_returned_to_station",
       "data": {
-        "vehicle_id": 2,
-        "return_time": 26652.0
+        "vehicle_id": 6,
+        "return_time": 26654.0
       },
-      "real_time": "2025-10-21T22:40:48.454125"
+      "real_time": "2025-10-23T11:43:21.891585"
     },
     {
       "timestamp": 27900.006057331833,
       "event_type": "incident_received",
       "data": {
         "incident_id": 55,
-        "location_x": 31.73619289657229,
-        "location_y": 404.60928926167344
+        "location_x": 96.2065331926795,
+        "location_y": 410.20070311191415
       },
-      "real_time": "2025-10-21T22:40:48.472145"
+      "real_time": "2025-10-23T11:43:21.909587"
     },
     {
       "timestamp": 27901.0,
       "event_type": "vehicle_dispatched",
       "data": {
-        "vehicle_id": 4,
+        "vehicle_id": 0,
         "incident_id": 55,
         "dispatch_time": 27901.0,
-        "vehicle_location_x": 635.253827558284,
-        "vehicle_location_y": 720.2544595525825,
-        "incident_location_x": 31.73619289657229,
-        "incident_location_y": 404.60928926167344,
-        "estimated_travel_time": 159.91585030628406,
-        "path_length": 29
+        "vehicle_location_x": 506.4371164692587,
+        "vehicle_location_y": 484.2097431223147,
+        "incident_location_x": 96.2065331926795,
+        "incident_location_y": 410.20070311191415,
+        "estimated_travel_time": 196.24405705170173,
+        "path_length": 21
       },
-      "real_time": "2025-10-21T22:40:48.482652"
+      "real_time": "2025-10-23T11:43:21.912587"
     },
     {
-      "timestamp": 27929.0,
+      "timestamp": 27921.0,
       "event_type": "vehicle_arrived_at_incident",
       "data": {
-        "vehicle_id": 4,
+        "vehicle_id": 0,
         "incident_id": 55,
-        "arrival_time": 27929.0
+        "arrival_time": 27921.0
       },
-      "real_time": "2025-10-21T22:40:48.483151"
+      "real_time": "2025-10-23T11:43:21.912587"
     },
     {
-      "timestamp": 27934.0,
+      "timestamp": 27926.0,
       "event_type": "incident_resolved",
       "data": {
         "incident_id": 55,
-        "vehicle_id": 4,
-        "response_time": 33.99394266816671,
-        "resolution_time": 27934.0
+        "vehicle_id": 0,
+        "response_time": 25.99394266816671,
+        "resolution_time": 27926.0
       },
-      "real_time": "2025-10-21T22:40:48.487660"
+      "real_time": "2025-10-23T11:43:21.917086"
     },
     {
       "timestamp": 27946.33378680839,
       "event_type": "incident_received",
       "data": {
         "incident_id": 56,
-        "location_x": 38.988408851633714,
-        "location_y": 76.52759435285894
+        "location_x": 580.6297650777245,
+        "location_y": 339.39844868951906
       },
-      "real_time": "2025-10-21T22:40:48.488161"
+      "real_time": "2025-10-23T11:43:21.917586"
     },
     {
       "timestamp": 27947.0,
       "event_type": "vehicle_dispatched",
       "data": {
-        "vehicle_id": 6,
+        "vehicle_id": 1,
         "incident_id": 56,
         "dispatch_time": 27947.0,
-        "vehicle_location_x": 550.49277877652,
-        "vehicle_location_y": 2.9612544409296953,
-        "incident_location_x": 38.988408851633714,
-        "incident_location_y": 76.52759435285894,
-        "estimated_travel_time": 141.89982826438774,
-        "path_length": 19
+        "vehicle_location_x": 506.4371164692587,
+        "vehicle_location_y": 484.2097431223147,
+        "incident_location_x": 580.6297650777245,
+        "incident_location_y": 339.39844868951906,
+        "estimated_travel_time": 89.06583016508927,
+        "path_length": 10
       },
-      "real_time": "2025-10-21T22:40:48.497169"
+      "real_time": "2025-10-23T11:43:21.920086"
     },
     {
-      "timestamp": 27965.0,
+      "timestamp": 27956.0,
       "event_type": "vehicle_arrived_at_incident",
       "data": {
-        "vehicle_id": 6,
+        "vehicle_id": 1,
         "incident_id": 56,
-        "arrival_time": 27965.0
+        "arrival_time": 27956.0
       },
-      "real_time": "2025-10-21T22:40:48.498167"
+      "real_time": "2025-10-23T11:43:21.920588"
     },
     {
-      "timestamp": 27970.0,
+      "timestamp": 27959.0,
       "event_type": "patient_delivered_to_hospital",
       "data": {
-        "vehicle_id": 4,
-        "delivery_time": 27970.0
+        "vehicle_id": 0,
+        "delivery_time": 27959.0
       },
-      "real_time": "2025-10-21T22:40:48.501166"
+      "real_time": "2025-10-23T11:43:21.924585"
     },
     {
-      "timestamp": 27970.0,
+      "timestamp": 27961.0,
       "event_type": "incident_resolved",
       "data": {
         "incident_id": 56,
-        "vehicle_id": 6,
-        "response_time": 23.66621319160913,
-        "resolution_time": 27970.0
+        "vehicle_id": 1,
+        "response_time": 14.666213191609131,
+        "resolution_time": 27961.0
       },
-      "real_time": "2025-10-21T22:40:48.504667"
+      "real_time": "2025-10-23T11:43:21.928587"
     },
     {
-      "timestamp": 27982.0,
-      "event_type": "vehicle_returned_to_station",
-      "data": {
-        "vehicle_id": 4,
-        "return_time": 27982.0
-      },
-      "real_time": "2025-10-21T22:40:48.505168"
-    },
-    {
-      "timestamp": 27992.0,
+      "timestamp": 27974.0,
       "event_type": "patient_delivered_to_hospital",
       "data": {
-        "vehicle_id": 6,
-        "delivery_time": 27992.0
+        "vehicle_id": 1,
+        "delivery_time": 27974.0
       },
-      "real_time": "2025-10-21T22:40:48.508675"
+      "real_time": "2025-10-23T11:43:21.932087"
     },
     {
-      "timestamp": 27996.0,
+      "timestamp": 27980.0,
       "event_type": "vehicle_returned_to_station",
       "data": {
-        "vehicle_id": 6,
-        "return_time": 27996.0
+        "vehicle_id": 0,
+        "return_time": 27980.0
       },
-      "real_time": "2025-10-21T22:40:48.509176"
+      "real_time": "2025-10-23T11:43:21.932087"
+    },
+    {
+      "timestamp": 27995.0,
+      "event_type": "vehicle_returned_to_station",
+      "data": {
+        "vehicle_id": 1,
+        "return_time": 27995.0
+      },
+      "real_time": "2025-10-23T11:43:21.932586"
     },
     {
       "timestamp": 28055.401134124026,
       "event_type": "incident_received",
       "data": {
         "incident_id": 57,
-        "location_x": 886.4098431784073,
-        "location_y": 379.7027585054103
+        "location_x": 190.8820430172738,
+        "location_y": 291.66496158939043
       },
-      "real_time": "2025-10-21T22:40:48.510176"
+      "real_time": "2025-10-23T11:43:21.933586"
     },
     {
       "timestamp": 28056.0,
       "event_type": "vehicle_dispatched",
       "data": {
-        "vehicle_id": 2,
+        "vehicle_id": 0,
         "incident_id": 57,
         "dispatch_time": 28056.0,
-        "vehicle_location_x": 774.5769540690128,
-        "vehicle_location_y": 232.85281151775467,
-        "incident_location_x": 886.4098431784073,
-        "incident_location_y": 379.7027585054103,
-        "estimated_travel_time": 61.17601286081838,
-        "path_length": 7
+        "vehicle_location_x": 506.4371164692587,
+        "vehicle_location_y": 484.2097431223147,
+        "incident_location_x": 190.8820430172738,
+        "incident_location_y": 291.66496158939043,
+        "estimated_travel_time": 174.75205461429755,
+        "path_length": 17
       },
-      "real_time": "2025-10-21T22:40:48.515177"
+      "real_time": "2025-10-23T11:43:21.936586"
     },
     {
-      "timestamp": 28062.0,
+      "timestamp": 28072.0,
       "event_type": "vehicle_arrived_at_incident",
       "data": {
-        "vehicle_id": 2,
+        "vehicle_id": 0,
         "incident_id": 57,
-        "arrival_time": 28062.0
+        "arrival_time": 28072.0
       },
-      "real_time": "2025-10-21T22:40:48.515177"
-    },
-    {
-      "timestamp": 28067.0,
-      "event_type": "incident_resolved",
-      "data": {
-        "incident_id": 57,
-        "vehicle_id": 2,
-        "response_time": 11.598865875974298,
-        "resolution_time": 28067.0
-      },
-      "real_time": "2025-10-21T22:40:48.520184"
+      "real_time": "2025-10-23T11:43:21.937086"
     },
     {
       "timestamp": 28077.0,
-      "event_type": "patient_delivered_to_hospital",
+      "event_type": "incident_resolved",
       "data": {
-        "vehicle_id": 2,
-        "delivery_time": 28077.0
+        "incident_id": 57,
+        "vehicle_id": 0,
+        "response_time": 21.598865875974298,
+        "resolution_time": 28077.0
       },
-      "real_time": "2025-10-21T22:40:48.523186"
+      "real_time": "2025-10-23T11:43:21.941085"
     },
     {
       "timestamp": 28078.54211696744,
       "event_type": "incident_received",
       "data": {
         "incident_id": 58,
-        "location_x": 816.7823715366842,
-        "location_y": 69.68248358466556
+        "location_x": 778.6493522590814,
+        "location_y": 479.79018247442286
       },
-      "real_time": "2025-10-21T22:40:48.523186"
+      "real_time": "2025-10-23T11:43:21.941586"
     },
     {
       "timestamp": 28079.0,
       "event_type": "vehicle_dispatched",
       "data": {
-        "vehicle_id": 3,
+        "vehicle_id": 2,
         "incident_id": 58,
         "dispatch_time": 28079.0,
         "vehicle_location_x": 774.5769540690128,
         "vehicle_location_y": 232.85281151775467,
-        "incident_location_x": 816.7823715366842,
-        "incident_location_y": 69.68248358466556,
-        "estimated_travel_time": 53.25701935651372,
-        "path_length": 5
+        "incident_location_x": 778.6493522590814,
+        "incident_location_y": 479.79018247442286,
+        "estimated_travel_time": 51.01224588891954,
+        "path_length": 7
       },
-      "real_time": "2025-10-21T22:40:48.530192"
-    },
-    {
-      "timestamp": 28083.0,
-      "event_type": "vehicle_arrived_at_incident",
-      "data": {
-        "vehicle_id": 3,
-        "incident_id": 58,
-        "arrival_time": 28083.0
-      },
-      "real_time": "2025-10-21T22:40:48.530692"
+      "real_time": "2025-10-23T11:43:21.944085"
     },
     {
       "timestamp": 28085.0,
-      "event_type": "vehicle_returned_to_station",
+      "event_type": "vehicle_arrived_at_incident",
       "data": {
         "vehicle_id": 2,
-        "return_time": 28085.0
+        "incident_id": 58,
+        "arrival_time": 28085.0
       },
-      "real_time": "2025-10-21T22:40:48.530692"
+      "real_time": "2025-10-23T11:43:21.944587"
     },
     {
-      "timestamp": 28088.0,
+      "timestamp": 28090.0,
       "event_type": "incident_resolved",
       "data": {
         "incident_id": 58,
-        "vehicle_id": 3,
-        "response_time": 9.457883032559039,
-        "resolution_time": 28088.0
+        "vehicle_id": 2,
+        "response_time": 11.457883032559039,
+        "resolution_time": 28090.0
       },
-      "real_time": "2025-10-21T22:40:48.534191"
-    },
-    {
-      "timestamp": 28092.0,
-      "event_type": "patient_delivered_to_hospital",
-      "data": {
-        "vehicle_id": 3,
-        "delivery_time": 28092.0
-      },
-      "real_time": "2025-10-21T22:40:48.537200"
+      "real_time": "2025-10-23T11:43:21.947587"
     },
     {
       "timestamp": 28100.0,
+      "event_type": "patient_delivered_to_hospital",
+      "data": {
+        "vehicle_id": 2,
+        "delivery_time": 28100.0
+      },
+      "real_time": "2025-10-23T11:43:21.950587"
+    },
+    {
+      "timestamp": 28104.0,
+      "event_type": "patient_delivered_to_hospital",
+      "data": {
+        "vehicle_id": 0,
+        "delivery_time": 28104.0
+      },
+      "real_time": "2025-10-23T11:43:21.954585"
+    },
+    {
+      "timestamp": 28116.0,
       "event_type": "vehicle_returned_to_station",
       "data": {
-        "vehicle_id": 3,
-        "return_time": 28100.0
+        "vehicle_id": 2,
+        "return_time": 28116.0
       },
-      "real_time": "2025-10-21T22:40:48.537200"
+      "real_time": "2025-10-23T11:43:21.955086"
+    },
+    {
+      "timestamp": 28125.0,
+      "event_type": "vehicle_returned_to_station",
+      "data": {
+        "vehicle_id": 0,
+        "return_time": 28125.0
+      },
+      "real_time": "2025-10-23T11:43:21.955086"
     },
     {
       "timestamp": 28275.308160368986,
       "event_type": "incident_received",
       "data": {
         "incident_id": 59,
-        "location_x": 256.96708609664745,
-        "location_y": 683.618236268128
+        "location_x": 731.4510630383124,
+        "location_y": 336.4929967821478
       },
-      "real_time": "2025-10-21T22:40:48.540703"
+      "real_time": "2025-10-23T11:43:21.957586"
     },
     {
       "timestamp": 28276.0,
       "event_type": "vehicle_dispatched",
       "data": {
-        "vehicle_id": 4,
+        "vehicle_id": 2,
         "incident_id": 59,
         "dispatch_time": 28276.0,
-        "vehicle_location_x": 635.253827558284,
-        "vehicle_location_y": 720.2544595525825,
-        "incident_location_x": 256.96708609664745,
-        "incident_location_y": 683.618236268128,
-        "estimated_travel_time": 84.68192304766166,
-        "path_length": 14
+        "vehicle_location_x": 774.5769540690128,
+        "vehicle_location_y": 232.85281151775467,
+        "incident_location_x": 731.4510630383124,
+        "incident_location_y": 336.4929967821478,
+        "estimated_travel_time": 33.265809047894244,
+        "path_length": 5
       },
-      "real_time": "2025-10-21T22:40:48.548212"
+      "real_time": "2025-10-23T11:43:21.960086"
     },
     {
-      "timestamp": 28289.0,
+      "timestamp": 28280.0,
       "event_type": "vehicle_arrived_at_incident",
       "data": {
-        "vehicle_id": 4,
+        "vehicle_id": 2,
         "incident_id": 59,
-        "arrival_time": 28289.0
+        "arrival_time": 28280.0
       },
-      "real_time": "2025-10-21T22:40:48.548711"
+      "real_time": "2025-10-23T11:43:21.960086"
     },
     {
-      "timestamp": 28294.0,
+      "timestamp": 28285.0,
       "event_type": "incident_resolved",
       "data": {
         "incident_id": 59,
-        "vehicle_id": 4,
-        "response_time": 18.691839631013863,
-        "resolution_time": 28294.0
+        "vehicle_id": 2,
+        "response_time": 9.691839631013863,
+        "resolution_time": 28285.0
       },
-      "real_time": "2025-10-21T22:40:48.553749"
+      "real_time": "2025-10-23T11:43:21.963587"
     },
     {
-      "timestamp": 28314.0,
+      "timestamp": 28296.0,
       "event_type": "patient_delivered_to_hospital",
       "data": {
-        "vehicle_id": 4,
-        "delivery_time": 28314.0
+        "vehicle_id": 2,
+        "delivery_time": 28296.0
       },
-      "real_time": "2025-10-21T22:40:48.556756"
+      "real_time": "2025-10-23T11:43:21.967085"
     },
     {
-      "timestamp": 28321.0,
+      "timestamp": 28304.0,
       "event_type": "vehicle_returned_to_station",
       "data": {
-        "vehicle_id": 4,
-        "return_time": 28321.0
+        "vehicle_id": 2,
+        "return_time": 28304.0
       },
-      "real_time": "2025-10-21T22:40:48.557256"
+      "real_time": "2025-10-23T11:43:21.967085"
     },
     {
       "timestamp": 28521.373306266094,
       "event_type": "incident_received",
       "data": {
         "incident_id": 60,
-        "location_x": 489.7725159611327,
-        "location_y": 840.4642770781597
+        "location_x": 299.4080456206424,
+        "location_y": 268.43622700485554
       },
-      "real_time": "2025-10-21T22:40:48.559760"
+      "real_time": "2025-10-23T11:43:21.970585"
     },
     {
       "timestamp": 28522.0,
       "event_type": "vehicle_dispatched",
       "data": {
-        "vehicle_id": 4,
+        "vehicle_id": 0,
         "incident_id": 60,
         "dispatch_time": 28522.0,
-        "vehicle_location_x": 635.253827558284,
-        "vehicle_location_y": 720.2544595525825,
-        "incident_location_x": 489.7725159611327,
-        "incident_location_y": 840.4642770781597,
-        "estimated_travel_time": 74.19339645451545,
-        "path_length": 7
+        "vehicle_location_x": 506.4371164692587,
+        "vehicle_location_y": 484.2097431223147,
+        "incident_location_x": 299.4080456206424,
+        "incident_location_y": 268.43622700485554,
+        "estimated_travel_time": 141.38248081819893,
+        "path_length": 14
       },
-      "real_time": "2025-10-21T22:40:48.566801"
+      "real_time": "2025-10-23T11:43:21.974585"
     },
     {
-      "timestamp": 28528.0,
+      "timestamp": 28535.0,
       "event_type": "vehicle_arrived_at_incident",
       "data": {
-        "vehicle_id": 4,
+        "vehicle_id": 0,
         "incident_id": 60,
-        "arrival_time": 28528.0
+        "arrival_time": 28535.0
       },
-      "real_time": "2025-10-21T22:40:48.566801"
+      "real_time": "2025-10-23T11:43:21.975086"
     },
     {
-      "timestamp": 28533.0,
+      "timestamp": 28540.0,
       "event_type": "incident_resolved",
       "data": {
         "incident_id": 60,
-        "vehicle_id": 4,
-        "response_time": 11.626693733905995,
-        "resolution_time": 28533.0
+        "vehicle_id": 0,
+        "response_time": 18.626693733905995,
+        "resolution_time": 28540.0
       },
-      "real_time": "2025-10-21T22:40:48.570800"
+      "real_time": "2025-10-23T11:43:21.978586"
     },
     {
-      "timestamp": 28546.0,
+      "timestamp": 28559.0,
       "event_type": "patient_delivered_to_hospital",
       "data": {
-        "vehicle_id": 4,
-        "delivery_time": 28546.0
+        "vehicle_id": 0,
+        "delivery_time": 28559.0
       },
-      "real_time": "2025-10-21T22:40:48.574302"
+      "real_time": "2025-10-23T11:43:21.981586"
     },
     {
-      "timestamp": 28553.0,
+      "timestamp": 28580.0,
       "event_type": "vehicle_returned_to_station",
       "data": {
-        "vehicle_id": 4,
-        "return_time": 28553.0
+        "vehicle_id": 0,
+        "return_time": 28580.0
       },
-      "real_time": "2025-10-21T22:40:48.574302"
+      "real_time": "2025-10-23T11:43:21.982085"
     },
     {
       "timestamp": 28679.653527870505,
       "event_type": "incident_received",
       "data": {
         "incident_id": 61,
-        "location_x": 600.3316184219117,
-        "location_y": 164.91880731386803
+        "location_x": 632.8023306267294,
+        "location_y": 3.2030654190662853
       },
-      "real_time": "2025-10-21T22:40:48.576809"
+      "real_time": "2025-10-23T11:43:21.983585"
     },
     {
       "timestamp": 28680.0,
@@ -3984,62 +3984,62 @@
         "dispatch_time": 28680.0,
         "vehicle_location_x": 550.49277877652,
         "vehicle_location_y": 2.9612544409296953,
-        "incident_location_x": 600.3316184219117,
-        "incident_location_y": 164.91880731386803,
-        "estimated_travel_time": 73.15601000249026,
-        "path_length": 10
+        "incident_location_x": 632.8023306267294,
+        "incident_location_y": 3.2030654190662853,
+        "estimated_travel_time": 19.894754191588984,
+        "path_length": 2
       },
-      "real_time": "2025-10-21T22:40:48.583809"
+      "real_time": "2025-10-23T11:43:21.986085"
     },
     {
-      "timestamp": 28689.0,
+      "timestamp": 28681.0,
       "event_type": "vehicle_arrived_at_incident",
       "data": {
         "vehicle_id": 6,
         "incident_id": 61,
-        "arrival_time": 28689.0
+        "arrival_time": 28681.0
       },
-      "real_time": "2025-10-21T22:40:48.584307"
+      "real_time": "2025-10-23T11:43:21.986085"
     },
     {
-      "timestamp": 28694.0,
+      "timestamp": 28686.0,
       "event_type": "incident_resolved",
       "data": {
         "incident_id": 61,
         "vehicle_id": 6,
-        "response_time": 14.346472129494941,
-        "resolution_time": 28694.0
+        "response_time": 6.346472129494941,
+        "resolution_time": 28686.0
       },
-      "real_time": "2025-10-21T22:40:48.587816"
+      "real_time": "2025-10-23T11:43:21.989585"
     },
     {
-      "timestamp": 28704.0,
+      "timestamp": 28689.0,
       "event_type": "patient_delivered_to_hospital",
       "data": {
         "vehicle_id": 6,
-        "delivery_time": 28704.0
+        "delivery_time": 28689.0
       },
-      "real_time": "2025-10-21T22:40:48.590316"
+      "real_time": "2025-10-23T11:43:21.992086"
     },
     {
-      "timestamp": 28708.0,
+      "timestamp": 28693.0,
       "event_type": "vehicle_returned_to_station",
       "data": {
         "vehicle_id": 6,
-        "return_time": 28708.0
+        "return_time": 28693.0
       },
-      "real_time": "2025-10-21T22:40:48.590316"
+      "real_time": "2025-10-23T11:43:21.992086"
     }
   ],
   "performance_metrics": {
     "total_incidents": 62,
     "total_dispatches": 62,
-    "avg_response_time": 15.795383382140832,
-    "min_response_time": 5.984735476464266,
-    "max_response_time": 34.34755256889912,
-    "std_response_time": 7.531486444519666,
-    "failed_incidents_over_30s": 4,
-    "failed_incident_rate": 0.06451612903225806,
+    "avg_response_time": 18.00506080149567,
+    "min_response_time": 6.346472129494941,
+    "max_response_time": 35.65811527106416,
+    "std_response_time": 8.123153737809277,
+    "failed_incidents_over_30s": 8,
+    "failed_incident_rate": 0.12903225806451613,
     "total_events": 372
   }
 }
